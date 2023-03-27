@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using StudentsClubsWeb.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using StudentsClubsWeb.Utilities;
 
 namespace StudentsClubsWeb
 {
@@ -12,6 +14,7 @@ namespace StudentsClubsWeb
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddRazorPages();
 
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
@@ -28,6 +31,9 @@ namespace StudentsClubsWeb
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<AppDbContext>();
 
+            builder.Services.AddSingleton<IEmailSender, EmailSender>();
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -42,13 +48,16 @@ namespace StudentsClubsWeb
             app.UseStaticFiles();
 
             app.UseRouting();
-                        app.UseAuthentication();;
+            
+            app.UseAuthentication();;
 
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{area=Student}/{controller=Home}/{action=Index}/{id?}");
+
+            app.MapRazorPages();
 
             app.Run();
         }

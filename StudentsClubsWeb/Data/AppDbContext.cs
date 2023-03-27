@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using StudentsClubsWeb.Models;
 
 namespace StudentsClubsWeb.Data
 {
@@ -9,5 +10,8 @@ namespace StudentsClubsWeb.Data
         {
             
         }
+
+        public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<Tag> Tags { get; set; }
     }
 }

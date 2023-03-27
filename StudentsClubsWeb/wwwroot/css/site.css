@@ -16,3 +16,30 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+@media only screen and (max-width: 992px) {
+    .ltr-sm {
+        direction: ltr;
+    }
+
+    .rtl-sm {
+        direction: rtl;
+    }
+
+    .dir-revert-sm {
+        direction: revert;
+    }
+}
+@media only screen and (min-width: 992px) {
+    .ltr-bg {
+        direction: ltr;
+    }
+
+    .rtl-bg {
+        direction: rtl;
+    }
+
+    .dir-revert-bg {
+        direction: revert;
+    }
+}

@@ -1,14 +1,17 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Build.Framework;
+using StudentsClubsWeb.Utilities;
 
 namespace StudentsClubsWeb.Models
 {
     public class AppUser : IdentityUser
     {
-        public String? FirstName { get; set; }
-        public String? LastName { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? SchoolNumber { get; set; }
+        public string? SchoolEmail { get; set; }
         [Required]
-        public String DisplayUsername { get; set; } = 
+        public string DisplayUsername { get; set; } = NameGenerator.GenerateName();
 
     }
 }
