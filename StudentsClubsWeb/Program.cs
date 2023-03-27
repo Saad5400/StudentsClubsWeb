@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using StudentsClubsWeb.Data;
+using Microsoft.AspNetCore.Identity;
+
 namespace StudentsClubsWeb
 {
     public class Program
@@ -8,6 +12,21 @@ namespace StudentsClubsWeb
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+                {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireLowercase = false;
+                })
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<AppDbContext>();
 
             var app = builder.Build();
 
@@ -23,12 +42,13 @@ namespace StudentsClubsWeb
             app.UseStaticFiles();
 
             app.UseRouting();
+                        app.UseAuthentication();;
 
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{area=Student}/{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using StudentsClubsWeb.Models;
 using System.Diagnostics;
+using StudentsClubsWeb.Models;
 
-namespace StudentsClubsWeb.Controllers
+namespace StudentsClubsWeb.Areas.Student.Controllers
 {
     public class HomeController : Controller
     {
