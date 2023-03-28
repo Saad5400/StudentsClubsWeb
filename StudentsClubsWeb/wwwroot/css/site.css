@@ -43,3 +43,23 @@ body {
         direction: revert;
     }
 }
+
+.vertical-center-container {
+    position: relative;
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.vertical-bottom {
+    margin: 0;
+    position: absolute;
+    top: 70%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}

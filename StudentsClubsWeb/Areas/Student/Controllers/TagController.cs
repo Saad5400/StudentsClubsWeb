@@ -16,19 +16,22 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Create(Tag? tag)
         {
-            return View(new Tag());
+            tag ??= new Tag();
+
+            return View(tag);
         }
 
-        [HttpPost]
-        public IActionResult Create(Tag tag)
+        [HttpPost(nameof(Create))]
+        public IActionResult CreatePOST(Tag tag)
         {
             if (!ModelState.IsValid)
             {
-                return View(tag);
+                // error
+                return View("Create", tag);
             }
-            return View(tag);
+            return View("Create", tag);
         }
     }
 }

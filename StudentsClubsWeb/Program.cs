@@ -27,9 +27,15 @@ namespace StudentsClubsWeb
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireUppercase = false;
                     options.Password.RequireLowercase = false;
+                    
                 })
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<AppDbContext>();
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Identity/Account/Login";
+            });
 
             builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
