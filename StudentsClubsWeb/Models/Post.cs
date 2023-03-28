@@ -1,22 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace StudentsClubsWeb.Models
 {
-    public class Tag
+    public class Post
     {
         [Key]
         public int Id { get; set; }
-
+        [StringLength(500)]
         [Required]
-        [StringLength(50)]
         public string Title { get; set; }
+        [Required]
+        public string Content { get; set; }
 
-        [StringLength(1000)]
-        public string? Description { get; set; }
-
-        public string? Group { get; set; }
+        public List<Tag> Tags { get; set; } = new List<Tag>();
 
         public string AuthorId { get; set; }
         [ForeignKey(nameof(AuthorId))]

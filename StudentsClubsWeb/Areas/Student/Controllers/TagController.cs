@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using StudentsClubsWeb.Models;
 using StudentsClubsWeb.Utilities;
 
-namespace StudentsClubsWeb.Areas.Manager.Controllers
+namespace StudentsClubsWeb.Areas.Student.Controllers
 {
-    [Area("Manager")]
+    [Area("Student")]
     [Authorize]
     public class TagController : Controller
     {
@@ -18,13 +18,13 @@ namespace StudentsClubsWeb.Areas.Manager.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            return View(new Tag());
         }
 
         [HttpPost]
         public IActionResult Create(Tag tag)
         {
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
             {
                 return View(tag);
             }
