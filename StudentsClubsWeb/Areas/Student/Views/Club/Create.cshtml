@@ -4,7 +4,7 @@
 <h2 class="mt-4">
     سجل نادي جديد
 </h2>
-<form method="post">
+<form method="post" asp-area="Student" asp-controller="Club" asp-action="CreatePOST">
     <div class="row">
         <div class="col-lg-4 col-md-12 mt-3">
             <label asp-for="Club.Name" class="form-label">اسم النادي</label>

@@ -34,7 +34,7 @@ namespace StudentsClubsWeb.Migrations
 
                     b.HasIndex("MembersId");
 
-                    b.ToTable("AppUserClub");
+                    b.ToTable("AppUserClub", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -261,7 +261,7 @@ namespace StudentsClubsWeb.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clubs");
+                    b.ToTable("Clubs", (string)null);
                 });
 
             modelBuilder.Entity("StudentsClubsWeb.Models.Post", b =>
@@ -289,7 +289,7 @@ namespace StudentsClubsWeb.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", (string)null);
                 });
 
             modelBuilder.Entity("StudentsClubsWeb.Models.Tag", b =>
@@ -330,7 +330,7 @@ namespace StudentsClubsWeb.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tags", (string)null);
                 });
 
             modelBuilder.Entity("StudentsClubsWeb.Models.AppUser", b =>

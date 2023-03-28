@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Club>
+﻿@using StudentsClubsWeb.Utilities
+@model StudentsClubsWeb.Areas.Student.Models.ClubIndexVM
 
 <div class="row mt-3">
     <h6 class="my-auto">
@@ -52,8 +53,22 @@
     
 </div>
 
-
-@foreach (var club in Model)
+<div class="row">
+@foreach (var club in Model.Clubs)
 {
-
+    <div class="col-lg-3 col-md-4 col-6">
+        <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+            <div class="card-header">
+                @foreach (var tag in club.Tags.Select(t => t.Title))
+                {
+                    <span class="badge bg-secondary">@tag</span>
+                }
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">@club.Name</h4>
+                <p class="card-text"></p>
+            </div>
+        </div>
+    </div>
 }
+</div>

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using StudentsClubsWeb.Data;
 using Microsoft.AspNetCore.Identity;
@@ -34,11 +35,12 @@ namespace StudentsClubsWeb
 
             builder.Services.ConfigureApplicationCookie(options =>
             {
-                options.LoginPath = "/Identity/Account/Login";
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
             });
 
             builder.Services.AddSingleton<IEmailSender, EmailSender>();
-
 
             var app = builder.Build();
 
