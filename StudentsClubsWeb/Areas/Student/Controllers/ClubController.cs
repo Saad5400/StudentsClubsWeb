@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Runtime.Intrinsics.X86;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StudentsClubsWeb.Areas.Admin.Controllers;
@@ -45,7 +46,11 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
         [HttpGet]
         public IActionResult Create(CreateClubVM? vm)
         {
-            vm.Club ??= new Club();
+            vm ??= new CreateClubVM();
+            vm.Club = new Club();
+            vm.TagsList = _db.Tags.Where(t => t.Group == SD.TagGroup.Club).ToList();
+            vm.Cities = _db.Tags.Where(t => t.Group == SD.TagGroup.City).ToList();
+            vm.Schools = _db.Tags.Where(t => t.Group == SD.TagGroup.School).ToList();
 
             return View(vm);
         }

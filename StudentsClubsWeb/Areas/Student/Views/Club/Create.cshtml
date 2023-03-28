@@ -6,13 +6,13 @@
 </h2>
 <form method="post">
     <div class="row">
-        <div class="col-lg-4 col-md-6 mt-2">
+        <div class="col-lg-4 col-md-12 mt-3">
             <label asp-for="Club.Name" class="form-label">اسم النادي</label>
             <input asp-for="Club.Name" type="text" class="form-control" placeholder="ادخل الاسم">
             <span asp-validation-for="Club.Name" class="text-danger"></span>
             @* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> *@
         </div>
-        <div class="col-lg-4 col-md-6 mt-2">
+        <div class="col-lg-4 col-md-6 mt-3">
             <label class="form-label">قائمة العلامات السابقة</label>
             <select id="tagSelect" class="form-select" onchange="appendTagToInput(this);">
                 <option disabled selected>اختر اي علامة لاضافتها</option>
@@ -36,12 +36,50 @@
                 }
             </select>
         </div>
-        <div class="col-lg-4 col-md-6 mt-2">
+        <div class="col-lg-4 col-md-6 mt-3">
             <label asp-for="Tags" class="form-label">ادخل كل علامة وافصل بينهم باستعمال "-"</label>
             <input asp-for="Tags" id="tagInput" class="form-control" placeholder="حاسب - ترفيهي - علمي">
             <span asp-validation-for="Tags" class="text-danger"></span>
         </div>
-        <div class="col-lg-12 col-md-12 mt-2">
+        <div class="col-lg-4 col-md-6 mt-3">
+            <label asp-for="City" class="form-label">اختر من المدن المسجلة او ادخل مدينة جديدة</label>
+            <div class="row">
+                <div class="col-md-6 mb-2 mb-lg-0 mb-md-0 ps-md-1">
+                    <select class="form-select" onchange="setCityInput(this);">
+                        <option selected disabled>اختر المدينة</option>
+                        @foreach (var city in Model.Cities)
+                        {
+                            <option>@city.Title</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-6 pe-md-1">
+                    <input id="cityInput" class="form-control" asp-for="City" placeholder="ادخل المدينة" />
+                </div>
+            </div>
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mt-3">
+            <label asp-for="School" class="form-label">اختر من الجهات المسجلة او ادخل جهة جديدة</label>
+            <div class="row">
+                <div class="col-md-6 mb-2 mb-lg-0 mb-md-0 ps-md-1">
+                    <select class="form-select" onchange="setSchoolInput(this);">
+                        <option selected disabled>اختر الجهة</option>
+                        @foreach (var school in Model.Schools)
+                        {
+                            <option>@school.Title</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-6 pe-md-1">
+                    <input id="schoolInput" class="form-control" asp-for="School" placeholder="ادخل الجهة" />
+                </div>
+            </div>
+            <span asp-validation-for="School" class="text-danger"></span>
+        </div>
+
+        <div class="col-lg-12 col-md-12 mt-3">
             <label asp-for="Club.Description" class="form-label">وصف النادي</label>
             <textarea asp-for="Club.Description" class="form-control" placeholder="ادخل الوصف"></textarea>
             <span asp-validation-for="Club.Description" class="text-danger"></span>
@@ -62,6 +100,18 @@
         function appendTagToInput(caller) {
             let tagInput = document.getElementById('tagInput');
             tagInput.value += caller.value + " - ";
+            caller.selectedIndex = 0;
+        }
+
+        function setCityInput(caller) {
+            let cityInput = document.getElementById('cityInput');
+            cityInput.value = caller.value;
+            caller.selectedIndex = 0;
+        }
+
+        function setSchoolInput(caller) {
+            let schoolInput = document.getElementById('schoolInput');
+            schoolInput.value = caller.value;
             caller.selectedIndex = 0;
         }
     </script>

@@ -9,11 +9,11 @@ namespace StudentsClubsWeb.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "هذه الخانة مطلوبة")]
         [StringLength(100)]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "هذه الخانة مطلوبة")]
         [StringLength(2000)]
         public string Description { get; set; }
 
