@@ -20,22 +20,28 @@
         <div class="col-lg-4 col-md-6 mt-1 mt-lg-0">
             <select class="form-select">
                 <option selected disabled>المدينة</option>
-                <option>tag1</option>
-                <option>tag2</option>
+                @foreach (var tag in Model.Tags.Where(t => t.Group == SD.TagGroup.City))
+                {
+                    <option value="@tag.Id">@tag.Title</option>
+                }
             </select>
         </div>
         <div class="col-lg-4 col-md-6 mt-1 mt-lg-0">
             <select class="form-select">
-                <option selected disabled>الجامعة</option>
-                <option>tag1</option>
-                <option>tag2</option>
+                <option selected disabled>الجهة</option>
+                @foreach (var tag in Model.Tags.Where(t => t.Group == SD.TagGroup.School))
+                {
+                    <option value="@tag.Id">@tag.Title</option>
+                }
             </select>
         </div>
         <div class="col-lg-4 col-md-6 mt-1 mt-lg-0">
             <select class="form-select">
                 <option selected disabled>النوع</option>
-                <option>tag1</option>
-                <option>tag2</option>
+                @foreach (var tag in Model.Tags.Where(t => t.Group == SD.TagGroup.Club))
+                {
+                    <option value="@tag.Id">@tag.Title</option>
+                }
             </select>
         </div>
         <div class="col-lg-12 col-md-6 mt-2">
@@ -64,9 +70,19 @@
                     <span class="badge bg-secondary">@tag</span>
                 }
             </div>
-            <div class="card-body">
+            <div class="card-body pb-1">
                 <h4 class="card-title">@club.Name</h4>
-                <p class="card-text"></p>
+                <p class="card-text">@(club.Description.Length > 100 ? club.Description.Substring(0, 100) + "..." : club.Description)</p>
+                <div class="row">
+                    <a class="btn btn-info">
+                        صفحة النادي
+                    </a>
+                </div>
+                <div class="row">
+                    <a class="btn btn-success">
+                        طلب التسجيل
+                    </a>
+                </div>
             </div>
         </div>
     </div>

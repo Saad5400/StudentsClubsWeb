@@ -126,7 +126,7 @@
         public static string GenerateName()
         {
             string name = Names[_random.Next(Names.Count)];
-            name += GenerateNumber();
+            name += "#" + GenerateNumber();
             return name;
         }
     }

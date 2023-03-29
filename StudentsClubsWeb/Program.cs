@@ -30,6 +30,7 @@ namespace StudentsClubsWeb
                     options.Password.RequireLowercase = false;
                     
                 })
+                .AddRoles<IdentityRole>()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<AppDbContext>();
 

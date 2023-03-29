@@ -1,5 +1,9 @@
-﻿@model StudentsClubsWeb.Areas.Student.Models.ClubIndexVM
-
+﻿@model StudentsClubsWeb.Areas.Admin.Models.ClubsIndexVM
+<div class="mt-5">
+    <h3>
+        ادارة النوادي
+    </h3>
+</div>
 <div class="row">
     @foreach (var club in Model.Clubs)
     {
@@ -15,7 +19,46 @@
                     <h4 class="card-title">@club.Name</h4>
                     <p class="card-text">@club.Description</p>
                 </div>
+                <div class="btn-group" dir="ltr">
+                    <a class="btn btn-danger" asp-area="Admin" asp-controller="Clubs" asp-action="Remove" asp-route-clubId="@club.Id">
+                        حذف النادي
+                    </a>
+                    <a class="btn btn-secondary">
+                        عرض/تعديل المعلومات
+                    </a>
+                </div>
             </div>
         </div>
     }
+</div>
+<div class="mt-5">
+    <h3>
+        ادارة المستخدمين
+    </h3>
+</div>
+<div class="row">
+    <table class="table table-hover">
+        <tr class="row">
+            <th class="col-4">اسم المستخدم</th>
+            <th class="col-4">البريد</th>
+            <th class="col-4">خيارات</th>
+        </tr>
+        @foreach (var user in Model.AppUsers)
+        {
+            <tr class="row">
+                <td class="col-4">@user.DisplayUsername</td>
+                <td class="col-4">@user.Email</td>
+                <td class="col-4">
+                    <div class="btn-group" dir="ltr">
+                        <a class="btn btn-danger">
+                            حظر
+                        </a>
+                        <a class="btn btn-secondary">
+                            عرض/تعديل المعلومات
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
 </div>

@@ -19,7 +19,7 @@ namespace StudentsClubsWeb.Models
 
         public List<AppUser> Members { get; set; } = new List<AppUser>();
 
-        public List<AppUser> Admins { get; set; } = new List<AppUser>();
+        public List<ClubAdmin> ClubAdmins { get; set; } = new List<ClubAdmin>();
 
         public List<Tag> Tags { get; set; } = new List<Tag>();
     }

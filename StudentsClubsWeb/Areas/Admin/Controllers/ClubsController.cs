@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using StudentsClubsWeb.Areas.Admin.Models;
 using StudentsClubsWeb.Areas.Student.Models;
 using StudentsClubsWeb.Data;
 using StudentsClubsWeb.Models;
@@ -27,10 +28,10 @@ namespace StudentsClubsWeb.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            ClubIndexVM vm = new ClubIndexVM();
+            ClubsIndexVM vm = new ClubsIndexVM();
 
-            vm.Clubs = _db.Clubs.Include(c => c.Tags).ToList();
-            vm.Tags = _db.Tags.ToList();
+            vm.Clubs = _db.Clubs.Include(c => c.Tags);
+            vm.AppUsers = _db.AppUsers;
 
             return View(vm);
         }
@@ -51,8 +52,27 @@ namespace StudentsClubsWeb.Areas.Admin.Controllers
         {
             var user = GetAppUser();
             _userManager.AddToRoleAsync(user, SD.Role.Admin).GetAwaiter().GetResult();
-            _db.SaveChanges();
+            
             return Ok("Admin Granted to this user");
+        }
+
+        public IActionResult Remove(int? clubId)
+        {
+            if (clubId is null or 0)
+            {
+                return RedirectToAction("Index");
+
+            }
+            var club = _db.Clubs.Include(c => c.Tags).FirstOrDefault(c => c.Id == clubId);
+
+            club.Tags.Clear();
+            club.ClubAdmins.Clear();
+            club.Members.Clear();
+
+            _db.Clubs.Remove(club);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }

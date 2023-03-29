@@ -17,5 +17,7 @@ namespace StudentsClubsWeb.Models
 
         public List<Tag> Tags { get; set; } = new List<Tag>();
         public List<Club> Clubs { get; set; } = new List<Club>();
+        public List<ClubAdmin> ClubAdmins { get; set; } = new List<ClubAdmin>();
+
     }
 }

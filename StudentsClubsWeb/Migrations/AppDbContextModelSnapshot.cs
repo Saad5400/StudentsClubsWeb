@@ -34,7 +34,7 @@ namespace StudentsClubsWeb.Migrations
 
                     b.HasIndex("MembersId");
 
-                    b.ToTable("AppUserClub", (string)null);
+                    b.ToTable("AppUserClub");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -261,7 +261,31 @@ namespace StudentsClubsWeb.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clubs", (string)null);
+                    b.ToTable("Clubs");
+                });
+
+            modelBuilder.Entity("StudentsClubsWeb.Models.ClubAdmin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AdminId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ClubId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdminId");
+
+                    b.HasIndex("ClubId");
+
+                    b.ToTable("ClubAdmin");
                 });
 
             modelBuilder.Entity("StudentsClubsWeb.Models.Post", b =>
@@ -289,7 +313,7 @@ namespace StudentsClubsWeb.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("Posts", (string)null);
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("StudentsClubsWeb.Models.Tag", b =>
@@ -330,15 +354,12 @@ namespace StudentsClubsWeb.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("Tags", (string)null);
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("StudentsClubsWeb.Models.AppUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<int?>("ClubId")
-                        .HasColumnType("int");
 
                     b.Property<string>("DisplayUsername")
                         .IsRequired()
@@ -355,8 +376,6 @@ namespace StudentsClubsWeb.Migrations
 
                     b.Property<string>("SchoolNumber")
                         .HasColumnType("nvarchar(max)");
-
-                    b.HasIndex("ClubId");
 
                     b.HasDiscriminator().HasValue("AppUser");
                 });
@@ -427,6 +446,25 @@ namespace StudentsClubsWeb.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("StudentsClubsWeb.Models.ClubAdmin", b =>
+                {
+                    b.HasOne("StudentsClubsWeb.Models.AppUser", "Admin")
+                        .WithMany("ClubAdmins")
+                        .HasForeignKey("AdminId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentsClubsWeb.Models.Club", "Club")
+                        .WithMany("ClubAdmins")
+                        .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Admin");
+
+                    b.Navigation("Club");
+                });
+
             modelBuilder.Entity("StudentsClubsWeb.Models.Post", b =>
                 {
                     b.HasOne("StudentsClubsWeb.Models.AppUser", "Author")
@@ -457,16 +495,9 @@ namespace StudentsClubsWeb.Migrations
                     b.Navigation("Author");
                 });
 
-            modelBuilder.Entity("StudentsClubsWeb.Models.AppUser", b =>
-                {
-                    b.HasOne("StudentsClubsWeb.Models.Club", null)
-                        .WithMany("Admins")
-                        .HasForeignKey("ClubId");
-                });
-
             modelBuilder.Entity("StudentsClubsWeb.Models.Club", b =>
                 {
-                    b.Navigation("Admins");
+                    b.Navigation("ClubAdmins");
 
                     b.Navigation("Tags");
                 });
@@ -478,6 +509,8 @@ namespace StudentsClubsWeb.Migrations
 
             modelBuilder.Entity("StudentsClubsWeb.Models.AppUser", b =>
                 {
+                    b.Navigation("ClubAdmins");
+
                     b.Navigation("Tags");
                 });
 #pragma warning restore 612, 618

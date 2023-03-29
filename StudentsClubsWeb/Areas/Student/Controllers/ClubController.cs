@@ -68,8 +68,9 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
         [Authorize]
         public IActionResult CreatePOST(CreateClubVM vm)
         {
-            vm.Cities = new List<Tag>();
-            vm.Schools = new List<Tag>();
+            vm.Cities ??= new List<Tag>();
+            vm.Schools ??= new List<Tag>();
+            vm.Club.ClubAdmins ??= new List<ClubAdmin>();
 
             if (!ModelState.IsValid)
             {
@@ -78,7 +79,7 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
 
             var user = GetAppUser();
             
-            vm.Club.Admins.Add(user);
+            vm.Club.ClubAdmins.Add(new ClubAdmin{Admin = user, Club = vm.Club});
 
             var tagsTitle = vm.Tags.Split("-");
             var tags = new List<Tag>();
