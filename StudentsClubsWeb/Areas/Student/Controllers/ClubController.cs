@@ -21,22 +21,41 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
             _db = db;
         }
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(ClubIndexVM? vm)
         {
-            ClubIndexVM vm = new ClubIndexVM();
-
+            vm = new ClubIndexVM();
             vm.Clubs = _db.Clubs.Include(c => c.Tags).ToList();
-            vm.Tags = _db.Tags.ToList();
+            vm.Tags = _db.Tags.ToList().DistinctBy(t => t.Title).ToList();
 
             return View(vm);
         }
 
-        [HttpPost(nameof(Index))]
-        public IActionResult ApplyFilter()
+        public IActionResult ApplyFilter(ClubIndexVM vm)
         {
-            // TODO: Complete
-            ClubIndexVM vm = new ClubIndexVM();
+            var clubs = _db.Clubs.Include(c => c.Tags).ToList();
+            var tags = _db.Tags.ToList().DistinctBy(t => t.Title).ToList();
 
+            // Filter clubs based on selected city
+            if (!string.IsNullOrEmpty(vm.FilterCity))
+            {
+                clubs = clubs.Where(c => c.Tags.Any(t => t.Title == vm.FilterCity)).ToList();
+            }
+
+            // Filter clubs based on selected school
+            if (!string.IsNullOrEmpty(vm.FilterSchool))
+            {
+                clubs = clubs.Where(c => c.Tags.Any(t => t.Title == vm.FilterSchool)).ToList();
+            }
+
+            // Filter clubs based on selected tag
+            if (!string.IsNullOrEmpty(vm.FilterTag))
+            {
+                clubs = clubs.Where(c => c.Tags.Any(t => t.Title.Equals(vm.FilterTag, StringComparison.OrdinalIgnoreCase))).ToList();
+            }
+
+            vm.Clubs = clubs;
+            vm.Tags = tags;
+            
             return View(nameof(Index), vm);
         }
         public string GetUserId()
@@ -84,9 +103,7 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
 
             var tagsTitle = vm.Tags.Split("-");
             var tags = new List<Tag>();
-            var oldClubTags = _db.Tags.Where(t => t.Group == SD.TagGroup.Club).ToList();
-            var oldCityTags = _db.Tags.Where(t => t.Group == SD.TagGroup.City).ToList();
-            var oldSchoolTags = _db.Tags.Where(t => t.Group == SD.TagGroup.School).ToList();
+
             foreach (var tagTitle in tagsTitle)
             {
                 if (tagTitle.Trim() == string.Empty)
@@ -97,25 +114,25 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
                 {
                     Author = user,
                     Group = SD.TagGroup.Club,
-                    Title = tagTitle
+                    Title = tagTitle.Trim(),
                 };
-                tags.Add(oldClubTags.FirstOrDefault(t => t.Title.ToLower().Trim() == tagTitle.ToLower().Trim(), tag));
+                tags.Add(tag);
             }
 
             var cityTag = new Tag
             {
                 Author = user,
                 Group = SD.TagGroup.City,
-                Title = vm.City
+                Title = vm.City.Trim()
             };
-            tags.Add(oldCityTags.FirstOrDefault(t => t.Title.ToLower().Trim() == cityTag.Title.ToLower().Trim(), cityTag));
+            tags.Add( cityTag);
             var schoolTag = new Tag
             {
                 Author = user,
                 Group = SD.TagGroup.School,
-                Title = vm.School
+                Title = vm.School.Trim()
             };
-            tags.Add(oldSchoolTags.FirstOrDefault(t => t.Title.ToLower().Trim() == schoolTag.Title.ToLower().Trim(), schoolTag));
+            tags.Add(schoolTag);
 
             
             vm.Club.Tags.AddRange(tags);
@@ -125,6 +142,17 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
             _db.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        public IActionResult ClubPage(int id)
+        {
+            Club club = _db.Clubs
+                .Include(c => c.Members)
+                .Include(c => c.ClubAdmins)
+                .ThenInclude(cd => cd.Admin)
+                .FirstOrDefault(c => c.Id == id);
+
+            return View(club);
         }
     }
 }
