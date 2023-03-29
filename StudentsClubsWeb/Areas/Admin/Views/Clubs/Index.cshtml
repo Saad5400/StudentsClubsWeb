@@ -20,7 +20,7 @@
                     <p class="card-text">@club.Description</p>
                 </div>
                 <div class="btn-group" dir="ltr">
-                    <a class="btn btn-danger" asp-area="Admin" asp-controller="Clubs" asp-action="Remove" asp-route-clubId="@club.Id">
+                    <a class="btn btn-danger" asp-area="Admin" asp-controller="Clubs" asp-action="RemoveClub" asp-route-clubId="@club.Id">
                         حذف النادي
                     </a>
                     <a class="btn btn-secondary">
@@ -30,6 +30,37 @@
             </div>
         </div>
     }
+</div>
+<div class="mt-5">
+    <h3>
+        ادارة العلامات
+    </h3>
+</div>
+<div class="row">
+    <table class="table table-hover">
+        <tr class="row">
+            <th class="col-4">الاسم</th>
+            <th class="col-4">المجموعة</th>
+            <th class="col-4">خيارات</th>
+        </tr>
+        @foreach (var tag in Model.Tags)
+        {
+            <tr class="row">
+                <td class="col-4">@tag.Title</td>
+                <td class="col-4">@tag.Group</td>
+                <td class="col-4">
+                    <div class="btn-group" dir="ltr">
+                        <a class="btn btn-danger" asp-area="Admin" asp-controller="Clubs" asp-action="RemoveTag" asp-route-tagId="@tag.Id">
+                            حذف
+                        </a>
+                        <a class="btn btn-secondary">
+                            عرض/تعديل المعلومات
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
 </div>
 <div class="mt-5">
     <h3>

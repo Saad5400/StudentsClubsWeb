@@ -12,7 +12,7 @@ using StudentsClubsWeb.Utilities;
 namespace StudentsClubsWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = SD.Role.Admin)]
+    // [Authorize(Roles = SD.Role.Admin)]
 
     public class ClubsController : Controller
     {
@@ -32,6 +32,7 @@ namespace StudentsClubsWeb.Areas.Admin.Controllers
 
             vm.Clubs = _db.Clubs.Include(c => c.Tags);
             vm.AppUsers = _db.AppUsers;
+            vm.Tags = _db.Tags;
 
             return View(vm);
         }
@@ -56,7 +57,7 @@ namespace StudentsClubsWeb.Areas.Admin.Controllers
             return Ok("Admin Granted to this user");
         }
 
-        public IActionResult Remove(int? clubId)
+        public IActionResult RemoveClub(int? clubId)
         {
             if (clubId is null or 0)
             {
@@ -65,11 +66,22 @@ namespace StudentsClubsWeb.Areas.Admin.Controllers
             }
             var club = _db.Clubs.Include(c => c.Tags).FirstOrDefault(c => c.Id == clubId);
 
-            club.Tags.Clear();
-            club.ClubAdmins.Clear();
-            club.Members.Clear();
-
             _db.Clubs.Remove(club);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult RemoveTag(int? tagId)
+        {
+            if (tagId is null or 0)
+            {
+                return RedirectToAction("Index");
+
+            }
+            var tag = _db.Tags.Find(tagId);
+
+            _db.Tags.Remove(tag);
             _db.SaveChanges();
 
             return RedirectToAction("Index");

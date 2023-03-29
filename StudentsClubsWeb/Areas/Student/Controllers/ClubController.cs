@@ -1,6 +1,7 @@
 ﻿using System.Runtime.Intrinsics.X86;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StudentsClubsWeb.Areas.Admin.Controllers;
@@ -83,15 +84,22 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
 
             var tagsTitle = vm.Tags.Split("-");
             var tags = new List<Tag>();
+            var oldClubTags = _db.Tags.Where(t => t.Group == SD.TagGroup.Club).ToList();
+            var oldCityTags = _db.Tags.Where(t => t.Group == SD.TagGroup.City).ToList();
+            var oldSchoolTags = _db.Tags.Where(t => t.Group == SD.TagGroup.School).ToList();
             foreach (var tagTitle in tagsTitle)
             {
+                if (tagTitle.Trim() == string.Empty)
+                {
+                    continue;
+                }
                 var tag = new Tag
                 {
                     Author = user,
                     Group = SD.TagGroup.Club,
                     Title = tagTitle
                 };
-                tags.Add(tag);
+                tags.Add(oldClubTags.FirstOrDefault(t => t.Title.ToLower().Trim() == tagTitle.ToLower().Trim(), tag));
             }
 
             var cityTag = new Tag
@@ -100,14 +108,14 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
                 Group = SD.TagGroup.City,
                 Title = vm.City
             };
-            tags.Add(cityTag);
+            tags.Add(oldCityTags.FirstOrDefault(t => t.Title.ToLower().Trim() == cityTag.Title.ToLower().Trim(), cityTag));
             var schoolTag = new Tag
             {
                 Author = user,
                 Group = SD.TagGroup.School,
                 Title = vm.School
             };
-            tags.Add(schoolTag);
+            tags.Add(oldSchoolTags.FirstOrDefault(t => t.Title.ToLower().Trim() == schoolTag.Title.ToLower().Trim(), schoolTag));
 
             
             vm.Club.Tags.AddRange(tags);

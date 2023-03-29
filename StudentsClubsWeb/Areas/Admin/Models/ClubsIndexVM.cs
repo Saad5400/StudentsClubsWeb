@@ -6,5 +6,6 @@ namespace StudentsClubsWeb.Areas.Admin.Models
     {
         public IEnumerable<Club> Clubs { get; set; }
         public IEnumerable<AppUser> AppUsers { get; set; }
+        public IEnumerable<Tag> Tags { get; set; }
     }
 }
