@@ -86,6 +86,7 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
         }
 
         [Authorize]
+        [ValidateAntiForgeryToken]
         public IActionResult CreatePOST(CreateClubVM vm)
         {
             vm.Cities ??= new List<Tag>();
@@ -146,16 +147,60 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
 
         public IActionResult ClubPage(int id)
         {
-            Club club = _db.Clubs
-                .Include(c => c.Posts)
-                .Include(c => c.Members)
-                .Include(c => c.ClubAdmins)
-                .ThenInclude(cd => cd.Admin)
-                .FirstOrDefault(c => c.Id == id);
-        
-        return View(club);
+            if (TempData["message"] != null)
+            {
+                ViewBag.Message = TempData["message"];
+            }
+            // Club club = _db.Clubs
+            //     .Include(c => c.Posts)
+            //     .Include(c => c.Members)
+            //     .Include(c => c.ClubAdmins)
+            //     .ThenInclude(cd => cd.Admin)
+            //     .FirstOrDefault(c => c.Id == id);
+
+            var club = _db.Clubs.Find(id);
+            // load and assign posts
+            _db.Entry(club).Collection(c => c.Posts).Load();
+            _db.Entry(club).Collection(c => c.Members).Load();
+            _db.Entry(club).Collection(c => c.ClubAdmins).Load();
+            foreach (var clubAdmin in club.ClubAdmins)
+            {
+                _db.Entry(clubAdmin).Reference(ca => ca.Admin).Load();
+            }
+            // load enumerable JoinClubRequests, where club id == id
+            IEnumerable<JoinClubRequest> requests = _db.JoinClubRequests.Include(r => r.User).Where(c => c.ClubId == id);
+            // create a new Club Page VM
+            var vm = new ClubPageVM()
+            {
+                Club = club,
+                JoinClubRequests = requests
+            };
+            return View(vm);
         }
 
+        // create method RequestJoinClub
+        [Authorize]
+        public IActionResult RequestJoinClub(int clubId)
+        {
+            var userId = GetUserId();
+            if (_db.JoinClubRequests.Any(r => r.UserId == userId))
+            {
+                TempData["message"] = "لقد قمت بطلب التسجيل من قبل، انتظر موافقة الادارة";
+                return RedirectToAction("ClubPage", new {id = clubId});
+            }
+            var request = new JoinClubRequest()
+            {
+                ClubId = clubId,
+                UserId = userId,
+                IsApproved = false
+            };
+            _db.JoinClubRequests.Add(request);
+            _db.SaveChanges();
 
+            // add a message that the request is sent
+            TempData["message"] = "تم ارسال طلبك بنجاح، انتظر موافقة الادارة";
+
+            return RedirectToAction("ClubPage", new {id = clubId});
+        }
     }
 }

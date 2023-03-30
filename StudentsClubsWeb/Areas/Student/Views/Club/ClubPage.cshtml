@@ -2,39 +2,73 @@
 @using System.Security.Claims
 @using System.Text.RegularExpressions
 @using Microsoft.AspNetCore.Mvc.TagHelpers
-@model Club
+@model ClubPageVM
+
+@{
+    var isAdmin = Model.Club.ClubAdmins.Any(cd => cd.AdminId == User.FindFirstValue(ClaimTypes.NameIdentifier));
+    var isMember = Model.Club.Members.Any(m => m.Id == User.FindFirstValue(ClaimTypes.NameIdentifier));
+}
+
+<style>
+    .note-video-clip {
+        width: max-content;
+        height: fit-content;
+    }
+</style>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-dismissible alert-light">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        @ViewBag.Message
+    </div>
+}
 
 <div class="mt-3">
 
 </div>
-<h2 class="">
-    @Model.Name
-</h2>
-<hr/>
-@if (Model.Members.Any(m => m.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)) ||
-    Model.ClubAdmins.Any(cd => cd.AdminId == User.FindFirstValue(ClaimTypes.NameIdentifier)))
-{
-    // display a button to add a new post
-    <div>
-        <a class="btn btn-primary" asp-area="Student" asp-controller="Post" asp-action="Create" asp-route-clubId="@Model.Id">
-            اضافة منشور
-        </a>
+<div class="row">
+    <div class="col">
+        <h2 class="">
+            @Model.Club.Name
+        </h2>
     </div>
-}
+    <div class="col text-start">
+        <div>
+            @if (isAdmin || isMember)
+            {
+                // display a button to add a new post
+                <a class="btn btn-success" asp-area="Student" asp-controller="Post" asp-action="Create" asp-route-clubId="@Model.Club.Id">
+                    اضافة منشور
+                </a>
+            }
+            else
+            {
+                // display a button with "طلب التسجيل"
+                <a class="btn btn-success" asp-area="Student" asp-controller="Club" asp-action="RequestJoinClub" asp-route-clubId="@Model.Club.Id">
+                    طلب التسجيل
+                </a>
+            }
+        </div>
+    </div>
+</div>
+
+<hr/>
+
 
 <div class="my-2">
 
 </div>
-@if (Model.Posts.Count > 0)
+@if (Model.Club.Posts.Count > 0)
 {
     <h5>
         اخر المنشورات
     </h5>
 }
 <div class="row">
-@foreach (var post in Model.Posts)
+    @foreach (var post in Model.Club.Posts)
 {
-    <div class="col-lg-4 col-6">
+    <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="card mt-3">
             <div class="card-header">
                 <h6 class="my-auto">
@@ -75,7 +109,7 @@
             <th>اسم المستخدم</th>
             <th>البريد</th>
         </tr>
-        @foreach (var admin in Model.ClubAdmins.Select(cd => cd.Admin))
+        @foreach (var admin in Model.Club.ClubAdmins.Select(cd => cd.Admin))
         {
             <tr>
                 <td>@(admin.FirstName + " " + admin.LastName)</td>
@@ -90,16 +124,58 @@
 </h5>
 <div>
     <table class="table table-hover">
-        <tr>
-            <th>اسم المستخدم</th>
-            <th>البريد العام</th>
-        </tr>
-        @foreach (var user in Model.Members)
+        @if (isAdmin)
         {
             <tr>
-                <td>@user.DisplayUsername</td>
-                <td>@user.SchoolEmail</td>
+                <th>اسم المستخدم</th>
+                <th>البريد</th>
+                <th>خيارات</th>
             </tr>
+            @foreach (var user in Model.JoinClubRequests.Select(r => r.User))
+            {
+                <tr>
+                    <td>@user.DisplayUsername</td>
+                    <td>@user.SchoolEmail</td>
+                    <td>
+                        <div class="btn-group" dir="ltr">
+                            <a class="btn btn-danger">
+                                طرد
+                            </a>
+                            <a class="btn btn-success">
+                                قبول
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            @foreach (var user in Model.Club.Members)
+            {
+                <tr>
+                    <td>@user.DisplayUsername</td>
+                    <td>@user.SchoolEmail</td>
+                    <td>
+                        <div class="btn-group" dir="ltr">
+                            <a class="btn btn-danger">
+                                طرد
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <th>اسم المستخدم</th>
+                <th>البريد العام</th>
+            </tr>
+            @foreach (var user in Model.Club.Members)
+            {
+                <tr>
+                    <td>@user.DisplayUsername</td>
+                    <td>@user.SchoolEmail</td>
+                </tr>
+            }
         }
     </table>
 </div>

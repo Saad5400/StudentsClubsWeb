@@ -15,5 +15,7 @@ namespace StudentsClubsWeb.Data
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Club> Clubs { get; set; }
         public DbSet<Post> Posts { get; set; }
+
+        public DbSet<JoinClubRequest> JoinClubRequests { get; set; }
     }
 }

@@ -46,7 +46,7 @@
                 </select>
             </div>
             <div class="mt-2 mx-auto btn-group" dir="ltr">
-                <a class="btn btn-primary" asp-area="Student" asp-controller="Club" asp-action="Index">
+                <a class="btn btn-warning" asp-area="Student" asp-controller="Club" asp-action="Index">
                     اعادة ضبط
                 </a>
                 <button class="btn btn-primary" type="submit">
@@ -77,16 +77,11 @@
                 }
             </div>
             <div class="card-body pb-1">
-                <h4 class="card-title">@club.Name</h4>
+                <h6 class="card-title">@club.Name</h6>
                 <p class="card-text">@(club.Description.Length > 100 ? club.Description.Substring(0, 100) + "..." : club.Description)</p>
                 <div class="row">
-                    <a class="btn btn-info" asp-area="Student" asp-controller="Club" asp-action="ClubPage" asp-route-id="@club.Id">
+                        <a class="btn btn-success" asp-area="Student" asp-controller="Club" asp-action="ClubPage" asp-route-id="@club.Id">
                         صفحة النادي
-                    </a>
-                </div>
-                <div class="row">
-                    <a class="btn btn-success">
-                        طلب التسجيل
                     </a>
                 </div>
             </div>
