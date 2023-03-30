@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentsClubsWeb.Data;
 
@@ -11,9 +12,10 @@ using StudentsClubsWeb.Data;
 namespace StudentsClubsWeb.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230330024446_addedCreatedDate")]
+    partial class addedCreatedDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +36,7 @@ namespace StudentsClubsWeb.Migrations
 
                     b.HasIndex("MembersId");
 
-                    b.ToTable("AppUserClub", (string)null);
+                    b.ToTable("AppUserClub");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -261,7 +263,7 @@ namespace StudentsClubsWeb.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clubs", (string)null);
+                    b.ToTable("Clubs");
                 });
 
             modelBuilder.Entity("StudentsClubsWeb.Models.ClubAdmin", b =>
@@ -285,7 +287,7 @@ namespace StudentsClubsWeb.Migrations
 
                     b.HasIndex("ClubId");
 
-                    b.ToTable("ClubAdmin", (string)null);
+                    b.ToTable("ClubAdmin");
                 });
 
             modelBuilder.Entity("StudentsClubsWeb.Models.Post", b =>
@@ -321,7 +323,7 @@ namespace StudentsClubsWeb.Migrations
 
                     b.HasIndex("ClubId");
 
-                    b.ToTable("Posts", (string)null);
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("StudentsClubsWeb.Models.Tag", b =>
@@ -362,7 +364,7 @@ namespace StudentsClubsWeb.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("Tags", (string)null);
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("StudentsClubsWeb.Models.AppUser", b =>

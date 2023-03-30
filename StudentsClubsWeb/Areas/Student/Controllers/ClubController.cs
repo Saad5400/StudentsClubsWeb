@@ -147,12 +147,15 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
         public IActionResult ClubPage(int id)
         {
             Club club = _db.Clubs
+                .Include(c => c.Posts)
                 .Include(c => c.Members)
                 .Include(c => c.ClubAdmins)
                 .ThenInclude(cd => cd.Admin)
                 .FirstOrDefault(c => c.Id == id);
-
-            return View(club);
+        
+        return View(club);
         }
+
+
     }
 }

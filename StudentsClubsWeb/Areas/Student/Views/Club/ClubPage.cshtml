@@ -1,4 +1,8 @@
-﻿@model Club
+﻿@using StudentsClubsWeb.Utilities
+@using System.Security.Claims
+@using System.Text.RegularExpressions
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Club
 
 <div class="mt-3">
 
@@ -7,8 +11,62 @@
     @Model.Name
 </h2>
 <hr/>
-<h5>
-    ادارة النادي
+@if (Model.Members.Any(m => m.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)) ||
+    Model.ClubAdmins.Any(cd => cd.AdminId == User.FindFirstValue(ClaimTypes.NameIdentifier)))
+{
+    // display a button to add a new post
+    <div>
+        <a class="btn btn-primary" asp-area="Student" asp-controller="Post" asp-action="Create" asp-route-clubId="@Model.Id">
+            اضافة منشور
+        </a>
+    </div>
+}
+
+<div class="my-2">
+
+</div>
+@if (Model.Posts.Count > 0)
+{
+    <h5>
+        اخر المنشورات
+    </h5>
+}
+<div class="row">
+@foreach (var post in Model.Posts)
+{
+    <div class="col-lg-4 col-6">
+        <div class="card mt-3">
+            <div class="card-header">
+                <h6 class="my-auto">
+                    @post.Title
+                </h6>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    @Html.Raw(Regex.Replace(post.Content, @"<script\b[^<]*(?:(?!</script>)<[^<]*)*</script>", string.Empty, RegexOptions.IgnoreCase))
+                </p>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-6">
+                        <h6 class="my-auto">
+                            @post.CreatedAt
+                        </h6>
+                    </div>
+                    <div class="col-6">
+                        <h6 class="my-auto">
+                            @post.Author.DisplayUsername
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+</div>
+<h5 class="mt-5">
+    الادارة
 </h5>
 <div>
     <table class="table table-hover">

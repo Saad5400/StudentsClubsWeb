@@ -1,0 +1,47 @@
+﻿@model Post
+
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-bs5.css" rel="stylesheet">
+
+@* <style> *@
+@*     .note-editable { *@
+@*         text-align: start; *@
+@*         unicode-bidi: plaintext; *@
+@*     } *@
+@* </style> *@
+
+<form method="post">
+    <input asp-for="ClubId" type="hidden" />
+    <input asp-for="AuthorId" type="hidden" />
+
+    <div class="form-group">
+        <label>العنوان</label>
+        <input asp-for="Title" class="form-control"/>
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group" dir="ltr">
+        <label>المحتوى</label>
+
+        <textarea id="summernote" name="editordata"></textarea>
+
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">
+            انشاء
+        </button>
+    </div>
+</form>
+
+@section Scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-bs5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-ar-AR.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                height: 300,                 // set editor height
+            });
+        });
+    </script>
+}

@@ -11,8 +11,9 @@ namespace StudentsClubsWeb.Models
         [StringLength(500)]
         [Required]
         public string Title { get; set; }
-        [Required]
-        public string Content { get; set; }
+        public string? Content { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+
 
         public List<Tag> Tags { get; set; } = new List<Tag>();
 
@@ -20,5 +21,10 @@ namespace StudentsClubsWeb.Models
         [ForeignKey(nameof(AuthorId))]
         [ValidateNever]
         public AppUser Author { get; set; }
+
+        public int? ClubId { get; set; }
+        [ForeignKey(nameof(ClubId))]
+        [ValidateNever]
+        public Club? Club { get; set; }
     }
 }
