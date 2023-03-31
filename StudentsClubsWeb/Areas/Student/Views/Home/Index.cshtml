@@ -1,21 +1,693 @@
 ﻿@{
     ViewData["Title"] = "الرئيسية";
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" href="page/index/index.css">
+</head>
+<body>
+    <section class="wrapper">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+        <div class="title">
+    </section>
+    <header class="header" data-header>
+        <div class="container">
+            <a href="#" class="logo">
+                <!-- Delete -->
+                <!-- <img
+                  src=""
+                  width="119"
+                  height="37"
+                  alt="clubsspace logo"
+                /> -->
+            </a>
 
-<div class="mt-3">
-    <h1 class="display-4">مرحبا!</h1>
-    <p>
-        موقعنا NAME يساعد على العثور على النوادي المناسبة لك.
-        <br />
-        او اذا كنت من مديرين النوادي، تقدر تنشئ صفحة لناديك وتديره، مثل تسجيل الاعضاء وتوزيع المهام وحساب الساعات التطوعية ونشر الاخبار العامة والخاصة لأعضاء النادي
-    </p>
-</div>
-<hr />
-<div class="row gap-2">
-    <div class="d-grid row gap-2 col-lg-6">
-        <a class="btn btn-lg btn-primary">انشئ ناديك</a>
-    </div>
-    <div class="d-grid row gap-2 col-lg-6">
-        <a class="btn btn-lg btn-primary">تصفح النوادي</a>
-    </div>
-</div>
+            <nav class="navbar" data-navbar>
+                <div class="navbar-top">
+                    <a href="#" class="logo">
+                        <!-- <img
+                          src=""
+                          width="119"
+                          height="37"
+                          alt="clubsspace logo"
+                        /> -->
+                    </a>
+
+                    <button class="nav-close-btn"
+                            aria-label="close menu"
+                            data-nav-toggler>
+                        <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+                    </button>
+                </div>
+
+                <ul class="navbar-list">
+                    <li>
+                        <a href="#home" class="navbar-link hover-1" data-nav-toggler>Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#topics" class="navbar-link hover-1" data-nav-toggler>Clubs</a>
+                    </li>
+
+                    <li>
+                        <a href="#featured" class="navbar-link hover-1" data-nav-toggler>Profilet</a>
+                    </li>
+
+                    <li>
+                        <a href="#recent" class="navbar-link hover-1" data-nav-toggler>Hmm</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="navbar-link hover-1" data-nav-toggler>Contact</a>
+                    </li>
+                </ul>
+
+                <div class="navbar-bottom">
+                    <div class="profile-card">
+                        <img src="./assets/images/author-1.png"
+                             width="48"
+                             height="48"
+                             alt="Steven"
+                             class="profile-banner" />
+
+                        <div>
+                            <p class="card-title">Hello User !</p>
+
+                            <p class="card-subtitle">You have 3 new messages</p>
+                        </div>
+                    </div>
+
+                    <ul class="link-list">
+                        <li>
+                            <a href="#" class="navbar-bottom-link hover-1">Profile</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="navbar-bottom-link hover-1">Add New Post</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="navbar-bottom-link hover-1">Account Setting</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="navbar-bottom-link hover-1">Sign Out</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <p class="copyright-text">Copyright 2023 © clubs space by clubsspace</p>
+            </nav>
+
+            <a href="#" class="btn btn-primary">Sign up</a>
+
+            <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+                <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+            </button>
+        </div>
+    </header>
+    <main>
+        <article>
+            <section class="hero" id="home" aria-label="home">
+                <div class="container">
+                    <div class="hero-content">
+                        <p class="hero-subtitle">Hello Everyone!</p>
+
+                        <h1 class="headline headline-1 section-title">
+                            Bla <span class="span">Bla</span>
+                        </h1>
+
+                        <p class="hero-text">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Voluptatem, impedit incidunt rerum ut sapiente modi et ipsum ad
+                            distinctio corrupti?.
+                        </p>
+                        <a href="#" class="btn btn-primary btn-hero">Sign up</a>
+                    </div>
+                    <img src="page/index/images/shadow-1.svg" width="1000" height="1500" alt="" class="hero-bg hero-bg-1">
+
+                    <img src="page/index/images/shadow-2.svg" width="500" height="500" alt="" class="hero-bg hero-bg-2">
+                </div>
+            </section>
+            <br /><br /><br /><br /><br />
+            <section class="section recent-post"
+                     id="recent"
+                     aria-labelledby="recent-label">
+                <div class="container">
+                    <div class="post-main">
+                        <h2 class="headline headline-2 section-title">
+                            <span class="span">Best posts</span>
+                        </h2>
+
+                        <p class="section-text">Don't miss the latest trends</p>
+
+                        <ul class="grid-list">
+                            <li>
+                                <div class="recent-post-card">
+                                    <figure class="card-banner img-holder"
+                                            style="--width: 271; --height: 258">
+                                        <!-- <img
+                                          src="./assets/images/"
+                                          width="271"
+                                          height="258"
+                                          loading="lazy"
+                                          alt="Tips"
+                                          class="img-cover"
+                                        /> -->
+                                    </figure>
+
+                                    <div class="card-content">
+                                        <a href="#" class="card-badge">Tips</a>
+
+                                        <h3 class="headline headline-3 card-title">
+                                            <a href="#" class="link hover-2">Helpful Tips for ..</a>
+                                        </h3>
+
+                                        <p class="card-text">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                                            elit. Recusandae asperiores dolorem explicabo beatae
+                                            quis corrupti voluptate in blanditiis repellendus
+                                            voluptatum.
+                                        </p>
+
+                                        <div class="card-wrapper">
+                                            <div class="card-tag">
+                                                <a href="#" class="span hover-2">#Computer_science</a>
+
+                                                <a href="#" class="span hover-2">#Programming</a>
+                                            </div>
+
+                                            <div class="wrapper">
+                                                <ion-icon name="time-outline"
+                                                          aria-hidden="true"></ion-icon>
+
+                                                <span class="span">3 mins read</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="recent-post-card">
+                                    <figure class="card-banner img-holder"
+                                            style="--width: 271; --height: 258">
+                                        <!-- <img
+                                          src="./assets/images/"
+                                          width="271"
+                                          height="258"
+                                          loading="lazy"
+                                          alt="Tips"
+                                          class="img-cover"
+                                        /> -->
+                                    </figure>
+
+                                    <div class="card-content">
+                                        <a href="#" class="card-badge">Tips</a>
+
+                                        <h3 class="headline headline-3 card-title">
+                                            <a href="#" class="link hover-2">Helpful Tips for ..</a>
+                                        </h3>
+
+                                        <p class="card-text">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                            Voluptas esse repellat est possimus. Facere, quo non
+                                            soluta suscipit doloribus deleniti?
+                                        </p>
+
+                                        <div class="card-wrapper">
+                                            <div class="card-tag">
+                                                <a href="#" class="span hover-2">#Computer_science</a>
+
+                                                <a href="#" class="span hover-2">#Programming</a>
+                                            </div>
+
+                                            <div class="wrapper">
+                                                <ion-icon name="time-outline"
+                                                          aria-hidden="true"></ion-icon>
+
+                                                <span class="span">3 mins read</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="recent-post-card">
+                                    <figure class="card-banner img-holder"
+                                            style="--width: 271; --height: 258">
+                                        <!-- <img
+                                          src="./assets/images/"
+                                          width="271"
+                                          height="258"
+                                          loading="lazy"
+                                          alt="Tips"
+                                          class="img-cover"
+                                        /> -->
+                                    </figure>
+
+                                    <div class="card-content">
+                                        <a href="#" class="card-badge">Tips</a>
+
+                                        <h3 class="headline headline-3 card-title">
+                                            <a href="#" class="link hover-2">Helpful Tips for ..</a>
+                                        </h3>
+
+                                        <p class="card-text">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                            Repellendus pariatur quasi ut, reprehenderit architecto
+                                            cumque facere maxime beatae modi ullam.
+                                        </p>
+
+                                        <div class="card-wrapper">
+                                            <div class="card-tag">
+                                                <a href="#" class="span hover-2">#Computer_science</a>
+
+                                                <a href="#" class="span hover-2">#Programming</a>
+                                            </div>
+
+                                            <div class="wrapper">
+                                                <ion-icon name="time-outline"
+                                                          aria-hidden="true"></ion-icon>
+
+                                                <span class="span">3 mins read</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="recent-post-card">
+                                    <figure class="card-banner img-holder"
+                                            style="--width: 271; --height: 258">
+                                        <!-- <img
+                                          src="./assets/images/"
+                                          width="271"
+                                          height="258"
+                                          loading="lazy"
+                                          alt="Tips"
+                                          class="img-cover"
+                                        /> -->
+                                    </figure>
+
+                                    <div class="card-content">
+                                        <a href="#" class="card-badge">Tips</a>
+
+                                        <h3 class="headline headline-3 card-title">
+                                            <a href="#" class="link hover-2">Helpful Tips for ..</a>
+                                        </h3>
+
+                                        <p class="card-text">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                                            elit. Recusandae, ut veniam. Cumque distinctio maxime,
+                                            maiores rerum quidem odio vel assumenda?
+                                        </p>
+
+                                        <div class="card-wrapper">
+                                            <div class="card-tag">
+                                                <a href="#" class="span hover-2">#Computer_science</a>
+
+                                                <a href="#" class="span hover-2">#Programming</a>
+                                            </div>
+
+                                            <div class="wrapper">
+                                                <ion-icon name="time-outline"
+                                                          aria-hidden="true"></ion-icon>
+
+                                                <span class="span">3 mins read</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="recent-post-card">
+                                    <figure class="card-banner img-holder"
+                                            style="--width: 271; --height: 258">
+                                        <!-- <img
+                                          src="./assets/images/"
+                                          width="271"
+                                          height="258"
+                                          loading="lazy"
+                                          alt="Tips"
+                                          class="img-cover"
+                                        /> -->
+                                    </figure>
+
+                                    <div class="card-content">
+                                        <a href="#" class="card-badge">Tips</a>
+
+                                        <h3 class="headline headline-3 card-title">
+                                            <a href="#" class="link hover-2">Helpful Tips for ..</a>
+                                        </h3>
+
+                                        <p class="card-text">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                            Sit nulla praesentium ducimus, laudantium veritatis
+                                            molestiae excepturi ullam ut neque hic.
+                                        </p>
+
+                                        <div class="card-wrapper">
+                                            <div class="card-tag">
+                                                <a href="#" class="span hover-2">#Computer_science</a>
+
+                                                <a href="#" class="span hover-2">#Programming</a>
+                                            </div>
+
+                                            <div class="wrapper">
+                                                <ion-icon name="time-outline"
+                                                          aria-hidden="true"></ion-icon>
+
+                                                <span class="span">3 mins read</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <nav aria-label="pagination" class="pagination">
+                            <a href="#" class="pagination-btn" aria-label="previous page">
+                                <ion-icon name="arrow-back" aria-hidden="true"></ion-icon>
+                            </a>
+
+                            <a href="#" class="pagination-btn">1</a>
+                            <a href="#" class="pagination-btn">2</a>
+                            <a href="#" class="pagination-btn">3</a>
+                            <a href="#" class="pagination-btn" aria-label="more page">...</a>
+
+                            <a href="#" class="pagination-btn" aria-label="next page">
+                                <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                            </a>
+                        </nav>
+                    </div>
+
+                    <div class="post-aside grid-list">
+                        <div class="card aside-card">
+                            <h3 class="headline headline-2 aside-title">
+                                <span class="span">Popular Clubs</span>
+                            </h3>
+
+                            <ul class="comment-list">
+                                <li>
+                                    <div class="comment-card">
+                                        <div class="profile-card">
+                                            <figure class="profile-banner img-holder">
+                                                <img src="./assets/images/"
+                                                     width="32"
+                                                     height="32"
+                                                     loading="lazy"
+                                                     alt="Computer science" />
+                                            </figure>
+
+                                            <div>
+                                                <h4 class="headline headline-4 card-title">
+                                                    <a href="#" class="link hover-2">Computer Science Club</a>
+                                                </h4>
+                                                <!-- <p class="card-title">Computer Science Club</p> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="comment-card">
+                                        <div class="profile-card">
+                                            <figure class="profile-banner img-holder">
+                                                <img src="./assets/images/"
+                                                     width="32"
+                                                     height="32"
+                                                     loading="lazy"
+                                                     alt="Programming " />
+                                            </figure>
+
+                                            <div>
+                                                <h4 class="headline headline-4 card-title">
+                                                    <a href="#" class="link hover-2">Programming club</a>
+                                                </h4>
+                                                <!-- <p class="card-title">Programming club</p> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="comment-card">
+                                        <div class="profile-card">
+                                            <figure class="profile-banner img-holder">
+                                                <img src="./assets/images/"
+                                                     width="32"
+                                                     height="32"
+                                                     loading="lazy"
+                                                     alt="marketing" />
+                                            </figure>
+
+                                            <div>
+                                                <h4 class="headline headline-4 card-title">
+                                                    <a href="#" class="link hover-2">Marketing Club</a>
+                                                </h4>
+                                                <!-- <p class="card-title">Marketing Club</p> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card aside-card">
+                            <h3 class="headline headline-2 aside-title">
+                                <span class="span">Popular Tags</span>
+                            </h3>
+
+                            <ul class="popular-list">
+                                <li>
+                                    <div class="popular-card">
+                                        <div class="card-content">
+                                            <h4 class="headline headline-4 card-title">
+                                                <a href="#" class="link hover-2">#Computer_science</a>
+                                            </h4>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="popular-list">
+                                <li>
+                                    <div class="popular-card">
+                                        <div class="card-content">
+                                            <h4 class="headline headline-4 card-title">
+                                                <a href="#" class="link hover-2">#Programming</a>
+                                            </h4>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="popular-list">
+                                <li>
+                                    <div class="popular-card">
+                                        <div class="card-content">
+                                            <h4 class="headline headline-4 card-title">
+                                                <a href="#" class="link hover-2">#Business</a>
+                                            </h4>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="popular-list">
+                                <li>
+                                    <div class="popular-card">
+                                        <div class="card-content">
+                                            <h4 class="headline headline-4 card-title">
+                                                <a href="#" class="link hover-2">#Design</a>
+                                            </h4>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="popular-list">
+                                <li>
+                                    <div class="popular-card">
+                                        <div class="card-content">
+                                            <h4 class="headline headline-4 card-title">
+                                                <a href="#" class="link hover-2">#marketing</a>
+                                            </h4>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="card footer">
+                <div class="section footer-top">
+                    <div class="footer-brand">
+                        <a href="#" class="logo">
+                            <img src="./assets/images/"
+                                 width="119"
+                                 height="37"
+                                 loading="lazy"
+                                 alt="clubs logo" />
+                        </a>
+                        <br /><br />
+
+                        <p class="footer-list-title">About Us</p>
+
+                        <p class="footer-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem,
+                            iure quibusdam? Veritatis molestias amet ipsam placeat minima
+                            corporis veniam porro.
+                        </p>
+                    </div>
+
+                    <div class="footer-list">
+                        <p class="footer-list-title">Links</p>
+
+                        <ul>
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-list">
+                        <p class="footer-list-title">Contact Us</p>
+
+                        <p class="footer-text">
+                            Sign up to be first to receive the latest stories inspiring us,
+                            case studies, and industry news.
+                        </p>
+
+                        <div class="input-wrapper">
+                            <input type="text"
+                                   name="name"
+                                   placeholder="Your name"
+                                   required
+                                   class="input-field"
+                                   autocomplete="off" />
+
+                            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                        </div>
+
+                        <div class="input-wrapper">
+                            <input type="email"
+                                   name="email_address"
+                                   placeholder="Emaill address"
+                                   required
+                                   class="input-field"
+                                   autocomplete="off" />
+
+                            <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                        </div>
+
+                        <a href="#" class="btn btn-primary">
+                            <span class="span">Sign up</span>
+
+                            <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p class="copyright">
+                        &copy; Developed by
+                        <a href="#" class="copyright-link">clubsspace.</a>
+                    </p>
+
+                    <ul class="social-list">
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-twitter"></ion-icon>
+
+                                <span class="span">Twitter</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-linkedin"></ion-icon>
+
+                                <span class="span">LinkedIn</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-instagram"></ion-icon>
+
+                                <span class="span">Instagram</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="page/index/index.js"></script>
+    <script type="module"
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

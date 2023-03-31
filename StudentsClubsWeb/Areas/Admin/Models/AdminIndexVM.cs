@@ -2,7 +2,7 @@
 
 namespace StudentsClubsWeb.Areas.Admin.Models
 {
-    public class ClubsIndexVM
+    public class AdminIndexVM
     {
         public IEnumerable<Club> Clubs { get; set; }
         public IEnumerable<AppUser> AppUsers { get; set; }

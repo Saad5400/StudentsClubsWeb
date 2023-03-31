@@ -14,11 +14,11 @@ namespace StudentsClubsWeb.Areas.Admin.Controllers
     [Area("Admin")]
     // [Authorize(Roles = SD.Role.Admin)]
 
-    public class ClubsController : Controller
+    public class AdminController : Controller
     {
         private readonly AppDbContext _db;
         private readonly UserManager<IdentityUser> _userManager;
-        public ClubsController(
+        public AdminController(
             AppDbContext db,
             UserManager<IdentityUser> userManager
             )
@@ -28,11 +28,12 @@ namespace StudentsClubsWeb.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            ClubsIndexVM vm = new ClubsIndexVM();
+            AdminIndexVM vm = new AdminIndexVM();
 
             vm.Clubs = _db.Clubs.Include(c => c.Tags);
             vm.AppUsers = _db.AppUsers;
             vm.Tags = _db.Tags;
+            vm.Posts = _db.Posts.Include(p => p.Club);
 
             return View(vm);
         }
@@ -84,6 +85,19 @@ namespace StudentsClubsWeb.Areas.Admin.Controllers
             _db.Tags.Remove(tag);
             _db.SaveChanges();
 
+            return RedirectToAction("Index");
+        }
+
+        // create method RemovePost
+        public IActionResult RemovePost(int? postId)
+        {
+            if (postId is null or 0)
+            {
+                return RedirectToAction("Index");
+            }
+            var post = _db.Posts.Find(postId);
+            _db.Posts.Remove(post);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
     }
