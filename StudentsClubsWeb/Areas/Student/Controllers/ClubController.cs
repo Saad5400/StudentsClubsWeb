@@ -183,7 +183,7 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
         public IActionResult RequestJoinClub(int clubId)
         {
             var userId = GetUserId();
-            if (_db.JoinClubRequests.Any(r => r.UserId == userId))
+            if (_db.JoinClubRequests.Any(r => r.UserId == userId && r.ClubId == clubId))
             {
                 TempData["message"] = "لقد قمت بطلب التسجيل من قبل، انتظر موافقة الادارة";
                 return RedirectToAction("ClubPage", new {id = clubId});
