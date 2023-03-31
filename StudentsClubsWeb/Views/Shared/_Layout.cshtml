@@ -1,70 +1,186 @@
 ﻿<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Clubs Space</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/StudentsClubsWeb.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/bootswatch.css" />
+    <title>Clubs Space</title>
+    <meta name="title" content="Clubs Space" />
+    <meta name="description" content="This is a bla bla" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" href="page/index/index.css">
 </head>
 <body>
+    <section class="wrapper">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+    </section>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="container-fluid">
-                <a class="navbar-brand">الأندية الطلابية</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-                        data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarColor01">
-                    <ul class="navbar-nav me-1">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="Student" asp-controller="Home"
-                            asp-action="Index">الرئيسية</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="Student" asp-controller="Club" 
-                               asp-action="Index">تصفح الاندية</a>
-                        </li>
-                        @*<li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
-                            </div>
-                        </li>*@
-                    </ul>
-                    @*<form class="d-flex">
-                        <input class="form-control me-sm-2" type="search" placeholder="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                    </form>*@
-                    <div class="me-auto">
-                        <partial name="_LoginPartial" />
+        <partial name="_CustomNav"/>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+    <footer>
+        <div class="container">
+            <div class="card footer">
+                <div class="section footer-top">
+                    <div class="footer-brand">
+                        <a href="#" class="logo">
+                            <img src="./assets/images/"
+                                 width="119"
+                                 height="37"
+                                 loading="lazy"
+                                 alt="clubs logo" />
+                        </a>
+                        <br /><br />
+
+                        <p class="footer-list-title">About Us</p>
+
+                        <p class="footer-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem,
+                            iure quibusdam? Veritatis molestias amet ipsam placeat minima
+                            corporis veniam porro.
+                        </p>
+                    </div>
+
+                    <div class="footer-list">
+                        <p class="footer-list-title">Links</p>
+
+                        <ul>
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="footer-link hover-2">bla bla</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-list">
+                        <p class="footer-list-title">Contact Us</p>
+
+                        <p class="footer-text">
+                            Sign up to be first to receive the latest stories inspiring us,
+                            case studies, and industry news.
+                        </p>
+
+                        <div class="input-wrapper">
+                            <input type="text"
+                                   name="name"
+                                   placeholder="Your name"
+                                   required
+                                   class="input-field"
+                                   autocomplete="off" />
+
+                            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                        </div>
+
+                        <div class="input-wrapper">
+                            <input type="email"
+                                   name="email_address"
+                                   placeholder="Emaill address"
+                                   required
+                                   class="input-field"
+                                   autocomplete="off" />
+
+                            <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                        </div>
+
+                        <a href="#" class="btn btn-primary">
+                            <span class="span">Sign up</span>
+
+                            <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                        </a>
                     </div>
                 </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    @*<footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - StudentsClubsWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                <div class="footer-bottom">
+                    <p class="copyright">
+                        &copy; Developed by
+                        <a href="#" class="copyright-link">clubsspace.</a>
+                    </p>
+
+                    <ul class="social-list">
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-twitter"></ion-icon>
+
+                                <span class="span">Twitter</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-linkedin"></ion-icon>
+
+                                <span class="span">LinkedIn</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-instagram"></ion-icon>
+
+                                <span class="span">Instagram</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </footer>*@
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    </footer>
+    <script src="page/index/index.js"></script>
+    <script type="module"
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+@await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
