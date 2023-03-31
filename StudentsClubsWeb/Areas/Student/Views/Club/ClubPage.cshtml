@@ -131,17 +131,19 @@
                 <th>البريد</th>
                 <th>خيارات</th>
             </tr>
-            @foreach (var user in Model.JoinClubRequests.Select(r => r.User))
+            @foreach (var request in Model.JoinClubRequests)
             {
                 <tr>
-                    <td>@user.DisplayUsername</td>
-                    <td>@user.SchoolEmail</td>
+                    <td>@request.User.DisplayUsername</td>
+                    <td>@request.User.SchoolEmail</td>
                     <td>
                         <div class="btn-group" dir="ltr">
-                            <a class="btn btn-danger">
-                                طرد
+                            <a class="btn btn-danger" asp-area="Admin" asp-controller="ClubAdmin"
+                               asp-action="RejectJoinClubRequest" asp-route-id="@request.Id">
+                                رفض
                             </a>
-                            <a class="btn btn-success">
+                            <a class="btn btn-success" asp-area="Admin" asp-controller="ClubAdmin"
+                                asp-action="AcceptJoinClubRequest" asp-route-id="@request.Id">
                                 قبول
                             </a>
                         </div>
@@ -155,7 +157,7 @@
                     <td>@user.SchoolEmail</td>
                     <td>
                         <div class="btn-group" dir="ltr">
-                            <a class="btn btn-danger">
+                            <a class="btn btn-danger" href="/Admin/ClubAdmin/KickUser/@Model.Club.Id/@user.Id">
                                 طرد
                             </a>
                         </div>
