@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/bootstrap.css">
     <link rel="stylesheet" href="~/page/index/index.css">
 </head>
 <body>
@@ -26,8 +27,8 @@
         @RenderBody()
     </main>
     <footer>
-        <div class="container">
-            <div class="card footer">
+        <div class="w-container">
+            <div class="w-card footer">
                 <div class="section footer-top">
                     @* <div class="footer-brand"> *@
                     @*     <a href="#" class="logo"> *@
@@ -88,7 +89,7 @@
                             <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
                         </div>
 
-                        <a href="#" class="btn btn-primary">
+                        <a href="#" class="w-btn w-btn-primary">
                             <span class="span">Sign up</span>
 
                             <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
@@ -138,11 +139,14 @@
         <br/>
         <br/>
     </footer>
-    <script src="~/page/index/index.js"></script>
-    <script type="module"
-            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script src="~/page/index/index.js"></script>
+<script type="module"
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule
         src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
 @await RenderSectionAsync("Scripts", required: false)
 
 </body>

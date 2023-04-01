@@ -1,3 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Marhey&display=swap');
+
+.kfum-font {
+    font-family: 'Marhey', cursive;
+}
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
 .title {
     position: absolute;
     top: 50%;
@@ -251,7 +265,7 @@ body {
 
 /* -- */
 
-.container {
+.w-container {
     padding-inline: 16px;
 }
 
@@ -310,7 +324,7 @@ body {
     -webkit-background-clip: text;
 }
 
-.btn {
+.w-btn {
     background-image: var(--gradient-2);
     background-size: 200%;
     background-position: left;
@@ -324,11 +338,11 @@ body {
     transition: var(--transition-1);
 }
 
-    .btn:is(:hover, :focus-visible) {
+    .w-btn:is(:hover, :focus-visible) {
         background-position: right;
     }
 
-.btn-primary {
+.w-btn-primary {
     padding: 8px 16px;
     border-radius: var(--radius-6);
 }
@@ -342,7 +356,7 @@ body {
     width: 100%;
 }
 
-.card {
+.w-card {
     /* edit */
     background-color: var(--bg-oxford-blue);
     border: 1px solid var(--border-prussian-blue);
@@ -406,7 +420,7 @@ body {
 
 /* -- */
 
-.header .btn {
+.header .w-btn {
     display: none;
 }
 
@@ -437,7 +451,7 @@ body {
     }
 }
 
-.header .container {
+.header .w-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -536,7 +550,7 @@ body {
     padding-block-start: calc(var(--section-padding) + 160px);
 }
 
-    .hero .container {
+    .hero .w-container {
         display: grid;
         gap: 50px;
     }
@@ -616,7 +630,7 @@ body {
 
 /* -- */
 
-.recent-post .container {
+.recent-post .w-container {
     display: grid;
     gap: 50px;
 }
@@ -635,7 +649,7 @@ body {
         transform: translateY(-2px);
     }
 
-    .recent-post-card .card-text {
+    .recent-post-card .w-card-text {
         color: var(--text-wild-blue-yonder);
         font-size: var(--fontSize-6);
         line-height: var(--lineHeight-1);
@@ -748,7 +762,7 @@ body {
     margin-block-end: 22px;
 }
 
-.comment-card .card-text {
+.comment-card .w-card-text {
     color: var(--text-wild-blue-yonder);
     font-size: var(--fontSize-6);
     line-height: var(--lineHeight-1);
@@ -764,7 +778,7 @@ body {
     font-size: var(--fontSize-7);
 }
 
-.insta-card .card-text {
+.insta-card .w-card-text {
     color: var(--text-slate-gray);
     font-weight: var(--weight-bold);
     margin-block: 5px 30px;
@@ -904,7 +918,7 @@ body {
    * REUSED STYLE
    */
 
-    .container {
+    .w-container {
         max-width: 540px;
         width: 100%;
         margin-inline: auto;
@@ -918,7 +932,7 @@ body {
    * HEADER
    */
 
-    .header .btn {
+    .header .w-btn {
         display: block;
         margin-inline-start: auto;
     }
@@ -988,7 +1002,7 @@ body {
    * REUSED STYLE
    */
 
-    .container {
+    .w-container {
         max-width: 720px;
     }
 
@@ -1002,7 +1016,7 @@ body {
 }
 
 @media (min-width: 992px) {
-    .container {
+    .w-container {
         max-width: 930px;
     }
 
@@ -1014,12 +1028,12 @@ body {
         padding-block-start: calc(var(--section-padding) + 80px);
     }
 
-        .hero .container {
+        .hero .w-container {
             grid-template-columns: 1fr 1fr;
             align-items: center;
         }
 
-    .recent-post .container {
+    .recent-post .w-container {
         grid-template-columns: 1fr 0.6fr;
         align-items: flex-start;
     }
@@ -1051,7 +1065,7 @@ body {
    * REUSED STYLE
    */
 
-    .container {
+    .w-container {
         max-width: 1140px;
     }
 
@@ -1083,7 +1097,7 @@ body {
         margin-inline: auto;
     }
 
-    .header .btn {
+    .header .w-btn {
         margin-inline-start: 0;
     }
 
@@ -1101,7 +1115,7 @@ body {
    * HERO
    */
 
-    .hero .container {
+    .hero .w-container {
         max-width: 1050px;
     }
 
