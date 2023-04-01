@@ -1,7 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Marhey&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kufam&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
 
 .kfum-font {
-    font-family: 'Marhey', cursive;
+    font-family: 'Kufam', sans-serif;
+}
+.cairo-font {
+    font-family: 'Cairo', sans-serif;
 }
 .noselect {
     -webkit-touch-callout: none; /* iOS Safari */
@@ -19,7 +23,7 @@
     right: 0;
     color: #fff;
     text-align: center;
-    font-family: Lato;
+    /* font-family: Lato; */
     font-weight: 300;
     font-size: 50px;
     letter-spacing: 10px;
@@ -119,7 +123,9 @@
     /** Gradient colors */
     --gradient-1: linear-gradient(90deg, #0ea5ea, #0bd1d1 51%);
     --gradient-2: linear-gradient(90deg, #0ea5ea, #0bd1d1 51%, #0ea5ea);
+    --gradient-2-revert: linear-gradient(270deg, #0ea5ea, #0bd1d1 51%, #0ea5ea);
     --gradient-3: linear-gradient(0deg, #000d1a, transparent);
+    --gradient-4: linear-gradient(90deg, #075c83, #056b6b 51%, #043850);
     /** Border colors */
     --border-wild-blue-yonder: hsla(216, 33%, 68%, 1);
     --border-prussian-blue: hsla(216, 33%, 20%, 1);
@@ -239,7 +245,7 @@ body {
     /* background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%); */
     background-color: var(--bg-oxford-blue-2);
     color: var(--text-shadow-blue);
-    font-family: var(--fontFamily-noto_sans);
+    /* font-family: var(--fontFamily-noto_sans); */
     font-size: 1.6rem;
     line-height: var(--lineHeight-4);
     overflow-y: overlay;
@@ -328,7 +334,7 @@ body {
     background-image: var(--gradient-2);
     background-size: 200%;
     background-position: left;
-    color: var(--white);
+    color: white;
     font-size: var(--fontSize-6);
     font-weight: var(--weight-bold);
     max-width: max-content;
@@ -338,18 +344,32 @@ body {
     transition: var(--transition-1);
 }
 
-    .w-btn:is(:hover, :focus-visible) {
-        background-position: right;
-    }
+.w-btn:is(:hover, :focus-visible) {
+    background-position: right;
+}
 
 .w-btn-primary {
     padding: 8px 16px;
     border-radius: var(--radius-6);
 }
 
-.btn-secondary {
-    padding: 18px 30px;
-    border-radius: var(--radius-pill);
+.w-btn-primary-revert {
+    background-image: var(--gradient-2-revert);
+    background-position: right;
+    padding: 8px 16px;
+    border-radius: var(--radius-6);
+}
+
+.w-btn-primary-revert:is(:hover, :focus-visible) {
+    background-position: left;
+}
+
+.w-btn-secondary {
+    padding: 8px 16px;
+    background-image: var(--gradient-2);
+    color: white;
+    /* padding: 18px 30px; */
+    /* border-radius: var(--radius-pill); */
 }
 
 .w-100 {
@@ -547,7 +567,8 @@ body {
 }
 
 .hero {
-    padding-block-start: calc(var(--section-padding) + 160px);
+    /* padding-block-start: calc(var(--section-padding) + 160px); */
+    padding-block-start: calc(var(--section-padding) + 60px);
 }
 
     .hero .w-container {
