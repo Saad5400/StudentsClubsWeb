@@ -64,43 +64,57 @@
                         @*     </li> *@
                         @* </ul> *@
                     </div>
+                    
+                    <form action="https://formsubmit.co/sdbtwa@gmail.com" method="POST">
+                        <div class="footer-list">
+                            <p class="footer-list-title">تواصل معنا</p>
 
-                    <div class="footer-list">
-                        <p class="footer-list-title">تواصل معنا</p>
+                            @* <p class="footer-text"> *@
+                            @*     Sign up to be first to receive the latest stories inspiring us, *@
+                            @*     case studies, and industry news. *@
+                            @* </p> *@
 
-                        @* <p class="footer-text"> *@
-                        @*     Sign up to be first to receive the latest stories inspiring us, *@
-                        @*     case studies, and industry news. *@
-                        @* </p> *@
+                            <div class="input-wrapper">
+                                <input type="text"
+                                       name="name"
+                                       placeholder="الاسم"
+                                       required
+                                       class="input-field"
+                                       autocomplete="off" />
 
-                        <div class="input-wrapper">
-                            <input type="text"
-                                   name="name"
-                                   placeholder="الاسم"
-                                   required
-                                   class="input-field"
-                                   autocomplete="off" />
+                                <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                            </div>
 
-                            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                            <div class="input-wrapper">
+                                <input type="email"
+                                       name="email"
+                                       placeholder="البريد الالكتروني"
+                                       required
+                                       class="input-field"
+                                       autocomplete="off" />
+
+                                <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                            </div>
+                            
+                            <div class="input-wrapper">
+                                <input
+                                       name="content"
+                                       placeholder="الرسالة"
+                                       required
+                                       class="input-field"
+                                       autocomplete="off"
+                                       tyle="height:100px;" />
+
+                                <ion-icon name="document-text-outline"></ion-icon>
+                            </div>
+
+                            <button type="submit" class="w-btn w-btn-primary">
+                                <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                                <span class="span">ارسال</span>
+
+                            </button>
                         </div>
-
-                        <div class="input-wrapper">
-                            <input type="email"
-                                   name="email_address"
-                                   placeholder="البريد الالكتروني"
-                                   required
-                                   class="input-field"
-                                   autocomplete="off" />
-
-                            <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
-                        </div>
-
-                        <a href="#" class="w-btn w-btn-primary">
-                            <span class="span">Sign up</span>
-
-                            <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                        </a>
-                    </div>
+                    </form>
                 </div>
 
                 <div class="footer-bottom">
