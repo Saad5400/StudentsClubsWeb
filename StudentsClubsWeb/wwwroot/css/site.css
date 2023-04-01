@@ -63,3 +63,84 @@ body {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
+
+.dim-bg {
+    position: relative;
+}
+
+.dim-bg:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4); /* Change the opacity value to adjust the level of dimming */
+    backdrop-filter: blur(5px); /* Change the blur radius value as needed */
+    z-index: -1;
+}
+
+.font-10 {
+    font-size: 10% !important;
+}
+.font-20 {
+    font-size: 20% !important;
+}
+.font-30 {
+    font-size: 30% !important;
+}
+.font-40 {
+    font-size: 40% !important;
+}
+.font-50 {
+    font-size: 50% !important;
+}
+.font-60 {
+    font-size: 60% !important;
+}
+.font-70 {
+    font-size: 70% !important;
+}
+.font-80 {
+    font-size: 80% !important;
+}
+.font-90 {
+    font-size: 90% !important;
+}
+.font-100 {
+    font-size: 100% !important;
+}
+.font-125 {
+    font-size: 120% !important;
+}
+.font-150 {
+    font-size: 150% !important;
+}
+.font-175 {
+    font-size: 175% !important;
+}
+.font-200 {
+    font-size: 200% !important;
+}
+.font-250 {
+    font-size: 250% !important;
+}
+.font-300 {
+    font-size: 300% !important;
+}
+.font-350 {
+    font-size: 350% !important;
+}
+.font-400 {
+    font-size: 400% !important;
+}
+.font-500 {
+    font-size: 500% !important;
+}
+.font-550 {
+    font-size: 550% !important;
+}
+.font-600 {
+    font-size: 600% !important;
+}

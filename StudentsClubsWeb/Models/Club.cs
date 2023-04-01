@@ -16,6 +16,10 @@ namespace StudentsClubsWeb.Models
         [Required(ErrorMessage = "هذه الخانة مطلوبة")]
         [StringLength(2000)]
         public string Description { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public int ViewsCount { get; set; }
+        public string? Image { get; set; }
+
 
         public List<AppUser> Members { get; set; } = new List<AppUser>();
 

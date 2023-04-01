@@ -18,6 +18,8 @@ namespace StudentsClubsWeb.Models
 
         public string? Group { get; set; }
 
+        public int ViewsCount { get; set; }
+
         public string AuthorId { get; set; }
         [ForeignKey(nameof(AuthorId))]
         [ValidateNever]

@@ -159,14 +159,27 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
             //     .FirstOrDefault(c => c.Id == id);
 
             var club = _db.Clubs.Find(id);
+            // if club is null
+            if (club == null)
+            {
+                return NotFound();
+            }
             // load and assign posts
             _db.Entry(club).Collection(c => c.Posts).Load();
             _db.Entry(club).Collection(c => c.Members).Load();
             _db.Entry(club).Collection(c => c.ClubAdmins).Load();
+            _db.Entry(club).Collection(c => c.Tags).Load();
+            // increament each tag's ViewsCount
+            foreach (var tag in club.Tags)
+            {
+                tag.ViewsCount++;
+            }
             foreach (var clubAdmin in club.ClubAdmins)
             {
                 _db.Entry(clubAdmin).Reference(ca => ca.Admin).Load();
             }
+            // increament club views
+            club.ViewsCount++;
             // load enumerable JoinClubRequests, where club id == id
             IEnumerable<JoinClubRequest> requests = _db.JoinClubRequests.Include(r => r.User).Where(c => c.ClubId == id);
             // create a new Club Page VM
@@ -175,6 +188,7 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
                 Club = club,
                 JoinClubRequests = requests
             };
+            _db.SaveChangesAsync();
             return View(vm);
         }
 
