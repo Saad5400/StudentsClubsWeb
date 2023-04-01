@@ -1,91 +1,85 @@
 ﻿@using StudentsClubsWeb.Utilities
 @model StudentsClubsWeb.Areas.Student.Models.ClubIndexVM
 
-<div class="row mt-3">
-    <h6 class="my-auto">
-        هل انت قائد نادي؟
-        <a class="btn btn-sm btn-success" asp-area="Student" asp-controller="Club" asp-action="Create">
-            سجل ناديك
-        </a>
-    </h6>
-</div>
-
-<form method="get" asp-area="Student" asp-controller="Club" asp-action="ApplyFilter">
-    <div class="mt-3">
-        <div class="row">
-            <h5>
-                تصفية النتائج
-            </h5>
-        </div>
-        <div class="row input-group">
-            <div class="col-lg-4 col-md-6 mt-1 mt-lg-0">
-                <select asp-for="FilterCity" class="form-select">
-                    <option selected disabled>المدينة</option>
-                    @foreach (var tag in Model.Tags.Where(t => t.Group == SD.TagGroup.City))
-                    {
-                        <option>@tag.Title</option>
-                    }
-                </select>
+<div class="container">
+    <form method="get" asp-area="Student" asp-controller="Club" asp-action="ApplyFilter">
+        <div class="mt-3">
+            <div class="row">
+                <h5>
+                    تصفية النتائج
+                </h5>
             </div>
-            <div class="col-lg-4 col-md-6 mt-1 mt-lg-0">
-                <select asp-for="FilterSchool" class="form-select">
-                    <option selected disabled>الجهة</option>
-                    @foreach (var tag in Model.Tags.Where(t => t.Group == SD.TagGroup.School))
-                    {
-                        <option>@tag.Title</option>
-                    }
-                </select>
-            </div>
-            <div class="col-lg-4 col-md-6 mt-1 mt-lg-0">
-                <select asp-for="FilterTag" class="form-select">
-                    <option selected disabled>النوع</option>
-                    @foreach (var tag in Model.Tags.Where(t => t.Group == SD.TagGroup.Club))
-                    {
-                        <option>@tag.Title</option>
-                    }
-                </select>
-            </div>
-            <div class="mt-2 mx-auto btn-group" dir="ltr">
-                <a class="btn btn-warning" asp-area="Student" asp-controller="Club" asp-action="Index">
-                    اعادة ضبط
-                </a>
-                <button class="btn btn-primary" type="submit">
-                    تطبيق وبحث
-                </button>
-            </div>
-        </div>
-    </div>
-</form>
-
-<hr class="my-3"/>
-<div>
-    <h4>
-        قائمة الاندية
-    </h4>
-    
-</div>
-
-<div class="row">
-@foreach (var club in Model.Clubs)
-{
-    <div class="col-lg-3 col-md-4 col-6">
-        <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-            <div class="card-header">
-                @foreach (var tag in club.Tags.Select(t => t.Title))
-                {
-                    <span class="badge bg-secondary">@tag</span>
-                }
-            </div>
-            <div class="card-body pb-1">
-                <h6 class="card-title">@club.Name</h6>
-                <p class="card-text">@(club.Description.Length > 100 ? club.Description.Substring(0, 100) + "..." : club.Description)</p>
-                <div class="row">
-                        <a class="btn btn-success" asp-area="Student" asp-controller="Club" asp-action="ClubPage" asp-route-id="@club.Id">
-                        صفحة النادي
+            <div class="row input-group">
+                <div class="col-lg-4 col-md-6 mt-1 mt-lg-0">
+                    <select asp-for="FilterCity" class="form-select">
+                        <option selected disabled>المدينة</option>
+                        @foreach (var tag in Model.Tags.Where(t => t.Group == SD.TagGroup.City))
+                        {
+                            <option>@tag.Title</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-1 mt-lg-0">
+                    <select asp-for="FilterSchool" class="form-select">
+                        <option selected disabled>الجهة</option>
+                        @foreach (var tag in Model.Tags.Where(t => t.Group == SD.TagGroup.School))
+                        {
+                            <option>@tag.Title</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-1 mt-lg-0">
+                    <select asp-for="FilterTag" class="form-select">
+                        <option selected disabled>النوع</option>
+                        @foreach (var tag in Model.Tags.Where(t => t.Group == SD.TagGroup.Club))
+                        {
+                            <option>@tag.Title</option>
+                        }
+                    </select>
+                </div>
+                <div class="mt-2 mx-auto btn-group" dir="ltr">
+                    <a class="btn btn-warning" asp-area="Student" asp-controller="Club" asp-action="Index">
+                        اعادة ضبط
                     </a>
+                    <button class="btn btn-primary" type="submit">
+                        تطبيق وبحث
+                    </button>
                 </div>
             </div>
         </div>
+    </form>
+
+    <hr class="my-3" />
+    <div>
+        <h4>
+            قائمة الاندية
+        </h4>
+
     </div>
-}
+
+    <div class="row">
+        @foreach (var club in Model.Clubs)
+        {
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                    <div class="card-header">
+                        @foreach (var tag in club.Tags.Select(t => t.Title))
+                        {
+                            <span class="badge bg-secondary">@tag</span>
+                        }
+                    </div>
+                    <div class="card-body pb-1">
+                        <h6 class="card-title">@club.Name</h6>
+                        <p class="card-text">@(club.Description.Length > 100 ? club.Description.Substring(0, 100) + "..." : club.Description)</p>
+                        <div class="row">
+                            <a class="btn btn-success" asp-area="Student" asp-controller="Club" asp-action="ClubPage" asp-route-id="@club.Id">
+                                صفحة النادي
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
 </div>
