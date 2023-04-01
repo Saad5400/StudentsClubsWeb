@@ -1,8 +1,10 @@
 ﻿@page
+@using StudentsClubsWeb.Utilities
 @model LoginModel
 
 @{
     ViewData["Title"] = "Log in";
+    TempData[SD.NavActive.Profile] = SD.NavActive.Activee;
 }
 
 <h1>@ViewData["Title"]</h1>

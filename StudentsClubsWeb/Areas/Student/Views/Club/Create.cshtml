@@ -1,6 +1,8 @@
 ﻿@using StudentsClubsWeb.Utilities
 @model StudentsClubsWeb.Areas.Student.Models.CreateClubVM
-
+@{
+    TempData[SD.NavActive.NewClub] = SD.NavActive.Activee;
+}
 <div class="container">
     <h2 class="mt-4">
         سجل نادي جديد

@@ -1,4 +1,14 @@
-﻿<article>
+﻿@model StudentsClubsWeb.Areas.Student.Models.HomeIndexVM
+
+@using StudentsClubsWeb.Utilities
+@{
+    Layout = "_HomeLayout";
+    TempData["Title"] = "Home";
+    TempData[SD.NavActive.Home] = SD.NavActive.Activee;
+}
+
+
+<article>
     <section class="hero" id="home" aria-label="home">
         <div class="container">
             <div class="hero-content text-center" dir="rtl">
@@ -97,6 +107,58 @@
                     </li>
 
                 </ul>
+                
+                @foreach(var post in Model.Posts)
+                {
+                    <ul class="grid-list">
+                        <li>
+                            <div class="recent-post-card">
+                                <figure class="card-banner img-holder"
+                                        style="--width: 250; --height: 250">
+                                    @if (!string.IsNullOrEmpty(post.Image))
+                                    {
+                                        <img
+                                            src="@post.Image"
+                                            width="250"
+                                            height="250"
+                                            loading="lazy"
+                                            class="img-cover"/>
+                                    }
+
+                                </figure>
+
+                                <div class="card-content">
+                                    <a asp-area="Student" asp-controller="Club" asp-action="ClubPage" asp-route-id="@post.ClubId" class="card-badge">@post.Club.Name</a>
+
+                                    <h3 class="headline headline-3 card-title">
+                                        <a class="link hover-2">
+                                            @post.Title
+                                        </a>
+                                    </h3>
+
+                                    <p class="w-card-text">
+                                        @post.Summary
+                                    </p>
+
+                                    <div class="card-wrapper">
+                                        <div class="card-tag">
+                                            <a href="#" class="span hover-2">#Computer_science</a>
+                                            <a href="#" class="span hover-2">#Programming</a>
+                                        </div>
+
+                                        <div class="wrapper">
+                                            <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+                                            <span class="span">
+                                                @post.CreatedAt.ToString("dd/MM/yyyy")
+                                            </span>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                }
 
                 @* <nav aria-label="pagination" class="pagination"> *@
                 @*     <a href="#" class="pagination-btn" aria-label="previous page"> *@
@@ -123,46 +185,74 @@
                     </h3>
 
                     <ul class="comment-list">
-                        <li>
-                            <div class="comment-card">
-                                <div class="profile-card">
-                                    <figure class="profile-banner img-holder">
-                                        <img src="./assets/images/"
-                                             width="32"
-                                             height="32"
-                                             loading="lazy"
-                                             alt="Programming "/>
-                                    </figure>
-
-                                    <div>
-                                        <h4 class="headline headline-4 card-title">
-                                            <a href="#" class="link hover-2">Computer Science Club</a>
-                                        </h4>
-                                        <!-- <p class="card-title">Programming club</p> -->
+                        @* <li> *@
+                        @*     <div class="comment-card"> *@
+                        @*         <div class="profile-card"> *@
+                        @*             <figure class="profile-banner img-holder"> *@
+                        @*                 <img src="./assets/images/" *@
+                        @*                      width="32" *@
+                        @*                      height="32" *@
+                        @*                      loading="lazy" *@
+                        @*                      alt="Programming "/> *@
+                        @*             </figure> *@
+                        @* *@
+                        @*             <div> *@
+                        @*                 <h4 class="headline headline-4 card-title"> *@
+                        @*                     <a href="#" class="link hover-2">Computer Science Club</a> *@
+                        @*                 </h4> *@
+                        @*                 <!-- <p class="card-title">Programming club</p> --> *@
+                        @*             </div> *@
+                        @*         </div> *@
+                        @*     </div> *@
+                        @* </li> *@
+                        @foreach (var club in Model.Clubs)
+                        {
+                            <li>
+                                <div class="comment-card">
+                                    <div class="profile-card">
+                                        <figure class="profile-banner img-holder">
+                                            <img src="@club.Image"
+                                                 width="32"
+                                                 height="32"
+                                                 loading="lazy"/>
+                                        </figure>
+                                        <div>
+                                            <h4 class="headline headline-4 card-title">
+                                                <a class="link hover-2"
+                                                    asp-area="Student" asp-controller="Club" asp-action="ClubPage" asp-route-id="@club.Id"
+                                                   >@club.Name</a>
+                                            </h4>
+                                            <!-- <p class="card-title">Programming club</p> -->
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
+                        }
                     </ul>
                 </div>
-                <div class="w-card aside-card">
-                    <h3 class="headline headline-2 aside-title">
-                        <span class="span">علامات مشهورة</span>
-                    </h3>
+              <div class="w-card aside-card">
+                <h3 class="headline headline-2 aside-title">
+                  <span class="span">علامات مشهورة</span>
+                </h3>
 
+                @foreach (var tag in Model.Tags)
+                {
                     <ul class="popular-list">
                         <li>
                             <div class="popular-card">
                                 <div class="card-content">
                                     <h4 class="headline headline-4 card-title">
-                                        <a href="#" class="link hover-2">#Computer_science</a>
+                                        <a href="#" class="link hover-2">
+                                                #@tag.Title
+                                        </a>
                                     </h4>
                                     <br />
                                 </div>
                             </div>
                         </li>
                     </ul>
-                </div>
+                }
+              </div>
             </div>
         </div>
     </section>

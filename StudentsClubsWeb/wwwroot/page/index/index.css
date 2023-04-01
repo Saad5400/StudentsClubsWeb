@@ -194,9 +194,9 @@ li {
 
 a,
 img,
-span,
+/* span, */
 input,
-button,
+/* button, */
 ion-icon {
     display: block;
 }
@@ -252,9 +252,9 @@ body {
     height: 100%;
 }
 
-    body.nav-active {
-        overflow: hidden;
-    }
+body.nav-active {
+    overflow: hidden;
+}
 
 ::-webkit-scrollbar {
     width: 5px;

@@ -1,9 +1,11 @@
 ﻿@using StudentsClubsWeb.Utilities
 @model StudentsClubsWeb.Areas.Student.Models.ClubIndexVM
 
+@{
+    TempData[SD.NavActive.Clubs] = SD.NavActive.Activee;
+}
 
-<section class="section py-5">
-    <div class="w-container" dir="rtl">
+    <div dir="rtl">
         <h2 class="headline headline-2 section-title">
             <span class="span">
                 تصفح الأندية
@@ -92,4 +94,3 @@
         </div>
 
     </div>
-</section>

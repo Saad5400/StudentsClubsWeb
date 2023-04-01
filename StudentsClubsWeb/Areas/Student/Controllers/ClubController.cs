@@ -188,7 +188,7 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
                 Club = club,
                 JoinClubRequests = requests
             };
-            _db.SaveChangesAsync();
+            _db.SaveChanges();
             return View(vm);
         }
 
@@ -216,5 +216,18 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
 
             return RedirectToAction("ClubPage", new {id = clubId});
         }
+
+        public IActionResult MyClubs()
+        {
+            var user = GetAppUser();
+            var clubs = _db.Clubs
+                .Include(c => c.Members)
+                .Where(c => c.Members.Contains(user))
+                .Include(c => c.Posts)
+                .ToList();
+
+            return View(clubs);
+        }
+        
     }
 }

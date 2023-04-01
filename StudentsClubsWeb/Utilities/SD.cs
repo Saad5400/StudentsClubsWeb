@@ -20,5 +20,15 @@
             public const string Public = "Public";
 
         }
+
+        public static class NavActive
+        {
+            public const string Home = nameof(NavActive) + nameof(Home);
+            public const string Profile = nameof(NavActive) + nameof(Profile);
+            public const string Clubs = nameof(NavActive) + nameof(Clubs);
+            public const string MyClubs = nameof(NavActive) + nameof(MyClubs);
+            public const string NewClub = nameof(NavActive) + nameof(NewClub);
+            public const string Activee = "activee";
+        }
     }
 }

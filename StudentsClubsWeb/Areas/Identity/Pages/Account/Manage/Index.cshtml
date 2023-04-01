@@ -1,8 +1,11 @@
 ﻿@page
+@using StudentsClubsWeb.Utilities
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model IndexModel
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "الحساب";
     ViewData["ActivePage"] = ManageNavPages.Index;
+    TempData[SD.NavActive.Profile] = SD.NavActive.Activee;
 }
 
 <h3>@ViewData["Title"]</h3>
@@ -11,17 +14,25 @@
     <div class="col-md-6">
         <form id="profile-form" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Username" class="form-control" disabled />
-                <label asp-for="Username" class="form-label"></label>
+            <div class="form-group">
+                <label class="form-label">البريد</label>
+                <input dir="ltr" asp-for="Username" class="form-control" disabled/>
             </div>
-            <div class="form-floating">
-                <input asp-for="Input.PhoneNumber" class="form-control" />
-                <label asp-for="Input.PhoneNumber" class="form-label"></label>
+            <div class="form-group">
+                <label class="form-label">رقم الجوال</label>
+                <input asp-for="Input.PhoneNumber" class="form-control"/>
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+            <div class="btn-group-vertical w-100">
+                <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+                <a class="w-100 btn btn-lg btn-danger"
+                   asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    تسجيل الخروج
+                </a>
+            </div>
         </form>
+    </div>
+    <div class="">
     </div>
 </div>
 
