@@ -28,6 +28,11 @@
     align-items: center;
     border-radius: 50px;
 }
+@media screen and (max-width: 500px) {
+    .navigation {
+        width: 347px;
+    }
+}
 
 .navigation ul {
     display: flex;

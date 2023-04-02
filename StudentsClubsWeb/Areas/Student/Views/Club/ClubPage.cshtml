@@ -10,30 +10,23 @@
     var isMember = Model.Club.Members.Any(m => m.Id == User.FindFirstValue(ClaimTypes.NameIdentifier));
 }
 
-<style>
-    .note-video-clip {
-        width: max-content;
-        height: fit-content;
-    }
-</style>
-
-@if (ViewBag.Message != null)
+@* @if (ViewBag.Message != null)
 {
     <div class="alert alert-dismissible alert-light">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         @ViewBag.Message
     </div>
-}
+} *@
 
 <div class="mt-3">
 
 </div>
 <div class="row">
-    <div class="col">
-        <h2 class="">
+    <h2 class="title2 headline-2 aside-title aside-title-lg" style="font-size: 40px;">
+        <span class="span">
             @Model.Club.Name
-        </h2>
-    </div>
+        </span>
+    </h2>
     <div class="col text-start">
         <div>
             @if (isAdmin || isMember)
@@ -46,7 +39,7 @@
             else
             {
                 // display a button with "طلب التسجيل"
-                <a class="btn btn-success" asp-area="Student" asp-controller="Club" asp-action="RequestJoinClub" asp-route-clubId="@Model.Club.Id">
+                <a class="btn w-bt" asp-area="Student" asp-controller="Club" asp-action="RequestJoinClub" asp-route-clubId="@Model.Club.Id">
                     طلب التسجيل
                 </a>
             }
@@ -54,76 +47,97 @@
     </div>
 </div>
 
-<hr/>
 
-
-<div class="my-2">
-
-</div>
 @if (Model.Club.Posts.Count > 0)
 {
-    <h5>
-        اخر المنشورات
-    </h5>
-}
-<div class="row">
-    @foreach (var post in Model.Club.Posts)
-{
-    <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card mt-3">
-            <div class="card-header">
-                <h6 class="my-auto">
-                    @post.Title
-                </h6>
-            </div>
-            <div class="card-body">
-                <p class="card-text">
-                    @Html.Raw(Regex.Replace(post.Content, @"<script\b[^<]*(?:(?!</script>)<[^<]*)*</script>", string.Empty, RegexOptions.IgnoreCase))
-                </p>
-            </div>
-            <div class="card-footer">
-                <div class="row">
-                    <div class="col-6">
-                        <h6 class="my-auto">
-                            @post.CreatedAt
-                        </h6>
-                    </div>
-                    <div class="col-6">
-                        <h6 class="my-auto">
-                            @post.Author.DisplayUsername
-                        </h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-}
-</div>
-<h5 class="mt-5">
-    الادارة
+<h5 class="headline-3 title2">
+    <span class="span">
+        المنشورات
+    </span>
 </h5>
-<div>
+
+<div dir="rtl">
     <table class="table table-hover">
-        <tr>
-            <th>الاسم</th>
-            <th>اسم المستخدم</th>
-            <th>البريد</th>
+    <thead>
+        <tr class="table-primary">
+        <th class="text-end">العنوان</th>
+        <th class="text-end">الناشر</th>
+        <th class="text-end">تاريخ النشر</th>
         </tr>
-        @foreach (var admin in Model.Club.ClubAdmins.Select(cd => cd.Admin))
+    </thead>
+    <tbody>
+        @foreach (var post in Model.Club.Posts)
         {
-            <tr>
-                <td>@(admin.FirstName + " " + admin.LastName)</td>
-                <td>@admin.DisplayUsername</td>
-                <td>@admin.Email</td>
+            <tr class="table-light">
+                <td>
+                    <a asp-area="Student" asp-controller="Post" asp-action="PostPage" asp-route-id="@post.Id">
+                        @post.Title
+                    </a>
+                </td>
+                <td>@post.Author.DisplayUsername</td>
+                <td>@post.CreatedAt</td>
             </tr>
         }
+    </tbody>
     </table>
 </div>
-<h5>
-    الاعضاء
+}
+<br>
+<h5 class="headline-3 title2">
+    <span class="span">
+        الادارة
+    </span>
 </h5>
-<div>
+<div dir="rtl">
+    <table class="table table-hover">
+    <thead>
+        <tr class="table-primary">
+        <th class="text-end">الاسم</th>
+        <th class="text-end">اسم العرض</th>
+        <th class="text-end">الايميل</th>
+        <th class="text-end">رقم الجوال</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var admin in Model.Club.ClubAdmins.Select(cd => cd.Admin))
+        {
+            <tr class="table-light">
+                <td>@(admin.FirstName + " " + admin.LastName)</td>
+                <td>@(admin.DisplayUsername)</td>
+                <td>@(admin.Email)</td>
+                <td>@(admin.PhoneNumber)</td>
+            </tr>
+        }
+    </tbody>
+    </table>
+</div>
+
+<br>
+<h5 class="headline-3 title2">
+    <span class="span">
+        الاعضاء
+    </span>
+</h5>
+<div dir="rtl">
+    <table class="table table-hover">
+    <thead>
+        <tr class="table-primary">
+            <th class="text-end">اسم العرض</th>
+            <th class="text-end">الايميل</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var member in Model.Club.Members)
+        {
+            <tr class="table-light">
+                <td>@(member.DisplayUsername)</td>
+                <td>@(member.Email)</td>
+            </tr>
+        }
+    </tbody>
+    </table>
+</div>
+@* <div>
     <table class="table table-hover">
         @if (isAdmin)
         {
@@ -181,4 +195,4 @@
             }
         }
     </table>
-</div>
+</div> *@

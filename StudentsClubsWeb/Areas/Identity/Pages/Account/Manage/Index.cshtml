@@ -108,8 +108,8 @@
                     </div>
                 </div>
                 <div class="form__footer">
-                    <a asp-area="Identity" asp-page="/Account/Login" class="form__recover">
-                        
+                    <a class="form__recover-danger" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        تسجيل الخروج
                     </a>
                     <button type="submit" class="form__btn w-btn" style="color: white;">
                         حفظ

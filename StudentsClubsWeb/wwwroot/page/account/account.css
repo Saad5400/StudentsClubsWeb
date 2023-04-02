@@ -224,3 +224,12 @@ html {
 .form__recover:hover {
   color: var(--color-primary);
 }
+
+.form__recover-danger {
+    font-size: 1.4rem;
+    transition: 0.4s;
+}
+
+.form__recover-danger:hover {
+    color: red;
+}

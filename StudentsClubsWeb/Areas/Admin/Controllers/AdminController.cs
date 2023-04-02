@@ -12,7 +12,6 @@ using StudentsClubsWeb.Utilities;
 namespace StudentsClubsWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    // [Authorize(Roles = SD.Role.Admin)]
 
     public class AdminController : Controller
     {
@@ -26,6 +25,7 @@ namespace StudentsClubsWeb.Areas.Admin.Controllers
             _db = db;
             _userManager = userManager;
         }
+        [Authorize(Roles = SD.Role.Admin)]
         public IActionResult Index()
         {
             AdminIndexVM vm = new AdminIndexVM();
@@ -50,14 +50,20 @@ namespace StudentsClubsWeb.Areas.Admin.Controllers
         {
             return _db.AppUsers.Find(GetUserId());
         }
-        public IActionResult GrantAdmin()
+        [Authorize]
+        public IActionResult GrantAdmin(string password)
         {
+            if (password != "ThisIsMyVeryTopSecretPasswordWhichWillGrantYouAnAdminRole")
+            {
+                return NotFound();
+            }
             var user = GetAppUser();
             _userManager.AddToRoleAsync(user, SD.Role.Admin).GetAwaiter().GetResult();
             
             return Ok("Admin Granted to this user");
         }
 
+        [Authorize(Roles = SD.Role.Admin)]
         public IActionResult RemoveClub(int? clubId)
         {
             if (clubId is null or 0)
@@ -72,7 +78,7 @@ namespace StudentsClubsWeb.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = SD.Role.Admin)]
         public IActionResult RemoveTag(int? tagId)
         {
             if (tagId is null or 0)
@@ -89,6 +95,7 @@ namespace StudentsClubsWeb.Areas.Admin.Controllers
         }
 
         // create method RemovePost
+        [Authorize(Roles = SD.Role.Admin)]
         public IActionResult RemovePost(int? postId)
         {
             if (postId is null or 0)

@@ -590,6 +590,12 @@ body.nav-active {
 .hero .section-title {
     margin-block: 20px;
 }
+@media screen and (max-width: 600px) {
+    .hero .section-title {
+        font-size: 50px;
+    }
+}
+
 
 .hero .hero-text {
     margin-block-end: 40px;
@@ -746,6 +752,15 @@ body.nav-active {
             content: "";
             display: block;
             width: 96px;
+            height: 3px;
+            background-color: var(--bg-carolina-blue);
+            margin-block-start: 10px;
+        }
+
+        .aside-title-lg .span::after {
+            content: "";
+            display: block;
+            width: 200px;
             height: 3px;
             background-color: var(--bg-carolina-blue);
             margin-block-start: 10px;
@@ -923,13 +938,15 @@ body.nav-active {
         transform: translateY(-2px);
     }
 
-    /* ----- */
-    .form-select {
-        font-size: var(--fontSize-6);
-    }
+/* ----- */
+.form-select {
+    font-size: var(--fontSize-6);
+}
+.w-form-select {
+    background: white;
+}
 
 /* -- */
-
 @media (min-width: 575px) {
     /**
    * CUSTOM PROPERTY
