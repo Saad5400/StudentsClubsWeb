@@ -4,7 +4,6 @@
 
 @{
     ViewData["Title"] = "تسجيل الدخول";
-    ViewBag.DisableFooter = true;
     TempData[SD.NavActive.Profile] = SD.NavActive.Activee;
 }
 
@@ -30,50 +29,69 @@
     />
 
     <link rel="stylesheet" href="~/page/account/account.css" />
+    <style>
+        input {
+            text-align: start;
+            unicode-bidi: plaintext;
+        }
+    </style>
   </head>
 
   <body>
     <div class="container">
       <div class="form__wrapper">
-        <form class="form w-card aside-card">
+        <form id="account" method="post" class="form w-card aside-card">
           <h1 class="form__title">تسجيل الدخول</h1>
           <div class="form__inputs">
             <div class="field">
               <label class="field__label">البريد الالكتروني</label>
               <div class="field__wrapper w-card aside-card">
                 <span class="field__icon">
-                  <i class="bx bx-envelope"></i>
+                    <ion-icon name="mail-outline"></ion-icon>
                 </span>
                 <input
                   class="field__input"
-                  type="text"
+                  type="email"
                   placeholder="ادخل البريد الالكتروني"
                   required
+                  asp-for="Input.Email"
                 />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
               </div>
             </div>
-            <div class="field">
-              <label class="field__label">كلمة المرور</label>
-              <div class="field__wrapper w-card aside-card">
-                <span class="field__icon">
-                  <i class="bx bx-lock-alt"></i>
-                </span>
-                <input
-                  id="field-password"
-                  class="field__input"
-                  type="password"
-                  placeholder="ادخل كملة المرور"
-                  required
-                />
-                <span class="field__icon">
-                  <i class="bx bx-hide password-icon"></i>
-                </span>
+              <div class="field">
+                  <label class="field__label">كلمة المرور</label>
+                  <div class="field__wrapper w-card aside-card">
+                      <span class="field__icon">
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                      </span>
+                      <input
+                          id="field-password"
+                          class="field__input"
+                          type="password"
+                          placeholder="ادخل كملة المرور"
+                          required
+                          asp-for="Input.Password"
+                      />
+                      <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+                      <span class="field__icon">
+                          <i class="bx bx-hide password-icon"></i>
+                      </span>
+                  </div>
               </div>
-            </div>
+
+            <input class="form-check-input" asp-for="Input.RememberMe" checked="checked" value="true" hidden />
+
+
+
           </div>
           <div class="form__footer">
-            <a href="#" class="form__recover">مستخدم جديد؟</a>
-            <button type="submit" class="form__btn w-btn" style="color: white;">تسجيل الدخول</button>
+            <a asp-area="Identity" asp-page="/Account/Register" class="form__recover">مستخدم جديد؟</a>
+              <button id="login-submit" type="submit" class="form__btn w-btn" style="color: white;">
+                  تسجيل الدخول
+              </button>
+
           </div>
         </form>
       </div>
@@ -123,7 +141,7 @@
         </section>
     </div>
 </div> *@
-@* 
+ 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-} *@
+}

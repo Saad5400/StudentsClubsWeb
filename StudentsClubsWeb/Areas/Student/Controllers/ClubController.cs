@@ -25,7 +25,7 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
         {
             vm = new ClubIndexVM();
             vm.Clubs = _db.Clubs.Include(c => c.Tags).ToList();
-            vm.Tags = _db.Tags.ToList().DistinctBy(t => t.Title).ToList();
+            vm.Tags = _db.Tags.ToList().ToList();
 
             return View(vm);
         }

@@ -33,23 +33,36 @@
     </span>
 </h2>
 <br>
-<div class="w-card aside-card">
+@* class="w-card aside-card" *@
+<div class="">
     <form method="get" asp-area="Student" asp-controller="Club" asp-action="ApplyFilter">
         <div class="mt-3">
             <div class="row input-group My-input">
                 <div class="">
                     <select asp-for="FilterCity" class="form-select w-lg-50 mx-auto">
                         <option selected disabled>المدينة</option>
+                        @foreach (var tag in Model.Tags.Where(t => t.Group == SD.TagGroup.City).DistinctBy(t => t.Title))
+                        {
+                            <option>@tag.Title</option>
+                        }
                     </select>
                 </div>
                 <div class="">
                     <select asp-for="FilterSchool" class="form-select w-lg-50 mx-auto">
                         <option selected disabled>الجهة</option>
+                        @foreach (var tag in Model.Tags.Where(t => t.Group == SD.TagGroup.School).DistinctBy(t => t.Title))
+                        {
+                            <option>@tag.Title</option>
+                        }
                     </select>
                 </div>
                 <div class="">
                     <select asp-for="FilterTag" class="form-select w-lg-50 mx-auto">
                         <option selected disabled>النوع</option>
+                        @foreach (var tag in Model.Tags.Where(t => t.Group == SD.TagGroup.Club).DistinctBy(t => t.Title))
+                        {
+                            <option>@tag.Title</option>
+                        }
                     </select>
                 </div>
                 <div class="text-center">
@@ -80,7 +93,7 @@
     <br>
 
 <div class="row">
-    @foreach (var club in Model.Clubs)
+    @foreach (var club in Model.Clubs.OrderByDescending(c => c.ViewsCount))
     {
         <div class="col-lg-6">
             <div class="w-card aside-card my-3">
@@ -94,11 +107,12 @@
                 </div>
                 <div class="card-body pb-1">
                     <h3 class="headline headline-3 card-title">
-                        <a class="link hover-2" 
-                            asp-area="Student" asp-controller="Club" asp-action="ClubPage" asp-route-id="@club.Id"
-                            >
-                            @club.Name
-                        </a>
+                        <div class="club-info" style="display: flex; align-items: center;">
+                            <img class="me-0 ms-3" src="@club.Image" width="32" height="32" loading="lazy" style="margin-right: 10px;">
+                            <a class="link hover-2" asp-area="Student" asp-controller="Club" asp-action="ClubPage" asp-route-id="@club.Id">
+                                <span>@club.Name</span>
+                            </a>
+                        </div>
                     </h3>
                     <h6 class="card-title">
                         @(club.Description.Length > 100 ? club.Description.Substring(0, 100) + "..." : club.Description)

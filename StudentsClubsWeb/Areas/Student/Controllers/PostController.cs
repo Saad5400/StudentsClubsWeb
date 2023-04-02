@@ -25,12 +25,21 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
             Post post = _db.Posts
                 .Include(p => p.Author)
                 .Include(p => p.Club)
+                .Include(p => p.Tags)
                 .FirstOrDefault(p => p.Id == id);
             // if null
             if (post == null)
             {
                 return NotFound();
             }
+            // increament post ViewCount
+            post.ViewsCount++;
+            // increament each tag in post ViewsCount
+            foreach (var tag in post.Tags)
+            {
+                tag.ViewsCount++;
+            }
+            _db.SaveChanges();
 
             return View(post);
         }

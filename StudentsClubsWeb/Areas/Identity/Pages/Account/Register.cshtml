@@ -4,7 +4,6 @@
 @model RegisterModel
 @{
     ViewData["Title"] = "التسجيل";
-    ViewBag.DisableFooter = true;
     TempData[SD.NavActive.Profile] = SD.NavActive.Activee;
 }
 
@@ -30,49 +29,116 @@
     />
 
     <link rel="stylesheet" href="~/page/account/account.css" />
+    
+    <style>
+        input {
+            text-align: start;
+            unicode-bidi: plaintext;
+        }
+    </style>
   </head>
 
   <body>
     <div class="container">
       <div class="form__wrapper">
-        <form class="form w-card aside-card">
+        <form class="form w-card aside-card" method="post">
           <h1 class="form__title">تسجيل حساب جديد</h1>
-          <div class="form__inputs">
-            <div class="field">
-              <label class="field__label">البريد الالكتروني</label>
-              <div class="field__wrapper w-card aside-card">
-                <span class="field__icon">
-                  <i class="bx bx-envelope"></i>
-                </span>
-                <input
-                  class="field__input"
-                  type="text"
-                  placeholder="ادخل البريد الالكتروني"
-                  required
-                />
-              </div>
+            <div class="form__inputs">
+                <div class="field">
+                    <label class="field__label">اسم العرض</label>
+                    <div class="field__wrapper w-card aside-card">
+                        <span class="field__icon">
+                            <ion-icon name="person-outline"></ion-icon>
+                        </span>
+                        <input
+                            class="field__input"
+                            type="text"
+                            placeholder="ادخل اسم العرض"
+                            required
+                            value = "@NameGenerator.GenerateName()"
+                            asp-for="Input.DisplayUsername" />
+                        <span asp-validation-for="Input.DisplayUsername" class="text-danger"></span>
+
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="field__label">الاسم (مخفي للزوار)</label>
+                    <div class="field__wrapper w-card aside-card">
+                        <span class="field__icon">
+                            <ion-icon name="person-outline"></ion-icon>
+                        </span>
+                        <input
+                            class="field__input"
+                            type="text"
+                            placeholder="ادخل الاسم الاول"
+                            required
+                            asp-for="Input.FirstName"/>
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                        <input
+                            class="field__input"
+                            type="text"
+                            placeholder="ادخل الاسم الاخير"
+                            required
+                            asp-for="Input.LastName"/>
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="field__label">البريد الالكتروني</label>
+                    <div class="field__wrapper w-card aside-card">
+                        <span class="field__icon">
+                            <ion-icon name="mail-outline"></ion-icon>
+                        </span>
+                        <input
+                            class="field__input"
+                            type="email"
+                            placeholder="ادخل البريد الالكتروني"
+                            required
+                            asp-for="Input.Email"/>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="field__label">رقم الهاتف (اختياري)</label>
+
+                    <div class="field__wrapper w-card aside-card">
+                        <span class="field__icon">
+                            <ion-icon name="call-outline"></ion-icon>
+                        </span>
+                        <input
+                            class="field__input"
+                            type="tel"
+                            placeholder="ادخل رقم الهاتف"
+                            asp-for="Input.PhoneNumber"/>
+                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="field__label">كلمة المرور</label>
+                    <div class="field__wrapper w-card aside-card">
+                        <span class="field__icon">
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                        </span>
+                        <input
+                            id="field-password"
+                            class="field__input"
+                            type="password"
+                            placeholder="ادخل كملة المرور"
+                            required
+                            asp-for="Input.Password"/>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+                        <span class="field__icon">
+                            <i class="bx bx-hide password-icon"></i>
+                        </span>
+                    </div>
+                </div>
             </div>
-            <div class="field">
-              <label class="field__label">كلمة المرور</label>
-              <div class="field__wrapper w-card aside-card">
-                <span class="field__icon">
-                  <i class="bx bx-lock-alt"></i>
-                </span>
-                <input
-                  id="field-password"
-                  class="field__input"
-                  type="password"
-                  placeholder="ادخل كملة المرور"
-                  required
-                />
-                <span class="field__icon">
-                  <i class="bx bx-hide password-icon"></i>
-                </span>
-              </div>
-            </div>
-          </div>
           <div class="form__footer">
-            <a href="#" class="form__recover">مستخدم جديد؟</a>
+            <a asp-area="Identity" asp-page="/Account/Login" class="form__recover">عندك حساب؟</a>
             <button type="submit" class="form__btn w-btn" style="color: white;">تسجيل</button>
           </div>
         </form>
