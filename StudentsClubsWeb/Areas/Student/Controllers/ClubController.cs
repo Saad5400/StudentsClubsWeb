@@ -216,6 +216,7 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
 
             return RedirectToAction("ClubPage", new {id = clubId});
         }
+        [Authorize]
 
         public IActionResult MyClubs()
         {

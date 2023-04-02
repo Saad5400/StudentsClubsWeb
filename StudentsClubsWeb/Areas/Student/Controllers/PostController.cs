@@ -21,6 +21,11 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
 
         public IActionResult Create(int? clubId)
         {
+            // if clubId is null
+            if (clubId == null)
+            {
+                return NotFound();
+            }
             Post post = new Post();
             Club club = _db.Clubs
                 .Include(c => c.Members)

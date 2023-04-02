@@ -23,13 +23,14 @@
                 <input asp-for="Input.PhoneNumber" class="form-control"/>
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
-            <div class="btn-group-vertical w-100">
+            <div class="w-100">
                 <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
-                <a class="w-100 btn btn-lg btn-danger"
-                   asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                    تسجيل الخروج
-                </a>
             </div>
+        </form>
+        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Account/Login", new { area = "Identity" })">
+            <button class="w-100 btn btn-lg btn-danger" type="submit">
+                تسجيل الخروج
+            </button>
         </form>
     </div>
     <div class="">

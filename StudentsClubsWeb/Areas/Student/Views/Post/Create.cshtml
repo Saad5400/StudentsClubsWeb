@@ -25,6 +25,42 @@
             <span asp-validation-for="Summary" class="text-danger"></span>
         </div>
         <div class="form-group">
+            <label>صورة العرض</label>
+            <div class="row">
+                <div class="col-6">
+                    <input id="myImageInput" type="file" />
+                </div>
+                <div class="col-6">
+                    <input id="myImageUrlInput" dir="rtl" class="form-control" placeholder="او ادخل الرابط" type="url" />
+                </div>
+            </div>
+            <input asp-for="Image" hidden="" id="realImageInput" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+        <div class="form-group" hidden id="imagePreviewDiv">
+            <label>
+                معاينة صورة العرض
+                <a class="btn btn-danger" onclick="removePostImage()">
+                    حذف الصورة
+                </a>
+            </label>
+            <ul class="grid-list">
+                <li>
+                    <div class="recent-post-card">
+                        <figure class="card-banner img-holder"
+                                style="--width: 250; --height: 250">
+                            <img id="imagePreview"
+                                 width="250"
+                                 height="250"
+                                 loading="lazy"
+                                 class="img-cover" />
+                        </figure>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+        <div class="form-group">
             <label>
                 المحتوى
             </label>
@@ -45,10 +81,59 @@
 {
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.js"></script>
     <script>
+        function imageToBase64String(imageFile) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(imageFile);
+                reader.onload = () => {
+                    const base64String = reader.result.split(",")[1];
+                    resolve(base64String);
+                };
+                reader.onerror = (error) => reject(error);
+            });
+        }
+
+        function updateRealImageInput(value) {
+            const realImageInput = document.getElementById("realImageInput");
+            const imagePreviewDiv = document.getElementById("imagePreviewDiv");
+            imagePreviewDiv.hidden = false;
+            realImageInput.value = value;
+            updateImagePreview(value);
+        }
+        function updateImagePreview(value) {
+            const imagePreview = document.getElementById("imagePreview");
+            imagePreview.src = value;
+        }
+
+        function removePostImage() {
+            const imagePreviewDiv = document.getElementById("imagePreviewDiv");
+            const myImageInput = document.getElementById("myImageInput");
+            const myImageUrlInput = document.getElementById("myImageUrlInput");
+            myImageInput.value = "";
+            myImageUrlInput.value = "";
+            updateRealImageInput("");
+            imagePreviewDiv.hidden = true;
+        }
+
         $(document).ready(function() {
             $('#summernote').summernote({
                 height: 300,                 // set editor height
             });
+        });
+
+        $("#myImageInput").on("change", async function() {
+            var file = this.files[0];
+            const base64String = "data:image/png;base64," + await imageToBase64String(file);
+            // Perform action with the file here
+            updateRealImageInput(base64String);
+
+            document.getElementById("myImageUrlInput").value = "";
+        });
+
+        $("#myImageUrlInput").on("change", async function () {
+            updateRealImageInput(this.value);
+
+            document.getElementById("myImageInput").value = "";
         });
     </script>
 }

@@ -1,6 +1,4 @@
-﻿@model StudentsClubsWeb.Areas.Student.Models.HomeIndexVM
-
-@using StudentsClubsWeb.Utilities
+﻿@using StudentsClubsWeb.Utilities
 @{
     Layout = "_HomeLayout";
     TempData["Title"] = "Home";
@@ -44,216 +42,28 @@
         </div>
     </section>
     <br /><br /><br /><br /><br />
-    <section class="section recent-post"
-             id="recent"
-             aria-labelledby="recent-label">
-        <div class="w-container" dir="rtl">
-            <div class="post-main">
-                <h2 class="headline headline-2 section-title">
-                    <span class="span">
-                        افضل المشاركات
-                    </span>
-                </h2>
+    <div id="featuredDiv">
 
-                <p class="section-text">
-                    Don't miss the latest trends
-                </p>
-
-                <ul class="grid-list">
-                    <li>
-                        <div class="recent-post-card">
-                            <figure class="card-banner img-holder"
-                                    style="--width: 271; --height: 258">
-                                <!-- <img
-                                  src="./assets/images/"
-                                  width="271"
-                                  height="258"
-                                  loading="lazy"
-                                  alt="Tips"
-                                  class="img-cover"
-                                /> -->
-                            </figure>
-
-                            <div class="card-content">
-                                <a href="#" class="card-badge">Tips</a>
-
-                                <h3 class="headline headline-3 card-title">
-                                    <a href="#" class="link hover-2">Helpful Tips for ..</a>
-                                </h3>
-
-                                <p class="w-card-text">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing
-                                    elit. Recusandae asperiores dolorem explicabo beatae
-                                    quis corrupti voluptate in blanditiis repellendus
-                                    voluptatum.
-                                </p>
-
-                                <div class="card-wrapper">
-                                    <div class="card-tag">
-                                        <a href="#" class="span hover-2">#Computer_science</a>
-
-                                        <a href="#" class="span hover-2">#Programming</a>
-                                    </div>
-
-                                    <div class="wrapper">
-                                        <ion-icon name="time-outline"
-                                                  aria-hidden="true"></ion-icon>
-
-                                        <span class="span">3 mins read</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-                </ul>
-                
-                @foreach(var post in Model.Posts)
-                {
-                    <ul class="grid-list">
-                        <li>
-                            <div class="recent-post-card">
-                                <figure class="card-banner img-holder"
-                                        style="--width: 250; --height: 250">
-                                    @if (!string.IsNullOrEmpty(post.Image))
-                                    {
-                                        <img
-                                            src="@post.Image"
-                                            width="250"
-                                            height="250"
-                                            loading="lazy"
-                                            class="img-cover"/>
-                                    }
-
-                                </figure>
-
-                                <div class="card-content">
-                                    <a asp-area="Student" asp-controller="Club" asp-action="ClubPage" asp-route-id="@post.ClubId" class="card-badge">@post.Club.Name</a>
-
-                                    <h3 class="headline headline-3 card-title">
-                                        <a class="link hover-2">
-                                            @post.Title
-                                        </a>
-                                    </h3>
-
-                                    <p class="w-card-text">
-                                        @post.Summary
-                                    </p>
-
-                                    <div class="card-wrapper">
-                                        <div class="card-tag">
-                                            <a href="#" class="span hover-2">#Computer_science</a>
-                                            <a href="#" class="span hover-2">#Programming</a>
-                                        </div>
-
-                                        <div class="wrapper">
-                                            <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-                                            <span class="span">
-                                                @post.CreatedAt.ToString("dd/MM/yyyy")
-                                            </span>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                }
-
-                @* <nav aria-label="pagination" class="pagination"> *@
-                @*     <a href="#" class="pagination-btn" aria-label="previous page"> *@
-                @*         <ion-icon name="arrow-back" aria-hidden="true"></ion-icon> *@
-                @*     </a> *@
-                @* *@
-                @*     <a href="#" class="pagination-btn">1</a> *@
-                @*     <a href="#" class="pagination-btn">2</a> *@
-                @*     <a href="#" class="pagination-btn">3</a> *@
-                @*     <a href="#" class="pagination-btn" aria-label="more page">...</a> *@
-                @* *@
-                @*     <a href="#" class="pagination-btn" aria-label="next page"> *@
-                @*         <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon> *@
-                @*     </a> *@
-                @* </nav> *@
-            </div>
-
-            <div class="post-aside grid-list">
-                <div class="w-card aside-card">
-                    <h3 class="headline headline-2 aside-title">
-                        <span class="span">
-                            اندية مشهورة
-                        </span>
-                    </h3>
-
-                    <ul class="comment-list">
-                        @* <li> *@
-                        @*     <div class="comment-card"> *@
-                        @*         <div class="profile-card"> *@
-                        @*             <figure class="profile-banner img-holder"> *@
-                        @*                 <img src="./assets/images/" *@
-                        @*                      width="32" *@
-                        @*                      height="32" *@
-                        @*                      loading="lazy" *@
-                        @*                      alt="Programming "/> *@
-                        @*             </figure> *@
-                        @* *@
-                        @*             <div> *@
-                        @*                 <h4 class="headline headline-4 card-title"> *@
-                        @*                     <a href="#" class="link hover-2">Computer Science Club</a> *@
-                        @*                 </h4> *@
-                        @*                 <!-- <p class="card-title">Programming club</p> --> *@
-                        @*             </div> *@
-                        @*         </div> *@
-                        @*     </div> *@
-                        @* </li> *@
-                        @foreach (var club in Model.Clubs)
-                        {
-                            <li>
-                                <div class="comment-card">
-                                    <div class="profile-card">
-                                        <figure class="profile-banner img-holder">
-                                            <img src="@club.Image"
-                                                 width="32"
-                                                 height="32"
-                                                 loading="lazy"/>
-                                        </figure>
-                                        <div>
-                                            <h4 class="headline headline-4 card-title">
-                                                <a class="link hover-2"
-                                                    asp-area="Student" asp-controller="Club" asp-action="ClubPage" asp-route-id="@club.Id"
-                                                   >@club.Name</a>
-                                            </h4>
-                                            <!-- <p class="card-title">Programming club</p> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        }
-                    </ul>
-                </div>
-              <div class="w-card aside-card">
-                <h3 class="headline headline-2 aside-title">
-                  <span class="span">علامات مشهورة</span>
-                </h3>
-
-                @foreach (var tag in Model.Tags)
-                {
-                    <ul class="popular-list">
-                        <li>
-                            <div class="popular-card">
-                                <div class="card-content">
-                                    <h4 class="headline headline-4 card-title">
-                                        <a href="#" class="link hover-2">
-                                                #@tag.Title
-                                        </a>
-                                    </h4>
-                                    <br />
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                }
-              </div>
-            </div>
-        </div>
-    </section>
+    </div>
 </article>
+
+@section Scripts
+{
+    <script>
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("GetFeatured", "Home", new {area="Student"})',
+            //beforeSend: function(xhr) {
+            //    xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val());
+            //},
+            //contentType: 'application/json; charset=utf-8"',
+            //data: jsonData,
+            success: function(result) {
+                $("#featuredDiv").html(result);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    </script>
+}
