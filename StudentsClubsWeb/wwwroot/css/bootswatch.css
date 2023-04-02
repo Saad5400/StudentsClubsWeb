@@ -4260,6 +4260,10 @@ textarea.form-control-lg {
   top: -1px;
 }
 
+.badge {
+  /* هنا */
+}
+
 .alert {
   --bs-alert-bg: transparent;
   --bs-alert-padding-x: 1rem;
