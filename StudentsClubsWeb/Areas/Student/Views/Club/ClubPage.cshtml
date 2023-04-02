@@ -5,6 +5,7 @@
 @model ClubPageVM
 
 @{
+    ViewData["Title"] = Model.Club.Name;
     var isAdmin = Model.Club.ClubAdmins.Any(cd => cd.AdminId == User.FindFirstValue(ClaimTypes.NameIdentifier));
     var isMember = Model.Club.Members.Any(m => m.Id == User.FindFirstValue(ClaimTypes.NameIdentifier));
 }
