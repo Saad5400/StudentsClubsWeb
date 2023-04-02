@@ -8,34 +8,148 @@
     TempData[SD.NavActive.Profile] = SD.NavActive.Activee;
 }
 
-<h3>@ViewData["Title"]</h3>
-<partial name="_StatusMessage" for="StatusMessage" />
-<div class="row">
-    <div class="col-md-6">
-        <form id="profile-form" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label class="form-label">البريد</label>
-                <input dir="ltr" asp-for="Username" class="form-control" disabled/>
-            </div>
-            <div class="form-group">
-                <label class="form-label">رقم الجوال</label>
-                <input asp-for="Input.PhoneNumber" class="form-control"/>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="w-100">
-                <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
-            </div>
-        </form>
-        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Account/Login", new { area = "Identity" })">
-            <button class="w-100 btn btn-lg btn-danger" type="submit">
-                تسجيل الخروج
-            </button>
-        </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet" />
+
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+          rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/page/account/account.css" />
+
+    <style>
+        input {
+            text-align: start;
+            unicode-bidi: plaintext;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form__wrapper">
+            <form class="form w-card aside-card" method="post">
+                <h1 class="form__title">
+                    تعديل المعلومات
+                </h1>
+                <div class="form__inputs">
+                    <div class="field">
+                        <label class="field__label">اسم العرض</label>
+                        <div class="field__wrapper w-card aside-card">
+                            <span class="field__icon">
+                                <ion-icon name="person-outline"></ion-icon>
+                            </span>
+                            <input class="field__input"
+                                   type="text"
+                                   placeholder="ادخل اسم العرض"
+                                   required
+                                   asp-for="Input.DisplayUsername" />
+                            <span asp-validation-for="Input.DisplayUsername" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="field__label">الاسم (مخفي للزوار)</label>
+                        <div class="field__wrapper w-card aside-card">
+                            <span class="field__icon">
+                                <ion-icon name="person-outline"></ion-icon>
+                            </span>
+                            <input class="field__input"
+                                   type="text"
+                                   placeholder="ادخل الاسم الاول"
+                                   required
+                                   asp-for="Input.FirstName" />
+                            <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                            <input class="field__input"
+                                   type="text"
+                                   placeholder="ادخل الاسم الاخير"
+                                   required
+                                   asp-for="Input.LastName" />
+                            <span asp-validation-for="Input.LastName" class="text-danger"></span>
+
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label">البريد الالكتروني</label>
+                        <div class="field__wrapper w-card aside-card">
+                            <span class="field__icon">
+                                <ion-icon name="mail-outline"></ion-icon>
+                            </span>
+                            <input class="field__input"
+                                   type="email"
+                                   placeholder="ادخل البريد الالكتروني"
+                                   disabled
+                                   asp-for="Username" />
+
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="field__label">رقم الهاتف (اختياري)</label>
+
+                        <div class="field__wrapper w-card aside-card">
+                            <span class="field__icon">
+                                <ion-icon name="call-outline"></ion-icon>
+                            </span>
+                            <input class="field__input"
+                                   type="tel"
+                                   placeholder="ادخل رقم الهاتف"
+                                   asp-for="Input.PhoneNumber" />
+                            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form__footer">
+                    <a asp-area="Identity" asp-page="/Account/Login" class="form__recover">
+                        
+                    </a>
+                    <button type="submit" class="form__btn w-btn" style="color: white;">
+                        حفظ
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="">
-    </div>
-</div>
+    <script src="~/page/account/account.js"></script>
+</body>
+</html>
+
+@* <h3>@ViewData["Title"]</h3> *@
+@* <partial name="_StatusMessage" for="StatusMessage" /> *@
+@* <div class="row"> *@
+@*     <div class="col-md-6"> *@
+@*         <form id="profile-form" method="post"> *@
+@*             <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+@*             <div class="form-group"> *@
+@*                 <label class="form-label">البريد</label> *@
+@*                 <input dir="ltr" asp-for="Username" class="form-control" disabled/> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label class="form-label">رقم الجوال</label> *@
+@*                 <input asp-for="Input.PhoneNumber" class="form-control"/> *@
+@*                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span> *@
+@*             </div> *@
+@*             <div class="w-100"> *@
+@*                 <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button> *@
+@*             </div> *@
+@*         </form> *@
+@*         <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Account/Login", new { area = "Identity" })"> *@
+@*             <button class="w-100 btn btn-lg btn-danger" type="submit"> *@
+@*                 تسجيل الخروج *@
+@*             </button> *@
+@*         </form> *@
+@*     </div> *@
+@*     <div class=""> *@
+@*     </div> *@
+@* </div> *@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

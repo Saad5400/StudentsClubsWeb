@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using StudentsClubsWeb.Models;
 
 namespace StudentsClubsWeb.Areas.Identity.Pages.Account.Manage
 {
@@ -58,18 +59,30 @@ namespace StudentsClubsWeb.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Required] 
+            public string FirstName { get; set; }
+            [Required]
+            public string LastName { get; set; }
+
+            [Required] 
+            public string DisplayUsername { get; set; }
         }
 
         private async Task LoadAsync(IdentityUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var appUser = user as AppUser;
 
             Username = userName;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                DisplayUsername = appUser.DisplayUsername,  
+                FirstName = appUser.FirstName,
+                LastName = appUser.LastName
             };
         }
 
@@ -87,7 +100,7 @@ namespace StudentsClubsWeb.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var user = await _userManager.GetUserAsync(User);
+            var user = await _userManager.GetUserAsync(User) as AppUser;
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
@@ -98,6 +111,12 @@ namespace StudentsClubsWeb.Areas.Identity.Pages.Account.Manage
                 await LoadAsync(user);
                 return Page();
             }
+
+            
+            user.DisplayUsername = Input.DisplayUsername;
+            user.FirstName = Input.FirstName;
+            user.LastName = Input.LastName;
+            await _userManager.UpdateAsync(user);
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             if (Input.PhoneNumber != phoneNumber)
