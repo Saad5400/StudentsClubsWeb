@@ -27,35 +27,34 @@
     ViewData["Title"] = "الاندية";
     TempData[SD.NavActive.Clubs] = SD.NavActive.Activee;
 }
-<h2 class=" headline-2 section-title title2">
+
+<h2 class="headline-2 section-title title2">
     <span class="span">
-        تصفح الأندية
+        تصفح الأندية واختر الأندية التي ترغب بالانضمام اليها
     </span>
 </h2>
 <br>
+<br>
+<h6>
+    <span class="span" style="font-size: 16px; font-weight: 500;">
+        <div class="w-lg-50">
+            اختر النوع والمدينة والجهة التي ترغب بالبحث عنها
+        </div>
+    </span>
+</h6>
 @* class="w-card aside-card" *@
 <div class="">
     <form method="get" asp-area="Student" asp-controller="Club" asp-action="ApplyFilter">
         <div class="mt-3">
             <div class="row input-group My-input">
                 <div class="my-2">
-                    @* <select asp-for="FilterCity" class="form-select w-lg-50">
+                    <select id="FilterCity" asp-for="FilterCity" class="form-select w-lg-50">
                         <option selected disabled>المدينة</option>
                         @foreach (var tag in Model.Tags.Where(t => t.Group == SD.TagGroup.City).DistinctBy(t => t.Title))
                         {
                             <option>@tag.Title</option>
                         }
-                    </select> *@
-                    <div class="w-dropdown">
-                        <input type="text" class="textBox" placeholder="Dropdown Menu" readonly>
-                        <div class="option">
-                            <div onclick="show('HTML')" ><i class="fa-brands fa-html5"></i> HTML</div>
-                            <div onclick="show('CSS')" ><i class="fa-brands fa-css3-alt"></i> CSS</div>
-                            <div onclick="show('Javascript')" ><i class="fa-brands fa-js-square"></i> Javascript</div>
-                            <div onclick="show('Bootstrap')" ><i class="fa-brands fa-bootstrap"></i> Bootstrap</div>
-                            <div onclick="show('ReactJS')" ><i class="fa-brands fa-react"></i> ReactJS</div>
-                        </div>
-                    </div>
+                    </select>
                 </div>
                 <div class="my-2">
                     <select asp-for="FilterSchool" class="form-select w-lg-50">
@@ -75,11 +74,16 @@
                         }
                     </select>
                 </div>
-                <div class="">
+                @if(Context.Request.Path.ToString().Contains("ApplyFilter")) {
+                    <a class="form__recover-danger mt-3 me-5" style="display: flex; align-items: center;" 
+                    asp-area="Student" asp-controller="Club" asp-action="Index">
+                        <ion-icon class="d-inline-block align-middle me-2" name="close-circle-outline"></ion-icon>
+                        &nbsp;
+                        اعادة ضبط البحث
+                    </a>
+                }
+                <div hidden class="me-3">
                     <div class="mt-2 row btn-group" dir="ltr">
-                        <a class="btn w-btn w-btn-primary" asp-area="Student" asp-controller="Club" asp-action="Index">
-                            اعادة ضبط
-                        </a>
                         <button class="btn w-btn w-btn-primary-revert" type="submit">
                             تطبيق وبحث
                         </button>
@@ -88,18 +92,12 @@
             </div>
         </div>
     </form>
-            </div>
+</div>
 
 
     <!-- <br>
     <hr class="my-3"/> -->
     <br>
-    <div>
-        <h4>
-            قائمة الاندية
-        </h4>
-
-    </div>
     <br>
 
 <div class="row">
@@ -132,3 +130,21 @@
         </div>
     }
 </div>
+
+@section Scripts{
+    <script>
+        function show(caller, selectId){
+            var select = document.getElementById(selectId);
+            select.click();
+            caller.value = select.value;
+        }
+
+        const selects = document.getElementsByTagName("select");
+        for (let i = 0; i < selects.length; i++) {
+            const select = selects[i];
+            select.addEventListener("change", function(){
+                this.parentElement.parentElement.parentElement.parentElement.submit();
+            });
+        }
+    </script>
+}

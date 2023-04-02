@@ -591,6 +591,9 @@ body.nav-active {
     margin-block: 20px;
 }
 @media screen and (max-width: 600px) {
+    .section-title {
+        font-size: 30px;
+    }
     .hero .section-title {
         font-size: 50px;
     }
@@ -691,7 +694,7 @@ body.nav-active {
         padding: 4px 15px;
         border-radius: var(--radius-pill);
         transition: var(--transition-1);
-        box-shadow: var(--shadow-1);
+        box-shadow: 0 10px 10px rgba(0,0,0,0.2);
     
     }
     .card-badge:is(:hover, :focus-visible),
@@ -1200,8 +1203,7 @@ body.nav-active {
 
 .w-dropdown{
     position: relative;
-    width: 300px;
-    height: 50px;
+    height: 40px;
     transition: 0.5s;
 }
 
@@ -1212,7 +1214,7 @@ body.nav-active {
 .w-dropdown::before{
     content: '';
     position: absolute;
-    right: 20px;
+    left: 20px;
     top: 15px;
     z-index: 10000;
     width: 8px;
@@ -1238,15 +1240,15 @@ body.nav-active {
     height: 100%;
     cursor: pointer;
     background: #fff;
-    font-size: 20px;
     border: none;
     outline: none;
     box-shadow: 0 5px 20px rgba(0,0,0,0.5);
     padding: 12px 20px;
     border-radius: 10px;
+    color: black;
 }
 
-.w-dropdown .option{
+.w-dropdown .w-option{
     position: absolute;
     top: 70px;
     width: 100%;
@@ -1259,22 +1261,31 @@ body.nav-active {
     transition: 0.4s;
 }
 
-.w-dropdown.active .option{
+.w-dropdown.active .w-option{
     height: 238px;
 }
 
-.w-dropdown .option div{
+.w-dropdown .w-option div{
     padding: 12px 20px;
     cursor: pointer;
 }
 
-.w-dropdown .option div:hover{
+.w-dropdown .w-option div:hover{
     background: #62baea;
     color: #fff;
 }
 
-.w-dropdown .option div i{
+.w-dropdown .w-option div i{
     position: relative;
     top: 4px;
     font-size: 1.2em;
+}
+
+.form__recover-danger {
+    font-size: 1.4rem;
+    transition: 0.4s;
+}
+
+.form__recover-danger:hover {
+    color: red;
 }
