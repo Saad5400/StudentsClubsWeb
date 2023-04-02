@@ -3,12 +3,84 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "التسجيل";
+    ViewBag.DisableFooter = true;
     TempData[SD.NavActive.Profile] = SD.NavActive.Activee;
 }
 
 @* عدلي هنا *@
 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="~/page/account/account.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="form__wrapper">
+        <form class="form w-card aside-card">
+          <h1 class="form__title">تسجيل حساب جديد</h1>
+          <div class="form__inputs">
+            <div class="field">
+              <label class="field__label">البريد الالكتروني</label>
+              <div class="field__wrapper w-card aside-card">
+                <span class="field__icon">
+                  <i class="bx bx-envelope"></i>
+                </span>
+                <input
+                  class="field__input"
+                  type="text"
+                  placeholder="ادخل البريد الالكتروني"
+                  required
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="field__label">كلمة المرور</label>
+              <div class="field__wrapper w-card aside-card">
+                <span class="field__icon">
+                  <i class="bx bx-lock-alt"></i>
+                </span>
+                <input
+                  id="field-password"
+                  class="field__input"
+                  type="password"
+                  placeholder="ادخل كملة المرور"
+                  required
+                />
+                <span class="field__icon">
+                  <i class="bx bx-hide password-icon"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form__footer">
+            <a href="#" class="form__recover">مستخدم جديد؟</a>
+            <button type="submit" class="form__btn w-btn" style="color: white;">تسجيل</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="~/page/account/account.js"></script>
+  </body>
+</html>
 
 
 @* الى هنا *@

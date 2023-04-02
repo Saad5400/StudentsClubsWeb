@@ -37,13 +37,13 @@ html {
   font-size: 62.5%;
 }
 
-body {
+/* body {
   font-family: "Open Sans", sans-serif;
   font-size: 1.6rem;
   color: var(--color-text);
   height: 100vh;
   background-color: var(--color-bg-dark);
-}
+} */
 
 .container {
   display: grid;
@@ -64,7 +64,6 @@ body {
 }
 
 .form {
-  background-color: var(--color-bg-light);
   position: relative;
   padding: 5rem 3rem;
   width: 100%;
