@@ -1,0 +1,50 @@
+@model Post
+
+<style>
+    .post-content-wrapper {
+        background-color: white;
+    }
+    .inner-post-content-wrapper {
+        border: 5px solid #e1e1e1;
+        padding: 15px;
+    }
+</style>
+
+<div class="row">
+    <h3 class=" headline-2 aside-title title2">
+        <span class="span">
+            @Model.Title
+        </span>
+    </h3>
+</div>
+<p class="hero-text">
+    @Model.Summary
+</p>
+<br>
+<img class="w-100" src="@Model.Image">
+<br>
+<div class="post-content-wrapper">
+    <div class="inner-post-content-wrapper">
+        @Html.Raw(Model.Content)
+    </div>
+</div>
+<br>
+<div>
+    <p class="hero-text">
+        كتب بواسطة:
+        <a href="#" class="copyright-link">
+            @Model.Author.DisplayUsername
+        </a>
+    </p>
+    <p class="hero-text">
+        <a class="copyright-link" dir="ltr">
+            @Model.CreatedAt.ToString("hh tt dd-MM-yyyy")
+        </a>
+    </p>
+    <p class="hero-text">
+        <a class="copyright-link"
+            asp-area="Student" asp-controller="Club" asp-action="ClubPage" asp-route-id="@Model.ClubId">
+            @Model.Club.Name
+        </a>
+    </p>
+</div>

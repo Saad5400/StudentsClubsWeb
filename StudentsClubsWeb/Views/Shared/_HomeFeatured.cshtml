@@ -74,7 +74,7 @@
                                 {
                                     <img src="@post.Image"
                                          width="250"
-                                         height="250"
+                                         height="250" 
                                          loading="lazy"
                                          class="img-cover" />
                                 }
@@ -85,7 +85,9 @@
                                 <a asp-area="Student" asp-controller="Club" asp-action="ClubPage" asp-route-id="@post.ClubId" class="card-badge">@post.Club.Name</a>
 
                                 <h3 class="headline headline-3 card-title">
-                                    <a class="link hover-2">
+                                    <a class="link hover-2"
+                                        asp-area="Student" asp-controller="Post" asp-action="PostPage" asp-route-id="@post.Id"
+                                        >
                                         @post.Title
                                     </a>
                                 </h3>

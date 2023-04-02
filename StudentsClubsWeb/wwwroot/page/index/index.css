@@ -346,6 +346,7 @@ body.nav-active {
 
 .w-btn:is(:hover, :focus-visible) {
     background-position: right;
+    color: white;
 }
 
 .w-btn-primary {
@@ -378,7 +379,7 @@ body.nav-active {
 
 .w-card {
     /* edit */
-    background-color: var(--bg-oxford-blue);
+    background-color: var(--bg-oxford-blue) !important;
     border: 1px solid var(--border-prussian-blue);
     /* backdrop-filter: blur(1px); */
     /* glass efect */
@@ -750,6 +751,14 @@ body.nav-active {
             margin-block-start: 10px;
         }
 
+.title2 .span{
+    color: var(--white) !important;
+}
+
+.title2 .span::after{
+    background-color: var(--white);
+}
+
 .popular-card {
     display: flex;
     align-items: flex-start;
@@ -912,6 +921,12 @@ body.nav-active {
     .social-link:is(:hover, :focus-visible) {
         color: var(--text-carolina-blue);
         transform: translateY(-2px);
+    }
+
+    /* ----- */
+    .form-select {
+        font-size: var(--fontSize-6);
+        
     }
 
 /* -- */
@@ -1144,4 +1159,25 @@ body.nav-active {
         gap: 40px;
         padding-inline: 120px;
     }
+}
+
+
+
+
+@media screen and (min-width: 1000px) {
+    .w-lg-25 {
+        width: 25% !important;
+    }
+
+    .w-lg-50 {
+        width: 50% !important;
+    }
+
+    .w-lg-75 {
+        width: 75% !important;
+    }
+
+    .w-lg-100 {
+        width: 100% !important;
+    } 
 }

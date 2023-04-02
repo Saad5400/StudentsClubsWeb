@@ -14,10 +14,26 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
         {
             _db = db;
         }
-        // public IActionResult Index()
-        // {
-        //     return View();
-        // }
+        public IActionResult PostPage(int id)
+        {
+            // if id is null or zero
+            if (id <= 0)
+            {
+                return NotFound();
+            }
+            // get the post
+            Post post = _db.Posts
+                .Include(p => p.Author)
+                .Include(p => p.Club)
+                .FirstOrDefault(p => p.Id == id);
+            // if null
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            return View(post);
+        }
 
         public IActionResult Create(int? clubId)
         {
