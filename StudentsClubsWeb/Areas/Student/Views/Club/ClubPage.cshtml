@@ -264,7 +264,7 @@
                                     >
                                         قبول
                                     </a>
-                                    <a class="btn w-btn w-btn-primary text-start float-start"
+                                    <a class="btn w-btn w-btn-primary w-btn-danger text-start float-start"
                                        asp-area="Admin" asp-controller="ClubAdmin"
                                        asp-action="RejectJoinClubRequest" asp-route-id="@request.Id">
                                         رفض
@@ -294,7 +294,7 @@
                     <th style="text-align: center">الاسم</th>
                     <th style="text-align: center">اسم العرض</th>
                     <th style="text-align: center">البريد</th>
-                    <th style="text-align: center">رقم الجوال</th>
+                    <th style="text-align: center">رقم الهاتف</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -329,6 +329,7 @@
                     <th style="text-align: center">البريد</th>
                     @if (isAdmin)
                     {
+                        <th style="text-align: center">رقم الهاتف</th>
                         <th style="text-align: center">الاجراء</th>
                     }
                 </tr>
@@ -341,8 +342,11 @@
                         <td style="text-align: center;">@(member.Email)</td>
                         @if (isAdmin)
                         {
+                            <td style="text-align: center;">
+                                @member.PhoneNumber
+                            </td>
                             <td>
-                                <a class="btn w-btn w-btn-primary mx-auto" onclick="kickUser('@member.DisplayUsername', '@member.Id');">
+                                <a class="btn w-btn w-btn-primary w-btn-danger mx-auto" onclick="kickUser('@member.DisplayUsername', '@member.Id');">
                                     طرد
                                 </a>
                             </td>

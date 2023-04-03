@@ -123,6 +123,7 @@
     /** Gradient colors */
     --gradient-1: linear-gradient(90deg, #0ea5ea, #0bd1d1 51%);
     --gradient-2: linear-gradient(90deg, #0ea5ea, #0bd1d1 51%, #0ea5ea);
+    --gradient-2-danger: linear-gradient(90deg, red, #ff6500 51%, red);
     --gradient-2-revert: linear-gradient(270deg, #0ea5ea, #0bd1d1 51%, #0ea5ea);
     --gradient-3: linear-gradient(0deg, #000d1a, transparent);
     --gradient-4: linear-gradient(90deg, #075c83, #056b6b 51%, #043850);
@@ -344,6 +345,9 @@ body.nav-active {
     transition: var(--transition-1);
 }
 
+.w-btn-danger {
+    background-image: var(--gradient-2-danger);
+}
 .w-btn:is(:hover, :focus-visible) {
     background-position: right;
     color: white;
