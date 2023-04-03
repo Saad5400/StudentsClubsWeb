@@ -96,7 +96,7 @@
       - #FEATURED POST
     -->
 
-<section class="section feature" aria-label="feature">
+<section class="section feature pb-2" aria-label="feature">
     <div class="w-container">
     <h5 class="headline-3 title2">
         <span class="span">
@@ -235,44 +235,48 @@
             طلبات الانضمام
         </span>
     </h5>
-    <div dir="rtl">
-        <table class="table table-hover">
-        <thead>
-            <tr class="table-primary">
-            <th class="text-end">اسم العرض</th>
-            <th class="text-end">الاسم</th>
-            <th class="text-end">البريد</th>
-            <th class="text-end">الهاتف</th>
-            <th class="text-end">الاجراء</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var request in Model.JoinClubRequests)
-            {
-                <tr class="table-light">
-                    <td>@(request.User.DisplayUsername)</td>
-                    <td>@(request.User.FirstName + " " + request.User.LastName)</td>
-                    <td>@(request.User.Email)</td>
-                    <td>@(request.User.PhoneNumber)</td>
-                    <td>
-                        <div class="btn-group" dir="ltr">
-                            <a class="btn w-btn w-btn-primary-revert text-start float-start"
-                               asp-area="Admin" asp-controller="ClubAdmin"
-                               asp-action="AcceptJoinClubRequest" asp-route-id="@request.Id"
-                            >
-                                قبول
-                            </a>
-                            <a class="btn w-btn w-btn-primary text-start float-start"
-                               asp-area="Admin" asp-controller="ClubAdmin"
-                               asp-action="RejectJoinClubRequest" asp-route-id="@request.Id">
-                                رفض
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-            }
-        </tbody>
-        </table>
+    <div>
+        <section class="table">
+            <div class="table__body">
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="text-center">اسم العرض</th>
+                        <th class="text-center">الاسم</th>
+                        <th class="text-center">البريد</th>
+                        <th class="text-center">الهاتف</th>
+                        <th class="text-center">الاجراء</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var request in Model.JoinClubRequests)
+                    {
+                        <tr class="table-light">
+                            <td class="text-center">@(request.User.DisplayUsername)</td>
+                            <td class="text-center">@(request.User.FirstName + " " + request.User.LastName)</td>
+                            <td class="text-center">@(request.User.Email)</td>
+                            <td class="text-center">@(request.User.PhoneNumber)</td>
+                            <td class="text-center">
+                                <div class="btn-group" dir="ltr">
+                                    <a class="btn w-btn w-btn-primary-revert text-start float-start"
+                                       asp-area="Admin" asp-controller="ClubAdmin"
+                                       asp-action="AcceptJoinClubRequest" asp-route-id="@request.Id"
+                                    >
+                                        قبول
+                                    </a>
+                                    <a class="btn w-btn w-btn-primary text-start float-start"
+                                       asp-area="Admin" asp-controller="ClubAdmin"
+                                       asp-action="RejectJoinClubRequest" asp-route-id="@request.Id">
+                                        رفض
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </div>
 }
 <br/>
@@ -281,52 +285,33 @@
         الادارة
     </span>
 </h5>
-<div dir="rtl">
-    <table class="table table-hover">
-    <thead>
-        <tr class="table-primary">
-        <th class="text-end">الاسم</th>
-        <th class="text-end">اسم العرض</th>
-        <th class="text-end">البريد</th>
-        <th class="text-end">رقم الجوال</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var admin in Model.Club.ClubAdmins.Select(cd => cd.Admin))
-        {
-            <tr class="table-light">
-                <td>@(admin.FirstName + " " + admin.LastName)</td>
-                <td>@(admin.DisplayUsername)</td>
-                <td>@(admin.Email)</td>
-                <td>@(admin.PhoneNumber)</td>
-            </tr>
-        }
-    </tbody>
-    </table>
-</div>
-
-<section class="table">
+<div>
+    <section class="table">
         <div class="table__body">
-          <table>
-            <thead>
-              <tr>
-                <th style="text-align: center">الاسم</th>
-                <th style="text-align: center">اسم العرض</th>
-                <th style="text-align: center">البريد</th>
-                <th style="text-align: center">رقم الجوال</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="text-align: center"></td>
-                <td style="text-align: center">مم#33</td>
-                <td style="text-align: center">ws@gmail.com</td>
-                <td style="text-align: center">0550550550</td>
-              </tr>
-            </tbody>
-          </table>
+            <table>
+                <thead>
+                <tr>
+                    <th style="text-align: center">الاسم</th>
+                    <th style="text-align: center">اسم العرض</th>
+                    <th style="text-align: center">البريد</th>
+                    <th style="text-align: center">رقم الجوال</th>
+                </tr>
+                </thead>
+                <tbody>
+                    @foreach (var admin in Model.Club.ClubAdmins.Select(cd => cd.Admin))
+                    {
+                        <tr>
+                            <td style="text-align: center">@($"{admin.FirstName} {admin.LastName}")</td>
+                            <td style="text-align: center">@admin.DisplayUsername</td>
+                            <td style="text-align: center">@admin.Email</td>
+                            <td style="text-align: center" dir="ltr">@admin.PhoneNumber</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
-      </section>
+    </section>
+</div>
 
 <br>
 <h5 class="headline-3 title2">
@@ -334,36 +319,40 @@
         الاعضاء
     </span>
 </h5>
-<div dir="rtl">
-    <table class="table table-hover">
-    <thead>
-        <tr class="table-primary">
-            <th class="text-end">اسم العرض</th>
-            <th class="text-end">البريد</th>
-            @if (isAdmin)
-            {
-                <th class="text-end">الاجراء</th>
-            }
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var member in Model.Club.Members)
-        {
-            <tr class="table-light">
-                <td>@(member.DisplayUsername)</td>
-                <td>@(member.Email)</td>
-                @if (isAdmin)
+<div>
+    <section class="table">
+        <div class="table__body">
+            <table>
+                <thead>
+                <tr>
+                    <th style="text-align: center">اسم العرض</th>
+                    <th style="text-align: center">البريد</th>
+                    @if (isAdmin)
+                    {
+                        <th style="text-align: center">الاجراء</th>
+                    }
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var member in Model.Club.Members)
                 {
-                    <td>
-                        <a class="btn w-btn w-btn-primary" onclick="kickUser('@member.DisplayUsername', '@member.Id');">
-                            طرد
-                        </a>
-                    </td>
+                    <tr class="table-light">
+                        <td style="text-align: center;">@(member.DisplayUsername)</td>
+                        <td style="text-align: center;">@(member.Email)</td>
+                        @if (isAdmin)
+                        {
+                            <td>
+                                <a class="btn w-btn w-btn-primary mx-auto" onclick="kickUser('@member.DisplayUsername', '@member.Id');">
+                                    طرد
+                                </a>
+                            </td>
+                        }
+                    </tr>
                 }
-            </tr>
-        }
-    </tbody>
-    </table>
+                </tbody>
+            </table>
+        </div>
+    </section>
 </div>
 @* <div>
     <table class="table table-hover">
