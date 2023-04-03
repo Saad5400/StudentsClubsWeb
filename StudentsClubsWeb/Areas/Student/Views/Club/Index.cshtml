@@ -28,6 +28,24 @@
     TempData[SD.NavActive.Clubs] = SD.NavActive.Activee;
 }
 
+<style>
+    select {
+        display: block;
+        width: 100%;
+        font-size: 0.9em;
+        padding: 0.8rem 0.5rem;
+        border: 1px solid #333;
+        font-family: inherit;
+        color: black;
+        /** for the dropdown indicator */
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: left 1rem center;
+        background-size: 1em;
+    }
+</style>
+
 <h2 class="headline-2 section-title title2">
     <span class="span">
         تصفح الأندية واختر الأندية التي ترغب بالانضمام اليها
@@ -48,7 +66,7 @@
         <div class="mt-3">
             <div class="row input-group My-input">
                 <div class="my-2">
-                    <select id="FilterCity" asp-for="FilterCity" class="form-select w-lg-50">
+                    <select id="FilterCity" asp-for="FilterCity" class=" w-lg-50">
                         <option selected disabled>المدينة</option>
                         @foreach (var tag in Model.Tags.Where(t => t.Group == SD.TagGroup.City).DistinctBy(t => t.Title))
                         {
@@ -57,7 +75,7 @@
                     </select>
                 </div>
                 <div class="my-2">
-                    <select asp-for="FilterSchool" class="form-select w-lg-50">
+                    <select asp-for="FilterSchool" class="w-lg-50">
                         <option selected disabled>الجهة</option>
                         @foreach (var tag in Model.Tags.Where(t => t.Group == SD.TagGroup.School).DistinctBy(t => t.Title))
                         {
@@ -66,7 +84,7 @@
                     </select>
                 </div>
                 <div class="my-2">
-                    <select asp-for="FilterTag" class="form-select w-lg-50">
+                    <select asp-for="FilterTag" class=" w-lg-50">
                         <option selected disabled>النوع</option>
                         @foreach (var tag in Model.Tags.Where(t => t.Group == SD.TagGroup.Club).DistinctBy(t => t.Title))
                         {

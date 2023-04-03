@@ -10,15 +10,15 @@ namespace StudentsClubsWeb.Areas.Student.Models
         
         public List<Tag> TagsList { get; set; } = new List<Tag>();
 
-        [Required(ErrorMessage = "هذه الخانة مطلوبة")]
+        [Required]  
         public String Tags { get; set; }
 
         public List<Tag>? Cities { get; set; }
         public List<Tag>? Schools { get; set; }
 
-        [Required(ErrorMessage = "هذه الخانة مطلوبة")]
+        [Required]
         public string City { get; set; }
-        [Required(ErrorMessage = "هذه الخانة مطلوبة")]
+        [Required]
         public string School { get; set; }
     }
 }

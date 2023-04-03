@@ -9,11 +9,11 @@ namespace StudentsClubsWeb.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "هذه الخانة مطلوبة")]
+        [Required]
         [StringLength(100)]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "هذه الخانة مطلوبة")]
+        [Required]
         [StringLength(2000)]
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
