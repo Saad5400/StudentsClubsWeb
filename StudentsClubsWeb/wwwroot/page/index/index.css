@@ -297,7 +297,7 @@ body.nav-active {
 }
 
     .profile-card .profile-banner {
-        border-radius: var(--radius-circle);
+        /* border-radius: 50%; */
     }
 
 .headline {

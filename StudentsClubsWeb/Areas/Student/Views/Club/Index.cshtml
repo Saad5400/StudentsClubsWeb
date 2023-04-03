@@ -48,7 +48,7 @@
 
 <h2 class="headline-2 section-title title2">
     <span class="span">
-        تصفح الأندية واختر الأندية التي ترغب بالانضمام اليها
+        تصفح الأندية وانضم إلى الأندية التي تهمك
     </span>
 </h2>
 <br>
@@ -56,7 +56,7 @@
 <h6>
     <span class="span" style="font-size: 16px; font-weight: 500;">
         <div class="w-lg-50">
-            اختر النوع والمدينة والجهة التي ترغب بالبحث عنها
+            اختر التصنيف والمدينة والجهة التي ترغب بالبحث عنها
         </div>
     </span>
 </h6>
@@ -85,7 +85,7 @@
                 </div>
                 <div class="my-2">
                     <select asp-for="FilterTag" class=" w-lg-50">
-                        <option selected disabled>النوع</option>
+                        <option selected disabled>التصنيف</option>
                         @foreach (var tag in Model.Tags.Where(t => t.Group == SD.TagGroup.Club).DistinctBy(t => t.Title))
                         {
                             <option>@tag.Title</option>
