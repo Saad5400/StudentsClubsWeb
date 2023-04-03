@@ -1,8 +1,10 @@
-﻿using System.Runtime.Intrinsics.X86;
+﻿using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using StudentsClubsWeb.Areas.Admin.Controllers;
 using StudentsClubsWeb.Areas.Student.Models;
@@ -228,6 +230,65 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
                 .ToList();
 
             return View(clubs);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> GetFeatured()
+        {
+            var vm = new HomeIndexVM();
+            
+            // get user object
+            var user = GetAppUser();
+            // load user.Clubs
+            _db.Entry(user).Collection(u => u.Clubs).Load();
+
+            // load all posts to vm.Posts, sort by newer first, use post.CreatedAt
+            vm.Posts = _db.Posts
+                .OrderByDescending(p => p.CreatedAt)
+                .Include(p => p.Tags)
+                .Include(p => p.Author)
+                .Include(p => p.Club)
+                    .ThenInclude(c => c.Members)
+                    .ThenInclude(c => c.ClubAdmins)
+                .ToList();
+
+            
+            vm.Clubs = _db.Clubs.OrderByDescending(e => e.ViewsCount)
+                .Include(p => p.Tags)
+                .Include(c => c.ClubAdmins)
+                .Include(c => c.Members)
+                .ToList();
+
+            vm.Tags = _db.Tags.AsEnumerable().DistinctBy(t => t.Title).AsEnumerable()
+                .OrderByDescending(t => t.ViewsCount).ToList();
+
+            // var isAdmin = Model.Club.ClubAdmins.Any(cd => cd.AdminId == User.FindFirstValue(ClaimTypes.NameIdentifier));
+            // var isMember = Model.Club.Members.Any(m => m.Id == User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            // get only clubs that the user is a member of, or an admin of
+            vm.Clubs = vm.Clubs.Where(c => c.Members.Contains(user) || c.ClubAdmins.Any(ca => ca.AdminId == user.Id)).ToList();
+
+            // get only posts associated with this user
+            vm.Posts = vm.Posts.Where(p => p.Author == user || p.Club.Members.Contains(user) || p.Club.ClubAdmins.Any(ca => ca.AdminId == user.Id)).ToList();
+
+            vm.isMyClubs = true;
+
+            var myViewData = new ViewDataDictionary(
+                new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), 
+                new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary())
+            {
+                { "vm", vm }
+            };
+
+            myViewData.Model = vm;
+
+            PartialViewResult result = new PartialViewResult
+            {
+                ViewName = "_HomeFeatured",
+                ViewData = myViewData
+            };
+
+            return result;
         }
         
     }

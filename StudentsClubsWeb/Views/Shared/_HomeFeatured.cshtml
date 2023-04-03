@@ -1,4 +1,5 @@
 ﻿@model StudentsClubsWeb.Areas.Student.Models.HomeIndexVM
+
 <section class="section recent-post"
          id="recent"
          aria-labelledby="recent-label">
@@ -6,12 +7,23 @@
         <div class="post-main">
             <h2 class="headline headline-2 section-title">
                 <span class="span">
-                    افضل المشاركات
+                    @(Model.isMyClubs ? "اخر المقالات" : "مقالات مميزة")
                 </span>
             </h2>
 
             <p class="section-text">
-                Don't miss the latest trends
+                @if (Model.isMyClubs)
+                {
+                    <text>
+                        اخر المقالات المنشورة في الأندية التي تتابعها
+                    </text>
+                }
+                else
+                {
+                    <text>
+                        ضع في اعتبارك هذه المشاركات
+                    </text>
+                }
             </p>
 
             @* <ul class="grid-list"> *@
@@ -155,7 +167,18 @@
             <div class="w-card aside-card">
                 <h3 class="headline headline-2 aside-title">
                     <span class="span">
-                        اندية مشهورة
+                        @if (Model.isMyClubs)
+                        {
+                            <text>
+                                أنديتي
+                            </text>
+                        }
+                        else
+                        {
+                            <text>
+                                أندية متميزة
+                            </text>
+                        }
                     </span>
                 </h3>
 
@@ -207,7 +230,9 @@
             </div>
             <div class="w-card aside-card">
                 <h3 class="headline headline-2 aside-title">
-                    <span class="span">علامات مشهورة</span>
+                    <span class="span">
+                        أشهر الكلمات المفتاحية
+                    </span>
                 </h3>
 
                 @foreach (var tag in Model.Tags)

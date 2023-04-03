@@ -44,6 +44,9 @@
         <form class="form w-card aside-card" method="post">
           <h1 class="form__title">تسجيل حساب جديد</h1>
             <div class="form__inputs">
+                <span class="text-danger">
+                        @Html.ValidationSummary()
+                </span>
                 <div class="field">
                     <label class="field__label">اسم العرض</label>
                     <div class="field__wrapper w-card aside-card">
@@ -55,8 +58,8 @@
                             type="text"
                             placeholder="ادخل اسم العرض"
                             required
-                            value = "@NameGenerator.GenerateName()"
-                            asp-for="Input.DisplayUsername" />
+                            value="@NameGenerator.GenerateName()"
+                            asp-for="Input.DisplayUsername"/>
                         <span asp-validation-for="Input.DisplayUsername" class="text-danger"></span>
 
                     </div>
