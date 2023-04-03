@@ -24,7 +24,7 @@ namespace StudentsClubsWeb.Areas.Student.Controllers
         {
             var vm = new HomeIndexVM();
             
-            vm.Posts = _db.Posts.OrderByDescending(p => p.ViewsCount).Take(3)
+            vm.Posts = _db.Posts.OrderByDescending(p => p.ViewsCount).Take(4)
                 .Include(p => p.Tags)
                 .Include(p => p.Club)
                 .Include(p => p.Author)
