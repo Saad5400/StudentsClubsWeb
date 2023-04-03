@@ -33,7 +33,7 @@
 <div class="row">
     <div class="row">
         <div class="col-8">
-            <h2 class="title2 headline-2 aside-title aside-title-lg" style="font-size: 40px;">
+            <h2 class="title2 headline-2" style="font-size: 40px;">
                 <span class="span">
                     @Model.Club.Name
                 </span>
@@ -61,269 +61,172 @@
 
 @if (Model.Club.Posts.Count > 0)
 {
-<h5 class="headline-3 title2">
-    <span class="span">
-        المنشورات
-    </span>
-</h5>
+    @* <div class="row"> *@
+    @*     @foreach (var post in Model.Club.Posts) *@
+    @*     { *@
+    @*         <div class="col-lg-6"> *@
+    @*             <div class="w-card aside-card my-3"> *@
+    @*                 <div class="card-header mb-3"> *@
+    @*                     @foreach (var tag in post.Tags.Select(t => t.Title)) *@
+    @*                     { *@
+    @*                         <span class="badge card-badge"> *@
+    @*                             @tag *@
+    @*                         </span> *@
+    @*                     } *@
+    @*                 </div> *@
+    @*                 <div class="card-body pb-1"> *@
+    @*                     <h3 class="headline headline-3 card-title"> *@
+    @*                         <div class="club-info" style="display: flex; align-items: center;"> *@
+    @*                             <img class="me-0 ms-3" src="@post.Image" width="100" height="100" loading="lazy" style="margin-right: 10px;"> *@
+    @*                             <a class="link hover-2" asp-area="Student" asp-controller="Post" asp-action="PostPage" asp-route-id="@post.Id"> *@
+    @*                                 <span>@post.Title</span> *@
+    @*                             </a> *@
+    @*                         </div> *@
+    @*                     </h3> *@
+    @*                     <h6 class="card-title"> *@
+    @*                         @(post.Summary.Length > 100 ? post.Summary.Substring(0, 100) + "..." : post.Summary) *@
+    @*                     </h6> *@
+    @*                 </div> *@
+    @*             </div> *@
+    @*         </div> *@
+    @*     } *@
+    @* </div> *@
 
-    <div class="row">
+    <!--
+      - #FEATURED POST
+    -->
+
+<section class="section feature" aria-label="feature">
+    <div class="w-container">
+    <h5 class="headline-3 title2">
+        <span class="span">
+            المنشورات
+        </span>
+    </h5>
+    <ul class="feature-list">
+
+        @* <li> *@
+        @*     <div class="w-card feature-card"> *@
+        @* *@
+        @*         <figure class="card-banner img-holder" style="--width: 1602; --height: 903;"> *@
+        @*             <!-- <img src="" height="903" loading="lazy" *@
+        @*                       class="img-cover"> --> *@
+        @*         </figure> *@
+        @* *@
+        @*         <div class="card-content"> *@
+        @* *@
+        @*             <div class="card-wrapper"> *@
+        @*                 <div class="card-tag"> *@
+        @*                     <a href="#" class="span hover-2">#tag</a> *@
+        @* *@
+        @*                     <a href="#" class="span hover-2">#tag</a> *@
+        @*                 </div> *@
+        @* *@
+        @*                 <div class="wrapper"> *@
+        @*                     <ion-icon name="time-outline" aria-hidden="true"></ion-icon> *@
+        @* *@
+        @*                     <span class="span">3 mins read</span> *@
+        @*                 </div> *@
+        @*             </div> *@
+        @* *@
+        @*             <h3 class="headline headline-3"> *@
+        @*                 <a href="#" class="card-title hover-2"> *@
+        @*                     Bla Bla *@
+        @*                 </a> *@
+        @*             </h3> *@
+        @* *@
+        @*             <div class="card-wrapper"> *@
+        @* *@
+        @*                 <div class="profile-card"> *@
+        @*                     <img src="" width="48" height="48" loading="lazy" alt="user" *@
+        @*                          class="profile-banner"> *@
+        @* *@
+        @*                     <div> *@
+        @*                         <p class="card-title">user</p> *@
+        @* *@
+        @*                         <p class="card-subtitle">3 April 2032</p> *@
+        @*                     </div> *@
+        @*                 </div> *@
+        @* *@
+        @*                 <a href="#" class="card-btn">Read more</a> *@
+        @* *@
+        @*             </div> *@
+        @* *@
+        @*         </div> *@
+        @* *@
+        @*     </div> *@
+        @* </li> *@
+        
         @foreach (var post in Model.Club.Posts)
         {
-            <div class="col-lg-6">
-                <div class="w-card aside-card my-3">
-                    <div class="card-header mb-3">
-                        @foreach (var tag in post.Tags.Select(t => t.Title))
-                        {
-                            <span class="badge card-badge">
-                                @tag
-                            </span>
-                        }
-                    </div>
-                    <div class="card-body pb-1">
-                        <h3 class="headline headline-3 card-title">
-                            <div class="club-info" style="display: flex; align-items: center;">
-                                <img class="me-0 ms-3" src="@post.Image" width="100" height="100" loading="lazy" style="margin-right: 10px;">
-                                <a class="link hover-2" asp-area="Student" asp-controller="Post" asp-action="PostPage" asp-route-id="@post.Id">
-                                    <span>@post.Title</span>
-                                </a>
+            <li class="w-lg-25 w-md-50">
+                <div class="w-card feature-card">
+
+                    <figure class="card-banner img-holder">
+                        <img src="@post.Image" loading="lazy"
+                                  class="img-cover">
+                    </figure>
+
+                    <div class="card-content">
+
+                        <div class="card-wrapper">
+                            <div class="card-tag">
+                                @foreach (var tag in post.Tags)
+                                {
+                                    <a href="#" class="span hover-2">#@tag.Title</a>
+                                }
                             </div>
+
+                            <div class="wrapper">
+                                <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+
+                                <span class="span">@(new Random().Next(1, 10)) دقائق قراءة</span>
+                            </div>
+                        </div>
+
+                        <h3 class="headline headline-3">
+                                    <a asp-area="Student" asp-controller="Post" asp-action="PostPage" asp-route-id="@post.Id" class="card-title hover-2">
+                                @post.Title
+                            </a>
                         </h3>
-                        <h6 class="card-title">
-                            @(post.Summary.Length > 100 ? post.Summary.Substring(0, 100) + "..." : post.Summary)
-                        </h6>
+                        <span>@(post.Summary.Length > 100 ? post.Summary.Substring(0, 100) + "..." : post.Summary)</span>
+
+                        <div class="card-wrapper">
+
+                            <div class="profile-card">
+
+                                <div>
+                                    <p class="card-title">@post.Author.DisplayUsername</p>
+
+                                    <p class="card-subtitle">@post.CreatedAt.ToString("yyyy-MM-dd")</p>
+                                </div>
+                            </div>
+
+                                    <a asp-area="Student" asp-controller="Post" asp-action="PostPage" asp-route-id="@post.Id" class="card-btn">اقرأ المزيد</a>
+
+                        </div>
+
                     </div>
+
                 </div>
-            </div>
+            </li>
         }
+
+    </ul>
+
+    <!-- <a href="#" class="btn w-btn">
+        <span class="span">Show More Posts</span>
+
+        <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+    </a> -->
+
     </div>
-}
-
-      <!-- 
-        - #FEATURED POST
-      -->
-
-      <section class="section feature" aria-label="feature">
-        <div class="w-container">
-          <ul class="feature-list">   
-
-            <li>
-              <div class="w-card feature-card">
-
-                <figure class="card-banner img-holder" style="--width: 1602; --height: 903;">
-                  <!-- <img src="" height="903" loading="lazy"
-                     class="img-cover"> -->
-                </figure>
-
-                <div class="card-content">
-
-                  <div class="card-wrapper">
-                    <div class="card-tag">
-                      <a href="#" class="span hover-2">#tag</a>
-
-                      <a href="#" class="span hover-2">#tag</a>
-                    </div>
-
-                    <div class="wrapper">
-                      <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-
-                      <span class="span">3 mins read</span>
-                    </div>
-                  </div>
-
-                  <h3 class="headline headline-3">
-                    <a href="#" class="card-title hover-2">
-                      Bla Bla
-                    </a>
-                  </h3>
-
-                  <div class="card-wrapper">
-
-                    <div class="profile-card">
-                      <img src="" width="48" height="48" loading="lazy" alt="user"
-                        class="profile-banner">
-
-                      <div>
-                        <p class="card-title">user</p>
-
-                        <p class="card-subtitle">3 April 2032</p>
-                      </div>
-                    </div>
-
-                    <a href="#" class="card-btn">Read more</a>
-
-                  </div>
-
-                </div>
-
-              </div>
-            </li>
-            <li>
-              <div class="w-card feature-card">
-
-                <figure class="card-banner img-holder" style="--width: 1602; --height: 903;">
-                  <!-- <img src="" height="903" loading="lazy"
-                     class="img-cover"> -->
-                </figure>
-
-                <div class="card-content">
-
-                  <div class="card-wrapper">
-                    <div class="card-tag">
-                      <a href="#" class="span hover-2">#tag</a>
-
-                      <a href="#" class="span hover-2">#tag</a>
-                    </div>
-
-                    <div class="wrapper">
-                      <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-
-                      <span class="span">3 mins read</span>
-                    </div>
-                  </div>
-
-                  <h3 class="headline headline-3">
-                    <a href="#" class="card-title hover-2">
-                      Bla Bla
-                    </a>
-                  </h3>
-
-                  <div class="card-wrapper">
-
-                    <div class="profile-card">
-                      <img src="" width="48" height="48" loading="lazy" alt="user"
-                        class="profile-banner">
-
-                      <div>
-                        <p class="card-title">user</p>
-
-                        <p class="card-subtitle">3 April 2032</p>
-                      </div>
-                    </div>
-
-                    <a href="#" class="card-btn">Read more</a>
-
-                  </div>
-
-                </div>
-
-              </div>
-            </li>
-            <li>
-              <div class="w-card feature-card">
-
-                <figure class="card-banner img-holder" style="--width: 1602; --height: 903;">
-                  <!-- <img src="" height="903" loading="lazy"
-                     class="img-cover"> -->
-                </figure>
-
-                <div class="card-content">
-
-                  <div class="card-wrapper">
-                    <div class="card-tag">
-                      <a href="#" class="span hover-2">#tag</a>
-
-                      <a href="#" class="span hover-2">#tag</a>
-                    </div>
-
-                    <div class="wrapper">
-                      <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-
-                      <span class="span">3 mins read</span>
-                    </div>
-                  </div>
-
-                  <h3 class="headline headline-3">
-                    <a href="#" class="card-title hover-2">
-                      Bla Bla
-                    </a>
-                  </h3>
-
-                  <div class="card-wrapper">
-
-                    <div class="profile-card">
-                      <img src="" width="48" height="48" loading="lazy"
-                        class="profile-banner">
-
-                      <div>
-                        <p class="card-title">user</p>
-
-                        <p class="card-subtitle">3 April 2032</p>
-                      </div>
-                    </div>
-
-                    <a href="#" class="card-btn">Read more</a>
-
-                  </div>
-
-                </div>
-
-              </div>
-            </li>
-            <li>
-              <div class="w-card feature-card">
-
-                <figure class="card-banner img-holder" style="--width: 1602; --height: 903;">
-                  <!-- <img src="" height="903" loading="lazy"
-                     class="img-cover"> -->
-                </figure>
-
-                <div class="card-content">
-
-                  <div class="card-wrapper">
-                    <div class="card-tag">
-                      <a href="#" class="span hover-2">#tag</a>
-
-                      <a href="#" class="span hover-2">#tag</a>
-                    </div>
-
-                    <div class="wrapper">
-                      <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-
-                      <span class="span">3 mins read</span>
-                    </div>
-                  </div>
-
-                  <h3 class="headline headline-3">
-                    <a href="#" class="card-title hover-2">
-                      Bla Bla
-                    </a>
-                  </h3>
-
-                  <div class="card-wrapper">
-
-                    <div class="profile-card">
-                      <img src="" width="48" height="48" loading="lazy"
-                        class="profile-banner">
-                      <div>
-                        <p class="card-title">user</p>
-
-                        <p class="card-subtitle">3 April 2032</p>
-                      </div>
-                    </div>
-
-                    <a href="#" class="card-btn">Read more</a>
-
-                  </div>
-
-                </div>
-
-              </div>
-            </li>
-
-          </ul>
-
-          <!-- <a href="#" class="btn w-btn">
-            <span class="span">Show More Posts</span>
-
-            <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-          </a> -->
-
-        </div>
-<!-- shadow move to home -->
+        <!-- shadow move to home -->
         <!-- <img src="./assets/images/shadow-3.svg" width="500" height="1500" loading="lazy" alt="" class="feature-bg"> -->
 
-      </section>
+    </section>
+}
+
 <br>
 @if (isAdmin && Model.JoinClubRequests.ToList().Count > 0)
 {
@@ -415,25 +318,7 @@
             </thead>
             <tbody>
               <tr>
-                <td style="text-align: center"><img src="" alt="" />مم</td>
-                <td style="text-align: center">مم#33</td>
-                <td style="text-align: center">ws@gmail.com</td>
-                <td style="text-align: center">0550550550</td>
-              </tr>
-              <tr>
-                <td style="text-align: center"><img src="" alt="" />مم</td>
-                <td style="text-align: center">مم#33</td>
-                <td style="text-align: center">ws@gmail.com</td>
-                <td style="text-align: center">0550550550</td>
-              </tr>
-              <tr>
-                <td style="text-align: center"><img src="" alt="" />مم</td>
-                <td style="text-align: center">مم#33</td>
-                <td style="text-align: center">ws@gmail.com</td>
-                <td style="text-align: center">0550550550</td>
-              </tr>
-              <tr>
-                <td style="text-align: center"><img src="" alt="" />مم</td>
+                <td style="text-align: center"></td>
                 <td style="text-align: center">مم#33</td>
                 <td style="text-align: center">ws@gmail.com</td>
                 <td style="text-align: center">0550550550</td>
