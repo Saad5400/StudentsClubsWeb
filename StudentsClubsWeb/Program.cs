@@ -20,6 +20,7 @@ namespace StudentsClubsWeb
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+                options.UseModel(AppDbContextModel.Instance);
             });
 
             builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
