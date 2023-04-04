@@ -67,7 +67,7 @@ tour.addStep({
             action() {
                 return this.next();
             },
-            text: 'انهاء'
+            text: 'التالي'
         }
     ]
 });
@@ -92,15 +92,15 @@ tour.addStep({
             action() {
                 return this.next();
             },
-            text: 'التالي'
+            text: 'انهاء'
         }
     ]
 });
 
 setTimeout(() => {
     // Initiate the tour
-    // if(!localStorage.getItem('shepherd-tour-clubs')) {
+    if(!localStorage.getItem('shepherd-tour-clubsPage')) {
         tour.start();
-        // localStorage.setItem('shepherd-tour-clubs', 'yes');
-    // }
+        localStorage.setItem('shepherd-tour-clubsPage', 'yes');
+    }
 }, 1000);

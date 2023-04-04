@@ -1089,8 +1089,13 @@ body.nav-active {
     margin: 0.8rem auto;
     border-radius: 0.6rem;
     overflow: auto;
-    overflow: overlay;
 }
+
+.table__body th {
+    position: relative;
+    right: 0;
+    z-index: 1;
+  }
   
   .table__body::-webkit-scrollbar {
     width: 0.5rem;

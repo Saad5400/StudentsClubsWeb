@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div class="form__footer">
-                    <a class="form__recover-danger" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <a style="cursor: pointer;" class="form__recover-danger" onclick="signOut();">
                         تسجيل الخروج
                     </a>
                     <button type="submit" class="form__btn w-btn" style="color: white;">
@@ -116,41 +116,22 @@
                     </button>
                 </div>
             </form>
+            <form id="signOutForm" hidden method="post" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+
+            </form>
         </div>
     </div>
     <script src="~/page/account/account.js"></script>
 </body>
 </html>
 
-@* <h3>@ViewData["Title"]</h3> *@
-@* <partial name="_StatusMessage" for="StatusMessage" /> *@
-@* <div class="row"> *@
-@*     <div class="col-md-6"> *@
-@*         <form id="profile-form" method="post"> *@
-@*             <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
-@*             <div class="form-group"> *@
-@*                 <label class="form-label">البريد</label> *@
-@*                 <input dir="ltr" asp-for="Username" class="form-control" disabled/> *@
-@*             </div> *@
-@*             <div class="form-group"> *@
-@*                 <label class="form-label">رقم الجوال</label> *@
-@*                 <input asp-for="Input.PhoneNumber" class="form-control"/> *@
-@*                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span> *@
-@*             </div> *@
-@*             <div class="w-100"> *@
-@*                 <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button> *@
-@*             </div> *@
-@*         </form> *@
-@*         <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Account/Login", new { area = "Identity" })"> *@
-@*             <button class="w-100 btn btn-lg btn-danger" type="submit"> *@
-@*                 تسجيل الخروج *@
-@*             </button> *@
-@*         </form> *@
-@*     </div> *@
-@*     <div class=""> *@
-@*     </div> *@
-@* </div> *@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        function signOut() {
+            signOutForm = document.getElementById("signOutForm");
+            signOutForm.submit();
+        }
+    </script>
 }
