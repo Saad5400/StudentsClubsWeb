@@ -61,101 +61,19 @@
 
 @if (Model.Club.Posts.Count > 0)
 {
-    @* <div class="row"> *@
-    @*     @foreach (var post in Model.Club.Posts) *@
-    @*     { *@
-    @*         <div class="col-lg-6"> *@
-    @*             <div class="w-card aside-card my-3"> *@
-    @*                 <div class="card-header mb-3"> *@
-    @*                     @foreach (var tag in post.Tags.Select(t => t.Title)) *@
-    @*                     { *@
-    @*                         <span class="badge card-badge"> *@
-    @*                             @tag *@
-    @*                         </span> *@
-    @*                     } *@
-    @*                 </div> *@
-    @*                 <div class="card-body pb-1"> *@
-    @*                     <h3 class="headline headline-3 card-title"> *@
-    @*                         <div class="club-info" style="display: flex; align-items: center;"> *@
-    @*                             <img class="me-0 ms-3" src="@post.Image" width="100" height="100" loading="lazy" style="margin-right: 10px;"> *@
-    @*                             <a class="link hover-2" asp-area="Student" asp-controller="Post" asp-action="PostPage" asp-route-id="@post.Id"> *@
-    @*                                 <span>@post.Title</span> *@
-    @*                             </a> *@
-    @*                         </div> *@
-    @*                     </h3> *@
-    @*                     <h6 class="card-title"> *@
-    @*                         @(post.Summary.Length > 100 ? post.Summary.Substring(0, 100) + "..." : post.Summary) *@
-    @*                     </h6> *@
-    @*                 </div> *@
-    @*             </div> *@
-    @*         </div> *@
-    @*     } *@
-    @* </div> *@
 
     <!--
       - #FEATURED POST
     -->
 
 <section class="section feature pb-2" aria-label="feature">
-    <div class="w-container">
+    <div class="w-container" id="allPostsDiv">
     <h5 class="headline-3 title2">
         <span class="span">
-            المنشورات
+            المقالات
         </span>
     </h5>
     <ul class="feature-list">
-
-        @* <li> *@
-        @*     <div class="w-card feature-card"> *@
-        @* *@
-        @*         <figure class="card-banner img-holder" style="--width: 1602; --height: 903;"> *@
-        @*             <!-- <img src="" height="903" loading="lazy" *@
-        @*                       class="img-cover"> --> *@
-        @*         </figure> *@
-        @* *@
-        @*         <div class="card-content"> *@
-        @* *@
-        @*             <div class="card-wrapper"> *@
-        @*                 <div class="card-tag"> *@
-        @*                     <a href="#" class="span hover-2">#tag</a> *@
-        @* *@
-        @*                     <a href="#" class="span hover-2">#tag</a> *@
-        @*                 </div> *@
-        @* *@
-        @*                 <div class="wrapper"> *@
-        @*                     <ion-icon name="time-outline" aria-hidden="true"></ion-icon> *@
-        @* *@
-        @*                     <span class="span">3 mins read</span> *@
-        @*                 </div> *@
-        @*             </div> *@
-        @* *@
-        @*             <h3 class="headline headline-3"> *@
-        @*                 <a href="#" class="card-title hover-2"> *@
-        @*                     Bla Bla *@
-        @*                 </a> *@
-        @*             </h3> *@
-        @* *@
-        @*             <div class="card-wrapper"> *@
-        @* *@
-        @*                 <div class="profile-card"> *@
-        @*                     <img src="" width="48" height="48" loading="lazy" alt="user" *@
-        @*                          class="profile-banner"> *@
-        @* *@
-        @*                     <div> *@
-        @*                         <p class="card-title">user</p> *@
-        @* *@
-        @*                         <p class="card-subtitle">3 April 2032</p> *@
-        @*                     </div> *@
-        @*                 </div> *@
-        @* *@
-        @*                 <a href="#" class="card-btn">Read more</a> *@
-        @* *@
-        @*             </div> *@
-        @* *@
-        @*         </div> *@
-        @* *@
-        @*     </div> *@
-        @* </li> *@
         
         @foreach (var post in Model.Club.Posts)
         {
@@ -279,40 +197,42 @@
         </section>
     </div>
 }
-<br/>
-<h5 class="headline-3 title2">
-    <span class="span">
-        الادارة
-    </span>
-</h5>
-<div>
-    <section class="table">
-        <div class="table__body">
-            <table>
-                <thead>
-                <tr>
-                    <th style="text-align: center">الاسم</th>
-                    <th style="text-align: center">اسم العرض</th>
-                    <th style="text-align: center">البريد</th>
-                    <th style="text-align: center">رقم الهاتف</th>
-                </tr>
-                </thead>
-                <tbody>
-                    @foreach (var admin in Model.Club.ClubAdmins.Select(cd => cd.Admin))
-                    {
-                        <tr>
-                            <td style="text-align: center">@($"{admin.FirstName} {admin.LastName}")</td>
-                            <td style="text-align: center">@admin.DisplayUsername</td>
-                            <td style="text-align: center">@admin.Email</td>
-                            <td style="text-align: center" dir="ltr">@admin.PhoneNumber</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </section>
-</div>
 
+<br/>
+<div id="clubManagersTable">
+    <h5 class="headline-3 title2">
+        <span class="span">
+            الادارة
+        </span>
+    </h5>
+    <div>
+        <section class="table">
+            <div class="table__body">
+                <table>
+                    <thead>
+                    <tr>
+                        <th style="text-align: center">الاسم</th>
+                        <th style="text-align: center">اسم العرض</th>
+                        <th style="text-align: center">البريد</th>
+                        <th style="text-align: center">رقم الهاتف</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var admin in Model.Club.ClubAdmins.Select(cd => cd.Admin))
+                        {
+                            <tr>
+                                <td style="text-align: center">@($"{admin.FirstName} {admin.LastName}")</td>
+                                <td style="text-align: center">@admin.DisplayUsername</td>
+                                <td style="text-align: center">@admin.Email</td>
+                                <td style="text-align: center" dir="ltr">@admin.PhoneNumber</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>
 <br>
 <h5 class="headline-3 title2">
     <span class="span">
@@ -358,65 +278,6 @@
         </div>
     </section>
 </div>
-@* <div>
-    <table class="table table-hover">
-        @if (isAdmin)
-        {
-            <tr>
-                <th>اسم المستخدم</th>
-                <th>البريد</th>
-                <th>خيارات</th>
-            </tr>
-            @foreach (var request in Model.JoinClubRequests)
-            {
-                <tr>
-                    <td>@request.User.DisplayUsername</td>
-                    <td>@request.User.SchoolEmail</td>
-                    <td>
-                        <div class="btn-group" dir="ltr">
-                            <a class="btn btn-danger" asp-area="Admin" asp-controller="ClubAdmin"
-                               asp-action="RejectJoinClubRequest" asp-route-id="@request.Id">
-                                رفض
-                            </a>
-                            <a class="btn btn-success" asp-area="Admin" asp-controller="ClubAdmin"
-                                asp-action="AcceptJoinClubRequest" asp-route-id="@request.Id">
-                                قبول
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-            }
-            @foreach (var user in Model.Club.Members)
-            {
-                <tr>
-                    <td>@user.DisplayUsername</td>
-                    <td>@user.SchoolEmail</td>
-                    <td>
-                        <div class="btn-group" dir="ltr">
-                            <a class="btn btn-danger" href="/Admin/ClubAdmin/KickUser/@Model.Club.Id/@user.Id">
-                                طرد
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-            }
-        }
-        else
-        {
-            <tr>
-                <th>اسم المستخدم</th>
-                <th>البريد العام</th>
-            </tr>
-            @foreach (var user in Model.Club.Members)
-            {
-                <tr>
-                    <td>@user.DisplayUsername</td>
-                    <td>@user.SchoolEmail</td>
-                </tr>
-            }
-        }
-    </table>
-</div> *@
 
 @section Scripts
 {
@@ -431,4 +292,5 @@
             }
         }
     </script>
+    <script src="~/js/tour_clubPage.js"></script>
 }
