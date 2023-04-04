@@ -43,9 +43,9 @@
                 <div class="form__inputs">
                     <div class="field">
                         <label class="field__label">اسم العرض</label>
-                        <div class="field__wrapper w-card aside-card">
+                        <span class="small">اسم العرض يظهر لجميع المستخدمين</span>                        <div class="field__wrapper w-card aside-card">
                             <span class="field__icon">
-                                <ion-icon name="person-outline"></ion-icon>
+                                <i class="bi bi-person"></i>
                             </span>
                             <input class="field__input"
                                    type="text"
@@ -57,10 +57,10 @@
                         </div>
                     </div>
                     <div class="field">
-                        <label class="field__label">الاسم (مخفي للزوار)</label>
-                        <div class="field__wrapper w-card aside-card">
+                        <label class="field__label">الاسم</label>
+                        <span class="small">الاسم الكامل يظهر للادارة عند طلب التسجيل في ناديهم. ويظهر للاعضاء في صفحة النادي الذي تديره</span>                        <div class="field__wrapper w-card aside-card">
                             <span class="field__icon">
-                                <ion-icon name="person-outline"></ion-icon>
+                                <i class="bi bi-person-vcard"></i>
                             </span>
                             <input class="field__input"
                                    type="text"
@@ -79,10 +79,10 @@
                     </div>
 
                     <div class="field">
-                        <label class="field__label">البريد الالكتروني</label>
-                        <div class="field__wrapper w-card aside-card">
+                    <label class="field__label">البريد الالكتروني</label>
+                    <span class="small">البريد الالكتروني يظهر لجميع المستخدمين في صفحة الاندية المسجل فيها</span>                        <div class="field__wrapper w-card aside-card">
                             <span class="field__icon">
-                                <ion-icon name="mail-outline"></ion-icon>
+                                <i class="bi bi-envelope"></i>
                             </span>
                             <input class="field__input"
                                    type="email"
@@ -93,11 +93,11 @@
                         </div>
                     </div>
                     <div class="field">
-                        <label class="field__label">رقم الهاتف (اختياري)</label>
-
+                    <label class="field__label">رقم الهاتف</label>
+                    <span class="small">اختياري</span>
                         <div class="field__wrapper w-card aside-card">
                             <span class="field__icon">
-                                <ion-icon name="call-outline"></ion-icon>
+                                <i class="bi bi-phone"></i>
                             </span>
                             <input class="field__input"
                                    type="tel"
@@ -110,6 +110,7 @@
                 <div class="form__footer">
                     <a style="cursor: pointer;" class="form__recover-danger" onclick="signOut();">
                         تسجيل الخروج
+                        
                     </a>
                     <button type="submit" class="form__btn w-btn" style="color: white;">
                         حفظ

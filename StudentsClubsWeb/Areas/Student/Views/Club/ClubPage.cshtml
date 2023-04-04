@@ -80,10 +80,12 @@
             <li class="w-lg-25 w-md-50">
                 <div class="w-card feature-card">
 
-                    <figure class="card-banner img-holder">
-                        <img src="@post.Image" loading="lazy"
-                                  class="img-cover">
-                    </figure>
+                <figure class="card-banner img-holder" style="--width: 1602; --height: 903;">
+                    @if(!string.IsNullOrEmpty(post.Image)) {
+                        <img src="@post.Image" height="903" loading="lazy"
+                        class="img-cover">
+                    }
+                </figure>
 
                     <div class="card-content">
 
