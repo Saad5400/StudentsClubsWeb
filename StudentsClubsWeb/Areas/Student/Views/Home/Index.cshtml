@@ -5,7 +5,6 @@
     TempData[SD.NavActive.Home] = SD.NavActive.Activee;
 }
 
-
 <article>
     <section class="hero" id="home" aria-label="home">
         <div class="container">
@@ -30,7 +29,7 @@
                     <a class="btn w-btn w-btn-primary-revert btn-hero" asp-area="Student" asp-controller="Club" asp-action="Create">
                         سجل ناديك
                     </a>
-                    <a class="btn w-btn w-btn-primary btn-hero" asp-area="Student" asp-controller="Club" asp-action="Index">
+                    <a id="browse-clubs-btn" class="btn w-btn w-btn-primary btn-hero" asp-area="Student" asp-controller="Club" asp-action="Index">
                         تصفح الأندية
                     </a>
                 </div>
@@ -200,4 +199,5 @@
             }
         });
     </script>
+    <script src="~/page/index/tour.js"></script>
 }

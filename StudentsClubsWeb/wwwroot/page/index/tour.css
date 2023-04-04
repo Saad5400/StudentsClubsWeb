@@ -1,0 +1,12 @@
+.tour-window {
+    font-size: 16px;
+    direction: rtl;
+}
+
+.tour-window .shepherd-title {
+    font-size: 18px;
+}
+
+.tour-window .shepherd-text {
+    font-size: 16px;
+}
