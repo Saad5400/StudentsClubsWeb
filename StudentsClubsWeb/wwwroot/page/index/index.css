@@ -1137,13 +1137,20 @@ body.nav-active {
     position: sticky;
     top: 0;
     left: 0;
-    background-color: #d5d1defe;
+    color: ghostwhite;
+    background-color: #0b111e;
     cursor: pointer;
     text-transform: capitalize;
   }
+
+  tbody tr:nth-child(odd) {
+    background-color: #131b30;
+    color: whitesmoke;
+  }
   
   tbody tr:nth-child(even) {
-    background-color: #0000000b;
+    background-color: #16223c;
+    color: whitesmoke;
   }
   
   tbody tr {
@@ -1157,7 +1164,7 @@ body.nav-active {
   }
   
   tbody tr:hover {
-    background-color: #fff6 !important;
+    background-color: #0b111e !important;
   }
   
   tbody tr td,
