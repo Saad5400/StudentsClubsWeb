@@ -31,7 +31,7 @@
                 {
                     <a asp-area="Identity" asp-page="/Account/Manage/Index" >
                         <span class="icon">
-                            <ion-icon name="person-outline"></ion-icon>
+                            <i class="bi bi-person-gear"></i>
                         </span>
                         <span class="text">الحساب</span>
                     </a>
@@ -41,7 +41,7 @@
                     
                     <a asp-area="Identity" asp-page="/Account/Register">
                         <span class="icon">
-                            <ion-icon name="person-outline"></ion-icon>
+                            <i class="bi bi-person-add"></i>
                         </span>
                         <span class="text">التسجيل</span>
                     </a>
@@ -50,7 +50,7 @@
             <li class="list @(TempData[SD.NavActive.Clubs])">
                 <a asp-area="Student" asp-controller="Club" asp-action="Index">
                     <span class="icon">
-                        <ion-icon name="grid-outline"></ion-icon>
+                        <i class="bi bi-search"></i>
                     </span>
                     <span class="text">الأندية</span>
                 </a>
@@ -59,7 +59,7 @@
             <li class="list @(TempData[SD.NavActive.Home])">
                 <a asp-area="Student" asp-controller="Home" asp-action="Index">
                     <span class="icon">
-                        <ion-icon name="home-outline"></ion-icon>
+                        <i class="bi bi-house"></i>
                     </span>
                     <span class="text">الرئيسية</span>
                 </a>
@@ -67,7 +67,7 @@
             <li class="list @(TempData[SD.NavActive.MyClubs])">
                 <a asp-area="Student" asp-controller="Club" asp-action="MyClubs">
                     <span class="icon">
-                        <ion-icon name="sparkles-outline"></ion-icon>
+                        <i class="bi bi-star"></i>
                     </span>
                     <span class="text">أنديتي</span>
                 </a>
@@ -75,7 +75,7 @@
             <li class="list @(TempData[SD.NavActive.NewClub])">
                 <a asp-area="Student" asp-controller="Club" asp-action="Create">
                     <span class="icon">
-                        <ion-icon name="add-outline"></ion-icon>
+                        <i class="bi bi-plus-lg"></i>
                     </span>
                     <span class="text">انشاء نادي</span>
                 </a>
@@ -103,8 +103,3 @@
         }
         list.forEach((item) => item.addEventListener("click", activeLink));
     </script>
-
-    <script type="module"
-            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule
-            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

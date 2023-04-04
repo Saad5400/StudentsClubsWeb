@@ -201,7 +201,25 @@ input,
 ion-icon {
     display: block;
 }
-
+.customNav i {
+    height: 24px !important;
+    width: 24px !important;
+    /* vertically alligned */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.customNav span.icon {
+    height: 24px;
+    width: 24px;
+    overflow: visible;
+    /* vertical align children to center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
 a {
     color: inherit;
     text-decoration: none;

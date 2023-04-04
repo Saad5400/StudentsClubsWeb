@@ -95,7 +95,7 @@
                 @if(Context.Request.Path.ToString().Contains("ApplyFilter")) {
                     <a class="form__recover-danger mt-3 me-5" style="display: flex; align-items: center;" 
                     asp-area="Student" asp-controller="Club" asp-action="Index">
-                        <ion-icon class="d-inline-block align-middle me-2" name="close-circle-outline"></ion-icon>
+                        <i class="bi bi-x-lg d-inline-block align-middle me-2"></i>
                         &nbsp;
                         اعادة ضبط البحث
                     </a>
@@ -141,7 +141,7 @@
                         </div>
                     </h3>
                     <h6 class="card-title">
-                        @(club.Description.Length > 100 ? club.Description.Substring(0, 100) + "..." : club.Description)
+                        @(club.Description.Length > 180 ? club.Description.Substring(0, 180) + "..." : club.Description)
                     </h6>
                 </div>
             </div>
