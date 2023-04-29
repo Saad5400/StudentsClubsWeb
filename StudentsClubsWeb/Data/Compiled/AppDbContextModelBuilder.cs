@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 #pragma warning disable 219, 612, 618
 #nullable enable
 
-namespace StudentsClubsWeb.Data
+namespace StudentsClubsWeb.Data.Compiled
 {
     public partial class AppDbContextModel
     {
@@ -64,8 +64,6 @@ namespace StudentsClubsWeb.Data
             AppUserEntityType.CreateAnnotations(appUser);
 
             AddAnnotation("ProductVersion", "6.0.15");
-            AddAnnotation("Relational:MaxIdentifierLength", 128);
-            AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
         }
     }
 }

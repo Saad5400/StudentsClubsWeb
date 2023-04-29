@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using StudentsClubsWeb.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using StudentsClubsWeb.Data.Compiled;
 using StudentsClubsWeb.Utilities;
 
 namespace StudentsClubsWeb
@@ -19,7 +20,7 @@ namespace StudentsClubsWeb
 
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
                 options.UseModel(AppDbContextModel.Instance);
             });
 

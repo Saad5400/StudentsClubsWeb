@@ -9,7 +9,7 @@ using StudentsClubsWeb.Models;
 #pragma warning disable 219, 612, 618
 #nullable enable
 
-namespace StudentsClubsWeb.Data
+namespace StudentsClubsWeb.Data.Compiled
 {
     internal partial class ClubAdminEntityType
     {
@@ -27,21 +27,18 @@ namespace StudentsClubsWeb.Data
                 fieldInfo: typeof(ClubAdmin).GetField("<Id>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 valueGenerated: ValueGenerated.OnAdd,
                 afterSaveBehavior: PropertySaveBehavior.Throw);
-            id.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             var adminId = runtimeEntityType.AddProperty(
                 "AdminId",
                 typeof(string),
                 propertyInfo: typeof(ClubAdmin).GetProperty("AdminId", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 fieldInfo: typeof(ClubAdmin).GetField("<AdminId>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
-            adminId.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var clubId = runtimeEntityType.AddProperty(
                 "ClubId",
                 typeof(int),
                 propertyInfo: typeof(ClubAdmin).GetProperty("ClubId", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 fieldInfo: typeof(ClubAdmin).GetField("<ClubId>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
-            clubId.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var key = runtimeEntityType.AddKey(
                 new[] { id });

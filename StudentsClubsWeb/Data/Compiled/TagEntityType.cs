@@ -9,7 +9,7 @@ using StudentsClubsWeb.Models;
 #pragma warning disable 219, 612, 618
 #nullable enable
 
-namespace StudentsClubsWeb.Data
+namespace StudentsClubsWeb.Data.Compiled
 {
     internal partial class TagEntityType
     {
@@ -27,20 +27,17 @@ namespace StudentsClubsWeb.Data
                 fieldInfo: typeof(Tag).GetField("<Id>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 valueGenerated: ValueGenerated.OnAdd,
                 afterSaveBehavior: PropertySaveBehavior.Throw);
-            id.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             var authorId = runtimeEntityType.AddProperty(
                 "AuthorId",
                 typeof(string),
                 propertyInfo: typeof(Tag).GetProperty("AuthorId", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 fieldInfo: typeof(Tag).GetField("<AuthorId>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
-            authorId.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var clubId = runtimeEntityType.AddProperty(
                 "ClubId",
                 typeof(int?),
                 nullable: true);
-            clubId.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var description = runtimeEntityType.AddProperty(
                 "Description",
@@ -49,7 +46,6 @@ namespace StudentsClubsWeb.Data
                 fieldInfo: typeof(Tag).GetField("<Description>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 nullable: true,
                 maxLength: 1000);
-            description.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var group = runtimeEntityType.AddProperty(
                 "Group",
@@ -57,13 +53,11 @@ namespace StudentsClubsWeb.Data
                 propertyInfo: typeof(Tag).GetProperty("Group", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 fieldInfo: typeof(Tag).GetField("<Group>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 nullable: true);
-            group.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var postId = runtimeEntityType.AddProperty(
                 "PostId",
                 typeof(int?),
                 nullable: true);
-            postId.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var title = runtimeEntityType.AddProperty(
                 "Title",
@@ -71,14 +65,12 @@ namespace StudentsClubsWeb.Data
                 propertyInfo: typeof(Tag).GetProperty("Title", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 fieldInfo: typeof(Tag).GetField("<Title>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 maxLength: 50);
-            title.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var viewsCount = runtimeEntityType.AddProperty(
                 "ViewsCount",
                 typeof(int),
                 propertyInfo: typeof(Tag).GetProperty("ViewsCount", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 fieldInfo: typeof(Tag).GetField("<ViewsCount>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
-            viewsCount.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var key = runtimeEntityType.AddKey(
                 new[] { id });

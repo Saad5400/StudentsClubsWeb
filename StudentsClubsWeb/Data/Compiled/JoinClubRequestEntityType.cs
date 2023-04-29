@@ -8,7 +8,7 @@ using StudentsClubsWeb.Models;
 #pragma warning disable 219, 612, 618
 #nullable enable
 
-namespace StudentsClubsWeb.Data
+namespace StudentsClubsWeb.Data.Compiled
 {
     internal partial class JoinClubRequestEntityType
     {
@@ -26,28 +26,24 @@ namespace StudentsClubsWeb.Data
                 fieldInfo: typeof(JoinClubRequest).GetField("<Id>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 valueGenerated: ValueGenerated.OnAdd,
                 afterSaveBehavior: PropertySaveBehavior.Throw);
-            id.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             var clubId = runtimeEntityType.AddProperty(
                 "ClubId",
                 typeof(int),
                 propertyInfo: typeof(JoinClubRequest).GetProperty("ClubId", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 fieldInfo: typeof(JoinClubRequest).GetField("<ClubId>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
-            clubId.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var isApproved = runtimeEntityType.AddProperty(
                 "IsApproved",
                 typeof(bool),
                 propertyInfo: typeof(JoinClubRequest).GetProperty("IsApproved", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 fieldInfo: typeof(JoinClubRequest).GetField("<IsApproved>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
-            isApproved.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var userId = runtimeEntityType.AddProperty(
                 "UserId",
                 typeof(string),
                 propertyInfo: typeof(JoinClubRequest).GetProperty("UserId", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 fieldInfo: typeof(JoinClubRequest).GetField("<UserId>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
-            userId.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var key = runtimeEntityType.AddKey(
                 new[] { id });

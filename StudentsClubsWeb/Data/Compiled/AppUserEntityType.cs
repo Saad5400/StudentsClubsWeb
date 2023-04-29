@@ -8,7 +8,7 @@ using StudentsClubsWeb.Models;
 #pragma warning disable 219, 612, 618
 #nullable enable
 
-namespace StudentsClubsWeb.Data
+namespace StudentsClubsWeb.Data.Compiled
 {
     internal partial class AppUserEntityType
     {
@@ -25,7 +25,6 @@ namespace StudentsClubsWeb.Data
                 typeof(string),
                 propertyInfo: typeof(AppUser).GetProperty("DisplayUsername", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 fieldInfo: typeof(AppUser).GetField("<DisplayUsername>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
-            displayUsername.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var firstName = runtimeEntityType.AddProperty(
                 "FirstName",
@@ -33,7 +32,6 @@ namespace StudentsClubsWeb.Data
                 propertyInfo: typeof(AppUser).GetProperty("FirstName", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 fieldInfo: typeof(AppUser).GetField("<FirstName>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 nullable: true);
-            firstName.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var lastName = runtimeEntityType.AddProperty(
                 "LastName",
@@ -41,7 +39,6 @@ namespace StudentsClubsWeb.Data
                 propertyInfo: typeof(AppUser).GetProperty("LastName", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 fieldInfo: typeof(AppUser).GetField("<LastName>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 nullable: true);
-            lastName.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var schoolEmail = runtimeEntityType.AddProperty(
                 "SchoolEmail",
@@ -49,7 +46,6 @@ namespace StudentsClubsWeb.Data
                 propertyInfo: typeof(AppUser).GetProperty("SchoolEmail", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 fieldInfo: typeof(AppUser).GetField("<SchoolEmail>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 nullable: true);
-            schoolEmail.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var schoolNumber = runtimeEntityType.AddProperty(
                 "SchoolNumber",
@@ -57,7 +53,6 @@ namespace StudentsClubsWeb.Data
                 propertyInfo: typeof(AppUser).GetProperty("SchoolNumber", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 fieldInfo: typeof(AppUser).GetField("<SchoolNumber>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 nullable: true);
-            schoolNumber.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             return runtimeEntityType;
         }
