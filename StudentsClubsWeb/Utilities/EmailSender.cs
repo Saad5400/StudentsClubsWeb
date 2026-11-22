@@ -1,29 +1,24 @@
-﻿using MailKit.Net.Smtp;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using MimeKit;
+﻿using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace StudentsClubsWeb.Utilities
 {
+    /// <summary>
+    /// The archived deployment sends no email. The previous implementation
+    /// logged in to a personal Gmail account with a password hard-coded in
+    /// this public repository; that credential must be treated as leaked.
+    /// </summary>
     public class EmailSender : IEmailSender
     {
+        private readonly ILogger<EmailSender> _logger;
+
+        public EmailSender(ILogger<EmailSender> logger)
+        {
+            _logger = logger;
+        }
+
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            var emailToSend = new MimeMessage();
-            emailToSend.From.Add(MailboxAddress.Parse("saaddev5400@gmail.com"));
-            emailToSend.To.Add(MailboxAddress.Parse(email));
-            emailToSend.Subject = subject;
-            emailToSend.Body = new TextPart(MimeKit.Text.TextFormat.Html)
-            {
-                Text = htmlMessage
-            };
-
-            using (var client = new SmtpClient())
-            {
-                client.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-                client.Authenticate("saaddev5400@gmail.com", "saadbatwa");
-                client.Send(emailToSend);
-                client.Disconnect(true);
-            }
+            _logger.LogInformation("Email sending is disabled on the archive; dropped message \"{Subject}\".", subject);
 
             return Task.CompletedTask;
         }

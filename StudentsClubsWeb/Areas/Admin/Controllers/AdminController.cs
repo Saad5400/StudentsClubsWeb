@@ -50,19 +50,6 @@ namespace StudentsClubsWeb.Areas.Admin.Controllers
         {
             return _db.AppUsers.Find(GetUserId());
         }
-        [Authorize]
-        public IActionResult GrantAdmin(string password)
-        {
-            if (password != "ThisIsMyVeryTopSecretPasswordWhichWillGrantYouAnAdminRole")
-            {
-                return NotFound();
-            }
-            var user = GetAppUser();
-            _userManager.AddToRoleAsync(user, SD.Role.Admin).GetAwaiter().GetResult();
-            
-            return Ok("Admin Granted to this user");
-        }
-
         [Authorize(Roles = SD.Role.Admin)]
         public IActionResult RemoveClub(int? clubId)
         {

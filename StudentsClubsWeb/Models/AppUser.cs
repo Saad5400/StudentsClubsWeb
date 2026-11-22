@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.Build.Framework;
 using StudentsClubsWeb.Utilities;
 
 namespace StudentsClubsWeb.Models
 {
     public class AppUser : IdentityUser
     {
-        [Required]
+        // Non-nullable, so EF already maps it NOT NULL. The [Required] that sat here came
+        // from Microsoft.Build.Framework (a stray IDE import) and did nothing at runtime.
         public string DisplayUsername { get; set; } = NameGenerator.GenerateName();
 
         public string? FirstName { get; set; }
